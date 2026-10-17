@@ -1,0 +1,284 @@
+{
+  "meta": {
+    "language": "pt-BR",
+    "title": "MANDATO 360",
+    "description": "Inteligência eleitoral e eficiência financeira para deputados estaduais."
+  },
+  "brand": {
+    "name": "MANDATO 360"
+  },
+  "accessibility": {
+    "skip_link": "Ir para o conteúdo",
+    "menu_toggle": "Menu",
+    "open_menu": "Abrir menu",
+    "close_menu": "Fechar menu",
+    "main_navigation": "Navegação principal",
+    "footer_navigation": "Navegação do rodapé"
+  },
+  "navigation": [
+    {
+      "label": "Serviços",
+      "target": "section-solution"
+    },
+    {
+      "label": "Para quem é",
+      "target": "section-audience"
+    },
+    {
+      "label": "Diferencial",
+      "target": "section-cta"
+    }
+  ],
+  "contact_button": {
+    "label": "Fale Conosco",
+    "url": "https://wa.me/5531975564544"
+  },
+  "hero": {
+    "eyebrow": "RaioX e DNA do Eleitor • ALMG",
+    "title": "Mapeamento completo do seu desempenho eleitoral",
+    "description": "A auditoria 360° do seu desempenho em Minas Gerais: cruze votação por bairro, perfil do eleitorado, raio-x financeiro da campanha e a força real das alianças locais",
+    "secondary_button": "Como Funciona",
+    "video": {
+      "mobile_path": "video/hero-mobile.mp4",
+      "desktop_path": "video/hero-desktop.mp4",
+      "width": 720,
+      "height": 1280,
+      "label": "Animação do mapa de Minas Gerais com gráficos e indicadores eleitorais.",
+      "poster": {
+        "path": "img/responsive/hero-video-poster-720.webp",
+        "width": 720,
+        "height": 1280,
+        "alt": "Mapa de Minas Gerais iluminado, cercado por gráficos de inteligência eleitoral.",
+        "sources": [
+          { "path": "img/responsive/hero-video-poster-540.webp", "width": 540 },
+          { "path": "img/responsive/hero-video-poster-720.webp", "width": 720 }
+        ]
+      }
+    },
+    "image": {
+      "path": "img/dashboard-eleitoral-minas-gerais.png",
+      "width": 1672,
+      "height": 941,
+      "sources": [
+        { "path": "img/responsive/dashboard-eleitoral-minas-gerais-480.webp", "width": 480 },
+        { "path": "img/responsive/dashboard-eleitoral-minas-gerais-800.webp", "width": 800 },
+        { "path": "img/responsive/dashboard-eleitoral-minas-gerais-1200.webp", "width": 1200 }
+      ],
+      "alt": "Ilustração de dashboard eleitoral de Minas Gerais com mapas, perfil do eleitor e indicadores financeiros e políticos."
+    }
+  },
+  "problem": {
+    "eyebrow": "Como foi o seu desempenho nas urnas?",
+    "title": "Quem não mapeia o próprio reduto, perde espaço para a oposição.",
+    "description": "A plataforma une 4 pilares de inteligência eleitoral para transformar o histórico das urnas em vantagem estratégica para seu mandato",
+    "cards": [
+      {
+        "title": "RaioX Territorial",
+        "description": "Descubra onde estão seus votos, quais territórios sustentam sua candidatura e onde existe concentração de votos ou perda de força eleitoral. Compare o desempenho das urnas com eleições anteriores e projeções do próximo pleito.",
+        "tags": [
+          "MESORREGIÕES",
+          "MUNICÍPIOS",
+          "BAIRROS"
+        ]
+      },
+      {
+        "title": "DNA do Eleitor",
+        "description": "Entenda quem compõe sua base eleitoral, quais perfis sustentam sua votação e onde existem oportunidades demográficas de crescimento. Identifica municípios prioritários para proteção da base e prospecção territorial a partir da compatibilidade demográfica.",
+        "tags": [
+          "ELEITOR IDEAL",
+          "BASE ELEITORAL",
+          "OPORTUNIDADES DE EXPANSÃO"
+        ]
+      },
+      {
+        "title": "DRE Campanha",
+        "description": "Tenha uma visão integrada das finanças eleitorais, identificando a origem dos recursos, sua aplicação, a concentração dos doadores e os compromissos financeiros da campanha. Melhora o controle dos compromissos da campanha e ajuda a identificar categorias ou fornecedores que exigem atenção financeira.",
+        "tags": [
+          "RECEITAS & GASTOS",
+          "ANÁLISE DOADORES",
+          "MAPEAMENTO DESPESAS"
+        ]
+      },
+      {
+        "title": "Impacto Político",
+        "description": "Avalie a força das alianças municipais e a relação entre a atuação parlamentar e os resultados eleitorais para orientar decisões políticas e territoriais. Permite avaliar a relação entre atuação parlamentar e sustentação eleitoral. Ajuda a avaliar a efetividade eleitoral das alianças locais, fornecendo indícios de contribuição política de prefeitos e vereadores.",
+        "tags": [
+          "EFICIÊNCIA",
+          "VEREADORES E PREFEITOS",
+          "EMENDAS"
+        ]
+      }
+    ]
+  },
+  "solution": {
+    "eyebrow": "",
+    "title": "Inteligência de ponta a ponta para o seu mandato.",
+    "description": "Uma visão completa da sua força eleitoral. Descubra onde estão seus votos, quem sustenta sua candidatura, como seus recursos foram utilizados e como sua atuação política se influenciou o resultado das urnas.",
+    "image_note": "Imagens ilustrativas dos módulos.",
+    "modules": [
+      {
+        "id": "raiox",
+        "label": "RaioX Territorial",
+        "title": "Onde você é forte",
+        "points": [
+          "Identifica os municípios e mesorregiões com maior volume de votos.",
+          "Detalha a distribuição dos votos dentro de cada município.",
+          "Compara seu resultado com eleições anteriores, identificando crescimento, estabilidade e queda.",
+          "Apresenta diagnósticos de potencial territorial para 2030"
+        ],
+        "image": {
+          "path": "img/RAIOXTERRITORIAL.png",
+          "width": 1586,
+          "height": 992,
+          "sources": [
+            { "path": "img/responsive/RAIOXTERRITORIAL-480.webp", "width": 480 },
+            { "path": "img/responsive/RAIOXTERRITORIAL-800.webp", "width": 800 },
+            { "path": "img/responsive/RAIOXTERRITORIAL-1200.webp", "width": 1200 }
+          ],
+          "alt": "Ilustração do RaioX Territorial com mapa de Minas Gerais e indicadores de distribuição e concentração dos votos."
+        }
+      },
+      {
+        "id": "dna",
+        "label": "DNA do Eleitor",
+        "title": "Quem sustenta sua votação",
+        "points": [
+          "Segmenta os perfis em Base Principal, Eleitor Consolidado e Eleitor Emergente",
+          "Compara a participação das categorias de gênero, idade, escolaridade e estado civil",
+          "Cruza o perfil eleitoral do seu eleitorado com a população local",
+          "Apresenta áreas que merecem proteção, expansão ou desenvolvimento para 2030"
+        ],
+        "image": {
+          "path": "img/PERFILELEITOR.png",
+          "width": 1586,
+          "height": 992,
+          "sources": [
+            { "path": "img/responsive/PERFILELEITOR-480.webp", "width": 480 },
+            { "path": "img/responsive/PERFILELEITOR-800.webp", "width": 800 },
+            { "path": "img/responsive/PERFILELEITOR-1200.webp", "width": 1200 }
+          ],
+          "alt": "Ilustração do DNA do Eleitor com perfil demográfico, base eleitoral e gráficos do eleitorado."
+        }
+      },
+      {
+        "id": "dre",
+        "label": "DRE da Campanha",
+        "title": "Como seus recursos foram utilizados",
+        "points": [
+          "Consolida receitas financeiras e despesas contratadas",
+          "Compara arrecadação, contratação e pagamento em uma visão executiva",
+          "Identifica os maiores doadores da campanha",
+          "Permite analisar despesas por categoria e fornecedor"
+        ],
+        "image": {
+          "path": "img/DRECAMPANHA.png",
+          "width": 1586,
+          "height": 992,
+          "sources": [
+            { "path": "img/responsive/DRECAMPANHA-480.webp", "width": 480 },
+            { "path": "img/responsive/DRECAMPANHA-800.webp", "width": 800 },
+            { "path": "img/responsive/DRECAMPANHA-1200.webp", "width": 1200 }
+          ],
+          "alt": "Ilustração da DRE Campanha com receitas, despesas, doadores e comparação de valores contratados e pagos."
+        }
+      },
+      {
+        "id": "impacto",
+        "label": "Impacto Político",
+        "title": "Qual o peso da sua atuação política",
+        "points": [
+          "Analisa a influência de prefeitos e vereadores associados à candidatura",
+          "Identifica municípios onde as alianças coincidem com resultados eleitorais expressivos",
+          "Cruza sua votação com os valores de Emendas Parlamentares destinadas aos municipios",
+          "Permite visualizar os valores das emendas por município, finalidade e tipo de indicação"
+        ],
+        "image": {
+          "path": "img/FORCALOCAL.png",
+          "width": 1586,
+          "height": 992,
+          "sources": [
+            { "path": "img/responsive/FORCALOCAL-480.webp", "width": 480 },
+            { "path": "img/responsive/FORCALOCAL-800.webp", "width": 800 },
+            { "path": "img/responsive/FORCALOCAL-1200.webp", "width": 1200 }
+          ],
+          "alt": "Ilustração do Impacto Político com mapas de Minas Gerais sobre atuação parlamentar, emendas e força de prefeitos e vereadores."
+        }
+      }
+    ]
+  },
+  "differentials": {
+    "eyebrow": "Diferenciais",
+    "title": "Precisão analítica para o seu mandato",
+    "description": "Vantagem competitiva real frente aos métodos tradicionais de campanha.",
+    "cards": [
+      {
+        "title": "Visualização em 4 camadas",
+        "description": "Cruzamento de dados territoriais e políticos em mapas de alta precisão."
+      },
+      {
+        "title": "Dados TSE e IBGE",
+        "description": "Bancos oficiais integrados e atualizados para leitura imediata da sua base."
+      },
+      {
+        "title": "Projeção 2030",
+        "description": "Antecipe tendências demográficas e prepare seu mandato para o futuro."
+      },
+      {
+        "title": "Financeiro completo",
+        "description": "Controle absoluto sobre o orçamento e a eficiência de cada recurso investido."
+      }
+    ]
+  },
+  "audience": {
+    "title": "Para quem é o MANDATO 360",
+    "groups": [
+      {
+        "label": "SIM",
+        "title": "Para quem transforma dados em estratégia",
+        "class": "publico-indicado",
+        "points": [
+          "Deputados estaduais e equipes que querem proteger seus redutos e identificar oportunidades de expansão.",
+          "Gabinetes que buscam avaliar alianças, atuação parlamentar e resultados eleitorais.",
+          "Gestores e consultorias que precisam planejar campanhas com inteligência territorial, demográfica e financeira."
+        ]
+      },
+      {
+        "label": "NÃO",
+        "title": "Para quem prefere decisões sem análise de dados",
+        "class": "publico-nao-indicado",
+        "points": [
+          "Quem toma decisões eleitorais exclusivamente com base na intuição.",
+          "Quem não considera necessário avaliar o desempenho de redutos e alianças políticas.",
+          "Quem busca apenas gráficos genéricos, sem diagnóstico estratégico da candidatura."
+        ]
+      }
+    ]
+  },
+  "cta": {
+    "eyebrow": "NOSSO DIFERENCIAL",
+    "title": "Não é apenas sobre onde estão seus votos. É sobre entender toda a sua força eleitoral.",
+    "description": "Outras plataformas mostram onde você recebeu votos. O MANDATO 360 ajuda a entender quem sustenta sua candidatura, como sua força política se distribui e onde estão as oportunidades para o próximo ciclo eleitoral"
+  },
+  "footer": {
+    "description": "Muito além dos mapas. Inteligência para cada decisão.",
+    "pillars": "Território • Eleitorado • Campanha • Mandato",
+    "copyright": "© 2026 MANDATO 360. Todos os direitos reservados.",
+    "links": [
+      {
+        "label": "Início",
+        "target": "section-hero"
+      },
+      {
+        "label": "Contato",
+        "target": "section-cta"
+      }
+    ]
+  },
+  "dashboard": {
+    "title": "Dashboard | MANDATO 360",
+    "heading": "Acessar Dashboard",
+    "description": "Abra o dashboard para explorar os módulos do MANDATO 360.",
+    "button": "Ir para o dashboard",
+    "back_button": "Voltar para a página inicial"
+  }
+}

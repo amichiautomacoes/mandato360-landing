@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="{{ content.meta.language }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ content.dashboard.title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  </head>
+  <body class="pagina-dashboard">
+    <main class="acesso-dashboard conteiner" aria-labelledby="dashboard-title">
+      <a class="marca" href="{{ url_for('index') }}">{{ content.brand.name }}</a>
+      <h1 id="dashboard-title">{{ content.dashboard.heading }}</h1>
+      <p>{{ content.dashboard.description }}</p>
+      <a class="botao" href="{{ dashboard_url }}">{{ content.dashboard.button }}</a>
+      <a class="link-voltar" href="{{ url_for('index') }}">{{ content.dashboard.back_button }}</a>
+    </main>
+  </body>
+</html>

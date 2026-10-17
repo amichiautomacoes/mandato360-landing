@@ -1,0 +1,8 @@
+{% macro responsive_image(image, sizes, eager=false) -%}
+<picture>
+  {% if image.sources %}
+  <source type="image/webp" srcset="{% for source in image.sources %}{{ url_for('static', filename=source.path) }} {{ source.width }}w{% if not loop.last %}, {% endif %}{% endfor %}" sizes="{{ sizes }}">
+  {% endif %}
+  <img src="{{ url_for('static', filename=image.path) }}" alt="{{ image.alt }}"{% if image.width and image.height %} width="{{ image.width }}" height="{{ image.height }}"{% endif %} loading="{{ 'eager' if eager else 'lazy' }}"{% if eager %} fetchpriority="high"{% endif %} decoding="async">
+</picture>
+{%- endmacro %}

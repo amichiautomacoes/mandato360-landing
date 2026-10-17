@@ -1,0 +1,139 @@
+{% from '_image.html' import responsive_image %}
+<!DOCTYPE html>
+<html lang="{{ content.meta.language }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="{{ content.meta.description }}">
+    <title>{{ content.meta.title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
+  </head>
+  <body>
+    <a class="atalho-conteudo" href="#main-content">{{ content.accessibility.skip_link }}</a>
+    <header id="site-header" class="cabecalho">
+      <div class="conteiner cabecalho-conteudo">
+        <a class="marca" href="#section-hero">{{ content.brand.name }}</a>
+        <button class="menu-botao" type="button" aria-controls="main-navigation" aria-expanded="false" aria-label="{{ content.accessibility.open_menu }}" data-label-abrir="{{ content.accessibility.open_menu }}" data-label-fechar="{{ content.accessibility.close_menu }}" hidden>
+          <svg class="menu-icone-abrir" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+          <svg class="menu-icone-fechar" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 6 12 12M6 18 18 6"/></svg>
+          <span>{{ content.accessibility.menu_toggle }}</span>
+        </button>
+        <nav id="main-navigation" class="navegacao" aria-label="{{ content.accessibility.main_navigation }}">
+          {% for link in content.navigation %}
+          <a href="#{{ link.target }}">{{ link.label }}</a>
+          {% endfor %}
+          <a class="botao botao-verde botao-pequeno" href="{{ content.contact_button.url }}" target="_blank" rel="noopener noreferrer">{{ content.contact_button.label }}</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- As seções recebem os textos editáveis de content.json. -->
+    <main id="main-content">
+      <section id="section-hero" class="secao secao-hero{% if content.hero.video %} hero-com-video{% endif %}" aria-labelledby="hero-title">
+        {% if content.hero.video %}
+        <div class="hero-video-fundo" aria-hidden="true">
+          {{ responsive_image(content.hero.video.poster, '100vw', eager=true) }}
+          <video id="hero-video" class="hero-video" width="{{ content.hero.video.width }}" height="{{ content.hero.video.height }}" autoplay muted loop playsinline preload="auto" poster="{{ url_for('static', filename=content.hero.video.poster.path) }}" data-src-mobile="{{ url_for('static', filename=content.hero.video.mobile_path) }}" data-src-desktop="{{ url_for('static', filename=content.hero.video.desktop_path) }}"></video>
+        </div>
+        {% endif %}
+        <div class="conteiner hero-grade">
+          <div class="hero-conteudo">
+            <p class="sobretitulo">{{ content.hero.eyebrow }}</p>
+            <h1 id="hero-title" class="hero-titulo">{{ content.hero.title }}</h1>
+            <p class="secao-descricao">{{ content.hero.description }}</p>
+            <div class="grupo-botoes">
+              <a class="botao botao-verde" href="#section-solution">{{ content.hero.secondary_button }}</a>
+            </div>
+          </div>
+          {% if not content.hero.video %}
+          <figure class="hero-imagem">
+            {{ responsive_image(content.hero.image, '(max-width: 820px) calc(100vw - 2rem), (max-width: 1200px) calc(50vw - 3rem), 552px', eager=true) }}
+          </figure>
+          {% endif %}
+        </div>
+      </section>
+
+      <section id="section-solution" class="secao secao-solucao" aria-labelledby="solution-title">
+        <div class="conteiner">
+          <header class="secao-cabecalho">
+            {% if content.solution.eyebrow %}
+            <p class="sobretitulo">{{ content.solution.eyebrow }}</p>
+            {% endif %}
+            <h2 id="solution-title">{{ content.solution.title }}</h2>
+            <p class="secao-descricao">{{ content.solution.description }}</p>
+          </header>
+          <div class="grade-modulos">
+            {% for module in content.solution.modules %}
+            <article id="module-{{ module.id }}" class="card-modulo" aria-labelledby="module-title-{{ module.id }}">
+              <figure class="modulo-imagem">
+                {{ responsive_image(module.image, '(max-width: 560px) calc(100vw - 2rem), (max-width: 1200px) calc(50vw - 2rem), 556px') }}
+              </figure>
+              <div class="modulo-conteudo">
+                <p class="sobretitulo">{{ module.label }}</p>
+                <h3 id="module-title-{{ module.id }}">{{ module.title }}</h3>
+                {% if module.description %}
+                <p{% if module.points %} class="modulo-resumo"{% endif %}>{{ module.description }}</p>
+                {% endif %}
+                {% if module.points %}
+                <ul class="modulo-topicos">
+                  {% for point in module.points %}
+                  <li>{{ point }}</li>
+                  {% endfor %}
+                </ul>
+                {% endif %}
+              </div>
+            </article>
+            {% endfor %}
+          </div>
+          <p class="imagem-legenda">{{ content.solution.image_note }}</p>
+        </div>
+      </section>
+
+      <section id="section-audience" class="secao secao-publico" aria-labelledby="audience-title">
+        <div class="conteiner">
+          <header class="secao-cabecalho">
+            <h2 id="audience-title">{{ content.audience.title }}</h2>
+          </header>
+          <div class="grade-publico">
+            {% for group in content.audience.groups %}
+            <article class="card-publico {{ group.class }}">
+              <p class="sobretitulo">{{ group.label }}</p>
+              <h3>{{ group.title }}</h3>
+              <ul>
+                {% for point in group.points %}
+                <li>{{ point }}</li>
+                {% endfor %}
+              </ul>
+            </article>
+            {% endfor %}
+          </div>
+        </div>
+      </section>
+
+      <section id="section-cta" class="secao secao-chamada" aria-labelledby="cta-title">
+        <div class="conteiner chamada-conteudo">
+          <p class="sobretitulo">{{ content.cta.eyebrow }}</p>
+          <h2 id="cta-title">{{ content.cta.title }}</h2>
+          <p class="secao-descricao">{{ content.cta.description }}</p>
+          <a class="botao botao-verde" href="{{ content.contact_button.url }}" target="_blank" rel="noopener noreferrer">{{ content.contact_button.label }}</a>
+        </div>
+      </section>
+    </main>
+
+    <footer id="section-footer" class="rodape secao-rodape">
+      <div class="conteiner rodape-conteudo">
+        <div>
+          <a class="marca" href="#section-hero">{{ content.brand.name }}</a>
+          <p>{{ content.footer.description }}<br>{{ content.footer.pillars }}</p>
+        </div>
+        <nav aria-label="{{ content.accessibility.footer_navigation }}">
+          {% for link in content.footer.links %}
+          <a href="#{{ link.target }}">{{ link.label }}</a>
+          {% endfor %}
+        </nav>
+      </div>
+      <p class="conteiner direitos-autorais">{{ content.footer.copyright }}</p>
+    </footer>
+  </body>
+</html>

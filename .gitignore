@@ -1,0 +1,14 @@
+# Credenciais locais
+.env
+.env.*
+!.env.example
+
+# Ambiente e arquivos temporários
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+*.log
+.DS_Store
+Thumbs.db
