@@ -241,7 +241,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--cor-ciano-claro
 .card-modulo {
   overflow: hidden;
   background-image: var(--fundo-modulo);
-  background-position: center;
+  background-position: center bottom;
   background-size: cover;
   background-repeat: no-repeat;
 }

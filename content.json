@@ -140,11 +140,11 @@
     "title": "Inteligência de ponta a ponta para o seu mandato.",
     "description": "Uma visão completa da sua força eleitoral. Descubra onde estão seus votos, quem sustenta sua candidatura, como seus recursos foram utilizados e como sua atuação política se influenciou o resultado das urnas.",
     "card_background": {
-      "path": "img/bg-secoes.png",
+      "path": "img/bg-geral.png",
       "width": 1920,
       "height": 1080,
       "sources": [
-        { "path": "img/responsive/bg-secoes-1920.webp", "width": 1920 }
+        { "path": "img/responsive/bg-geral-1920.webp", "width": 1920 }
       ]
     },
     "modules": [

@@ -118,11 +118,12 @@ entrarem na tela, uma vez por imagem e após o carregamento. A animação usa
 sem JavaScript ou suporte ao observador, as imagens ficam visíveis normalmente.
 
 Os quatro cards dos módulos usam o mesmo fundo decorativo, baseado em
-`../assets/bg.png`. A cópia original está em `static/img/bg-secoes.png`, e
-a versão exibida é `static/img/responsive/bg-secoes-1920.webp`, de 1920 × 1080 px
-e cerca de 31 KB. O navegador compartilha esse arquivo entre todos os cards
-e o fundo da seção de público-alvo.
-O fundo preenche cada card sem distorção; os textos usam cores claras para
+`../assets/BG geral.png`. A cópia original está em `static/img/bg-geral.png`, e
+a versão exibida é `static/img/responsive/bg-geral-1920.webp`, de 1920 × 1080 px
+e cerca de 32 KB. O navegador compartilha esse arquivo entre todos os cards
+e o fundo da chamada final.
+O fundo preenche cada card sem distorção, alinhado ao centro inferior para
+priorizar a parte de baixo da imagem; os textos usam cores claras para
 preservar a leitura. As ilustrações individuais e sua legenda foram retiradas
 da seção. Os arquivos antigos permanecem em `static/img/`.
 
@@ -180,7 +181,7 @@ A chamada final (seção 4) usa `../assets/BG geral.png`, com o original em
 `static/img/bg-geral.png` e a versão exibida em `static/img/responsive/bg-geral-1920.webp`,
 de 1920 × 1080 px, definida em `section_background`. A seção de público-alvo
 (seção 3) mantém `../assets/bg.png`, configurado em `audience.background`, com
-o mesmo arquivo WebP dos cards. A classe `secao-fundo` centraliza e cobre os
+a versão `static/img/responsive/bg-secoes-1920.webp`. A classe `secao-fundo` centraliza e cobre os
 fundos de imagem sem distorção nem repetição. A chamada final usa uma camada
 escura discreta sobre a imagem, e os textos corridos têm cor clara para preservar a leitura.
 
