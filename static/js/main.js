@@ -89,7 +89,9 @@ document.querySelectorAll('a[href^="#"]').forEach((ancora) => {
       if (entradas.some(entrada => entrada.isIntersecting)) reproduzir();
     }).observe(video);
   }
-  video.src = window.matchMedia("(max-width: 820px)").matches ? video.dataset.srcMobile : video.dataset.srcDesktop;
+  const celular = window.matchMedia("(max-width: 820px)").matches;
+  video.poster = celular ? video.dataset.posterMobile : video.dataset.posterDesktop;
+  video.src = celular ? video.dataset.srcMobile : video.dataset.srcDesktop;
   reproduzir();
 })();
 

@@ -33,8 +33,8 @@
       <section id="section-hero" class="secao secao-hero{% if content.hero.video %} hero-com-video{% endif %}" aria-labelledby="hero-title">
         {% if content.hero.video %}
         <div class="hero-video-fundo" aria-hidden="true">
-          {{ responsive_image(content.hero.video.poster, '100vw', eager=true) }}
-          <video id="hero-video" class="hero-video" width="{{ content.hero.video.width }}" height="{{ content.hero.video.height }}" autoplay muted loop playsinline preload="auto" poster="{{ url_for('static', filename=content.hero.video.poster.path) }}" data-src-mobile="{{ url_for('static', filename=content.hero.video.mobile_path) }}" data-src-desktop="{{ url_for('static', filename=content.hero.video.desktop_path) }}"></video>
+          {{ responsive_image(content.hero.video.poster, '100vw', eager=true, desktop_image=content.hero.video.desktop_poster) }}
+          <video id="hero-video" class="hero-video" width="{{ content.hero.video.width }}" height="{{ content.hero.video.height }}" autoplay muted loop playsinline preload="auto" poster="{{ url_for('static', filename=content.hero.video.poster.path) }}" data-src-mobile="{{ url_for('static', filename=content.hero.video.mobile_path) }}" data-src-desktop="{{ url_for('static', filename=content.hero.video.desktop_path) }}" data-poster-mobile="{{ url_for('static', filename=content.hero.video.poster.path) }}" data-poster-desktop="{{ url_for('static', filename=content.hero.video.desktop_poster.path) }}"></video>
         </div>
         {% endif %}
         <div class="conteiner hero-grade">

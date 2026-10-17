@@ -316,6 +316,32 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--cor-ciano-claro
   .menu-interativo .navegacao > .botao { justify-content: center; }
   .hero-grade { grid-template-columns: 1fr; }
   .hero-titulo { max-width: 18ch; }
+  /* Duas faixas de mesma altura: texto em cima e mapa embaixo.
+     A altura acompanha o texto; o vídeo inteiro fica ancorado na base. */
+  .secao-hero.hero-com-video {
+    grid-template-rows: 1fr 1fr;
+    align-items: start;
+    row-gap: var(--espaco-10);
+    padding-block: var(--espaco-6) 0;
+  }
+  .hero-com-video .hero-grade { grid-row: 1; align-items: start; }
+  .hero-com-video::after { grid-row: 2; content: ""; pointer-events: none; }
+  .hero-com-video .hero-conteudo { width: 100%; max-width: 36rem; }
+  .hero-com-video .sobretitulo { margin-bottom: var(--espaco-3); }
+  .hero-com-video .hero-titulo + p { margin-top: var(--espaco-4); }
+  .hero-com-video .grupo-botoes { margin-top: var(--espaco-6); }
+  .hero-com-video .hero-video-fundo picture, .hero-com-video .hero-video {
+    inset: auto 0 0;
+    height: auto;
+    max-height: 100%;
+    aspect-ratio: 9 / 16;
+    -webkit-mask-image: linear-gradient(transparent, #000 18%);
+    mask-image: linear-gradient(transparent, #000 18%);
+  }
+  .hero-com-video .hero-video-fundo img, .hero-com-video .hero-video {
+    object-fit: contain;
+    object-position: center bottom;
+  }
   .grade-modulos { gap: var(--espaco-6); }
   .rodape-conteudo { flex-direction: column; }
   .card-publico { padding: var(--espaco-6); }

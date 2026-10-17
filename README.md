@@ -131,24 +131,47 @@ no JSON e execute na pasta `Lpaas`, com a venv que já contém Playwright:
 .\.venv\Scripts\python.exe landing\tools\optimize_images.py
 ```
 
-O hero usa a animação de `../assets/download.mp4`, com aproximadamente dez
-segundos e proporção vertical 9:16. O vídeo cobre todo o fundo da primeira seção
-no celular e no desktop, usando `object-fit: cover`, com enquadramento adaptado
-e luminosidade original, com textos e botões em primeiro plano. A seção
+O hero usa vídeos próprios para celular e desktop. O desktop foi preparado a
+partir de `../assets/download.mp4`, horizontal 16:9, com cerca de oito segundos
+no original. A abertura preta é removida e os últimos 0,6 segundo recebem uma
+fusão com o início, criando uma emenda suave no loop sem apagar a imagem. O
+arquivo preparado tem cerca de sete segundos. O celular usa
+`../assets/fundocel.mp4`, vertical 9:16, com a mesma preparação do loop.
+No desktop, o vídeo cobre todo o fundo da primeira seção com `object-fit: cover`.
+Até 820 px, a seção divide o espaço em duas faixas de mesma altura: o texto e o
+botão ficam na faixa superior e o mapa na inferior. O vídeo e sua capa usam
+`object-fit: contain`, ancorados na base, para preservar a composição vertical.
+A altura acompanha o conteúdo em telas pequenas e com texto ampliado, evitando
+sobreposição com o mapa. Os vídeos mantêm a luminosidade original. A seção
 ocupa pelo menos a altura disponível da tela abaixo do cabeçalho. O vídeo
 inicia automaticamente, sem som, em loop, e
 continua ao rolar a página, sem controles de reprodução visíveis. Ao trocar
 de aba, a reprodução pausa e retoma automaticamente no retorno.
 
-`hero.video` no JSON centraliza os arquivos, as dimensões e a capa.
-As versões em `static/video/` usam H.264: 540 × 960 px e cerca de 450 KB para
-celular, 720 × 1280 px e cerca de 744 KB para desktop. A capa WebP mantém o
+`hero.video` no JSON centraliza os arquivos, as dimensões e as capas. `poster`
+define a capa do celular; `desktop_poster` define a composição horizontal, usada
+acima de 820 px tanto no vídeo quanto no fallback `picture`.
+As versões em `static/video/` usam H.264: 540 × 960 px e cerca de 314 KB para
+celular, 1280 × 720 px e cerca de 1,03 MB para desktop, sem ampliar a resolução
+do original. As capas WebP mantêm o
 visual durante o carregamento, em caso de falha ou sem JavaScript. O vídeo
-original é preservado. Para regenerar os arquivos e as capas:
+original é preservado. Para regenerar somente o desktop e sua capa, execute na
+pasta `Lpaas`:
 
 ```powershell
-.\.venv\Scripts\python.exe landing\tools\prepare_hero_video.py
+.\.venv\Scripts\python.exe landing\tools\prepare_hero_video.py --target desktop
 ```
+
+O destino padrão é `desktop`, para evitar substituir o vídeo vertical do celular
+ao atualizar o original horizontal. Para regenerar o vídeo do celular e a capa
+de 540 px, use:
+
+```powershell
+.\.venv\Scripts\python.exe landing\tools\prepare_hero_video.py --target mobile --source assets\fundocel.mp4
+```
+
+Os parâmetros `--trim-start`
+e `--crossfade` ajustam, em segundos, o corte inicial e a duração da fusão.
 
 Até 820 px, o menu pode ser aberto pelo botão **Menu** e fecha por seleção,
 toque fora ou Escape. Seu estado também é ajustado ao redimensionar a tela.

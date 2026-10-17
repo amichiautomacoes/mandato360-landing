@@ -1,5 +1,8 @@
-{% macro responsive_image(image, sizes, eager=false) -%}
+{% macro responsive_image(image, sizes, eager=false, desktop_image=none) -%}
 <picture>
+  {% if desktop_image %}
+  <source media="(min-width: 821px)" type="image/webp" srcset="{{ url_for('static', filename=desktop_image.path) }}" width="{{ desktop_image.width }}" height="{{ desktop_image.height }}">
+  {% endif %}
   {% if image.sources %}
   <source type="image/webp" srcset="{% for source in image.sources %}{{ url_for('static', filename=source.path) }} {{ source.width }}w{% if not loop.last %}, {% endif %}{% endfor %}" sizes="{{ sizes }}">
   {% endif %}
