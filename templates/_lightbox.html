@@ -1,0 +1,31 @@
+<dialog id="dashboard-lightbox" class="dashboard-lightbox" aria-labelledby="lightbox-titulo" aria-describedby="lightbox-ajuda" data-lightbox data-loading="{{ content.lightbox.loading }}" data-error="{{ content.lightbox.error }}">
+  <header class="lightbox-cabecalho">
+    <div class="lightbox-identificacao">
+      <p class="lightbox-rotulo">{{ content.lightbox.label }}</p>
+      <h2 id="lightbox-titulo" data-lightbox-titulo></h2>
+    </div>
+    <div class="lightbox-ferramentas" role="group" aria-label="{{ content.lightbox.zoom_controls }}">
+      <button type="button" class="lightbox-botao" data-lightbox-diminuir aria-label="{{ content.lightbox.zoom_out }}">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 12h12"/></svg>
+      </button>
+      <output class="lightbox-escala" data-lightbox-escala aria-live="polite">100%</output>
+      <button type="button" class="lightbox-botao" data-lightbox-aumentar aria-label="{{ content.lightbox.zoom_in }}">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 12h12M12 6v12"/></svg>
+      </button>
+      <button type="button" class="lightbox-botao lightbox-ajustar" data-lightbox-ajustar>{{ content.lightbox.fit }}</button>
+    </div>
+    <button type="button" class="lightbox-botao lightbox-fechar" data-lightbox-fechar aria-label="{{ content.lightbox.close }}" autofocus>
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg>
+    </button>
+  </header>
+  <div class="lightbox-area" data-lightbox-area>
+    <div class="lightbox-tela" data-lightbox-tela>
+      <img class="lightbox-imagem" data-lightbox-imagem alt="" decoding="async" draggable="false" hidden>
+    </div>
+  </div>
+  <p class="lightbox-status" data-lightbox-status role="status" hidden></p>
+  <footer class="lightbox-rodape">
+    <p id="lightbox-ajuda">{{ content.lightbox.help }}</p>
+    <a data-lightbox-original target="_blank" rel="noopener noreferrer">{{ content.lightbox.open_original }}</a>
+  </footer>
+</dialog>

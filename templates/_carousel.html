@@ -1,0 +1,21 @@
+{% from '_image.html' import responsive_image %}
+{% macro dashboard_carousel(gallery, id) -%}
+<div class="carrossel-dashboard" data-carrossel data-of="{{ gallery.of }}" role="region" aria-roledescription="{{ gallery.role }}" aria-label="{{ gallery.label }}" tabindex="0">
+  <div id="carrossel-{{ id }}" class="carrossel-palco">
+    {% for slide in gallery.slides %}
+    <figure class="carrossel-slide" data-slide data-title="{{ slide.title }}" role="group" aria-roledescription="{{ gallery.slide_role }}" aria-label="{{ loop.index }} {{ gallery.of }} {{ gallery.slides|length }}: {{ slide.title }}">
+      <div class="carrossel-revelacao">
+        <a class="carrossel-ampliar" href="{{ url_for('static', filename=slide.image.path) }}" target="_blank" rel="noopener noreferrer" data-ampliar aria-haspopup="dialog" aria-label="{{ gallery.expand }}: {{ slide.title }}">
+          {{ responsive_image(slide.image, '(max-width: 560px) calc(76vw - 3.5rem), (max-width: 1200px) calc(76vw - 4rem), 840px') }}
+          <span class="carrossel-sinal-ampliar" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="6"/><path d="m15 15 5 5M7 10h6m-3-3v6"/></svg>
+          </span>
+        </a>
+      </div>
+      <figcaption class="somente-leitores">{{ slide.title }}</figcaption>
+    </figure>
+    {% endfor %}
+  </div>
+  <p class="somente-leitores" data-carrossel-status role="status" aria-live="polite" aria-atomic="true"></p>
+</div>
+{%- endmacro %}

@@ -112,19 +112,81 @@ Rodapé. As classes CSS usam nomes em português, como `hero-titulo`,
 
 Os templates geram os caminhos de CSS, JavaScript e imagens com
 `url_for('static', filename=...)`. O layout e a navegação são responsivos.
-As imagens aparecem com uma transição suave de opacidade e deslocamento ao
+As imagens do hero estático aparecem com uma transição suave de opacidade e deslocamento ao
 entrarem na tela, uma vez por imagem e após o carregamento. A animação usa
 `IntersectionObserver` e respeita a preferência por movimento reduzido;
 sem JavaScript ou suporte ao observador, as imagens ficam visíveis normalmente.
 
-As imagens dos módulos usam `picture` com versões WebP de 480, 800 e 1200 px em
-`static/img/responsive/`, mantendo os PNGs como fallback. Os campos `width` e
-`height` reservam o espaço das imagens; `sources` define as versões responsivas.
-As imagens dos módulos usam lazy loading. Na revisão em 360 px com densidade 2×,
-as quatro versões selecionadas somaram aproximadamente 254 KB. Esse valor é o
-peso dos arquivos, não uma medição de tempo em uma rede real.
+Os quatro cards dos módulos usam o mesmo fundo decorativo, baseado em
+`../assets/bg.png`. A cópia original está em `static/img/bg-secoes.png`, e
+a versão exibida é `static/img/responsive/bg-secoes-1920.webp`, de 1920 × 1080 px
+e cerca de 31 KB. O navegador compartilha esse arquivo entre todos os cards
+e o fundo da seção de público-alvo.
+O fundo preenche cada card sem distorção; os textos usam cores claras para
+preservar a leitura. As ilustrações individuais e sua legenda foram retiradas
+da seção. Os arquivos antigos permanecem em `static/img/`.
 
-Para regenerar os WebP após trocar uma imagem, atualize seus caminhos e dimensões
+Os quatro cards ocupam a largura da grade para apresentar os dashboards.
+Os textos descritivos aparecem logo abaixo do título de cada card, antes das imagens.
+O RaioX Territorial usa
+as capturas reais `raioxestado.png`, `raioxbairro.png` e `raioxconcentracao.png`.
+O carrossel combina Coverflow 3D com máscaras `clip-path`: a captura central
+fica inteira, sem blur, enquanto as laterais usam perspectiva, escala e
+opacidade menores. Deslocamento e revelação compartilham uma animação de
+700 ms, com inclinação lateral discreta de 14°; a terceira imagem cruza por trás ao trocar de lado, inclusive na volta
+da última para a primeira. As proporções originais são preservadas, sem cortes.
+
+O clique nas prévias laterais, as teclas de direção, Home/End, o arraste com mouse
+e o swipe no celular permitem navegar, sem reprodução automática. Não há legendas,
+contadores, setas ou indicadores visíveis abaixo das imagens; a posição continua
+disponível para leitores de tela. O arraste não
+abre a imagem por engano. A preferência por movimento reduzido elimina a animação, e sem
+JavaScript as imagens continuam acessíveis por rolagem horizontal. As capturas
+são carregadas sob demanda, com WebP de alta qualidade em 480, 800 e largura
+original, mantendo os PNGs como fallback. Configurações, legendas e textos
+alternativos ficam em `solution.modules[0].gallery`. O componente está em
+`templates/_carousel.html` e `static/js/carousel.js`.
+
+Clicar na captura central abre um lightbox compartilhado pelos quatro cards,
+implementado em `templates/_lightbox.html` e `static/js/lightbox.js`. Ele usa o PNG
+original, com a imagem inteira ajustada à tela, zoom de até 8× e deslocamento por
+arraste com mouse ou rolagem nativa no celular. Os botões e as teclas +, − e 0
+controlam o zoom; Esc, o botão de fechar ou o fundo externo fecham a ampliação.
+O diálogo mantém o foco no modal, bloqueia a rolagem da página e devolve o foco à
+captura ao fechar. A preferência por movimento reduzido também desliga a entrada
+animada do lightbox. Sem JavaScript ou suporte a diálogo, o link abre o PNG original.
+Os textos do lightbox ficam em `lightbox` no JSON, e o rótulo de ampliação em
+`solution.modules[].gallery.expand`.
+
+O DNA do Eleitor usa o mesmo carrossel com `dna1.png`, `dna3.png` e `dna2.png`,
+nessa ordem, configurado em `solution.modules[1].gallery`. A navegação de cada
+carrossel é independente.
+
+A DRE da Campanha usa `dre1 (1).png`, `dre2.png` e `dre3.png`, nessa ordem,
+configurados em `solution.modules[2].gallery`. A primeira captura é copiada
+para `static/img/dre1.png`.
+
+O Impacto Político usa `forca1.png` e `forca2.png`, nessa ordem, configurados em
+`solution.modules[3].gallery`. Com duas capturas, prévias decorativas da imagem
+adjacente aparecem nas duas laterais, preservando a transição nos dois sentidos.
+Essas cópias não acrescentam etapas nem indicadores e ficam ocultas dos leitores
+de tela. O card mantém seu conteúdo textual e fundo.
+
+A seção de módulos (seção 2) usa o fundo em CSS da versão original, com a cor
+`#1c2c42` e uma grade de 56 × 56 px a 28% de opacidade, suavizada nas extremidades.
+A regra `.secao-solucao` desativa a imagem de fundo nessa seção.
+
+A chamada final (seção 4) usa `../assets/BG geral.png`, com o original em
+`static/img/bg-geral.png` e a versão exibida em `static/img/responsive/bg-geral-1920.webp`,
+de 1920 × 1080 px, definida em `section_background`. A seção de público-alvo
+(seção 3) mantém `../assets/bg.png`, configurado em `audience.background`, com
+o mesmo arquivo WebP dos cards. A classe `secao-fundo` centraliza e cobre os
+fundos de imagem sem distorção nem repetição. A chamada final usa uma camada
+escura discreta sobre a imagem, e os textos corridos têm cor clara para preservar a leitura.
+
+Para regenerar os WebP dos fundos, do carrossel ou da imagem alternativa do hero,
+atualize os caminhos e dimensões em `section_background`, `audience.background`, `solution.card_background`,
+`solution.modules[].gallery.slides[].image` ou `hero.image`
 no JSON e execute na pasta `Lpaas`, com a venv que já contém Playwright:
 
 ```powershell
@@ -210,12 +272,9 @@ Os caminhos são relativos ao CSS, sem chamadas a serviços externos de fontes.
 Grid e Flexbox controlam o layout; os cards têm fundo opaco como fallback quando
 o navegador não suporta `backdrop-filter`.
 
-As quatro imagens dos módulos são ilustrativas, como as referências da página
-extraída; não são capturas do dashboard real. Para usar prints reais, copie os
-arquivos para `static/img/` e altere `solution.modules[].image.path`, os respectivos
-textos `alt`, dimensões, `sources` e `solution.image_note` no JSON. Gere novamente
-as versões WebP com o comando acima. O caminho de cada imagem é relativo à pasta
-`static/`, por exemplo `img/raiox.png`.
+O fundo comum dos módulos é definido em `solution.card_background`; os textos
+continuam em `solution.modules`. Os caminhos das imagens são relativos à pasta
+`static/`, por exemplo `img/bg-geral.png`.
 
 ## Boas práticas
 

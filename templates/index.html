@@ -1,4 +1,5 @@
 {% from '_image.html' import responsive_image %}
+{% from '_carousel.html' import dashboard_carousel %}
 <!DOCTYPE html>
 <html lang="{{ content.meta.language }}">
   <head>
@@ -8,6 +9,8 @@
     <title>{{ content.meta.title }}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='js/lightbox.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='js/carousel.js') }}" defer></script>
   </head>
   <body>
     <a class="atalho-conteudo" href="#main-content">{{ content.accessibility.skip_link }}</a>
@@ -29,7 +32,7 @@
     </header>
 
     <!-- As seções recebem os textos editáveis de content.json. -->
-    <main id="main-content">
+    <main id="main-content" style="--fundo-secoes: url('{{ url_for('static', filename=content.section_background.sources[0].path) }}');">
       <section id="section-hero" class="secao secao-hero{% if content.hero.video %} hero-com-video{% endif %}" aria-labelledby="hero-title">
         {% if content.hero.video %}
         <div class="hero-video-fundo" aria-hidden="true">
@@ -54,7 +57,7 @@
         </div>
       </section>
 
-      <section id="section-solution" class="secao secao-solucao" aria-labelledby="solution-title">
+      <section id="section-solution" class="secao secao-solucao secao-fundo" aria-labelledby="solution-title">
         <div class="conteiner">
           <header class="secao-cabecalho">
             {% if content.solution.eyebrow %}
@@ -63,12 +66,9 @@
             <h2 id="solution-title">{{ content.solution.title }}</h2>
             <p class="secao-descricao">{{ content.solution.description }}</p>
           </header>
-          <div class="grade-modulos">
+          <div class="grade-modulos{% if content.solution.modules[0].gallery %} grade-modulos-com-destaque{% endif %}" style="--fundo-modulo: url('{{ url_for('static', filename=content.solution.card_background.sources[0].path) }}');">
             {% for module in content.solution.modules %}
-            <article id="module-{{ module.id }}" class="card-modulo" aria-labelledby="module-title-{{ module.id }}">
-              <figure class="modulo-imagem">
-                {{ responsive_image(module.image, '(max-width: 560px) calc(100vw - 2rem), (max-width: 1200px) calc(50vw - 2rem), 556px') }}
-              </figure>
+            <article id="module-{{ module.id }}" class="card-modulo{% if module.gallery %} card-modulo-destaque{% endif %}" aria-labelledby="module-title-{{ module.id }}">
               <div class="modulo-conteudo">
                 <p class="sobretitulo">{{ module.label }}</p>
                 <h3 id="module-title-{{ module.id }}">{{ module.title }}</h3>
@@ -82,15 +82,17 @@
                   {% endfor %}
                 </ul>
                 {% endif %}
+                {% if module.gallery %}
+                {{ dashboard_carousel(module.gallery, module.id) }}
+                {% endif %}
               </div>
             </article>
             {% endfor %}
           </div>
-          <p class="imagem-legenda">{{ content.solution.image_note }}</p>
         </div>
       </section>
 
-      <section id="section-audience" class="secao secao-publico" aria-labelledby="audience-title">
+      <section id="section-audience" class="secao secao-publico secao-fundo" aria-labelledby="audience-title" style="--fundo-secoes: url('{{ url_for('static', filename=content.audience.background.sources[0].path) }}');">
         <div class="conteiner">
           <header class="secao-cabecalho">
             <h2 id="audience-title">{{ content.audience.title }}</h2>
@@ -111,7 +113,7 @@
         </div>
       </section>
 
-      <section id="section-cta" class="secao secao-chamada" aria-labelledby="cta-title">
+      <section id="section-cta" class="secao secao-chamada secao-fundo" aria-labelledby="cta-title">
         <div class="conteiner chamada-conteudo">
           <p class="sobretitulo">{{ content.cta.eyebrow }}</p>
           <h2 id="cta-title">{{ content.cta.title }}</h2>
@@ -135,5 +137,6 @@
       </div>
       <p class="conteiner direitos-autorais">{{ content.footer.copyright }}</p>
     </footer>
+    {% include '_lightbox.html' %}
   </body>
 </html>

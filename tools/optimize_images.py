@@ -24,7 +24,11 @@ def main():
 
     content = json.loads((LANDING_DIR / "content.json").read_text(encoding="utf-8"))
     images = [content["hero"]["image"]]
-    images.extend(module["image"] for module in content["solution"]["modules"])
+    images.append(content["solution"]["card_background"])
+    images.append(content["section_background"])
+    images.append(content["audience"]["background"])
+    for module in content["solution"]["modules"]:
+        images.extend(slide["image"] for slide in module.get("gallery", {}).get("slides", []))
     with sync_playwright() as playwright:
         browser = playwright.chromium.launch(headless=True)
         try:
@@ -34,7 +38,7 @@ def main():
                 encoded = base64.b64encode(original.read_bytes()).decode("ascii")
                 for source in image.get("sources", []):
                     data_url = page.evaluate(
-                        """async ({encoded, width}) => {
+                        """async ({encoded, width, quality}) => {
                             const image = new Image();
                             image.src = 'data:image/png;base64,' + encoded;
                             await image.decode();
@@ -44,9 +48,9 @@ def main():
                             const context = canvas.getContext('2d');
                             context.imageSmoothingQuality = 'high';
                             context.drawImage(image, 0, 0, canvas.width, canvas.height);
-                            return canvas.toDataURL('image/webp', 0.86);
+                            return canvas.toDataURL('image/webp', quality);
                         }""",
-                        {"encoded": encoded, "width": source["width"]},
+                        {"encoded": encoded, "width": source["width"], "quality": image.get("quality", 0.86)},
                     )
                     if not data_url.startswith("data:image/webp;base64,"):
                         raise RuntimeError("O navegador não gerou uma imagem WebP.")

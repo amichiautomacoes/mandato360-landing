@@ -7,6 +7,14 @@
   "brand": {
     "name": "MANDATO 360"
   },
+  "section_background": {
+    "path": "img/bg-geral.png",
+    "width": 1920,
+    "height": 1080,
+    "sources": [
+      { "path": "img/responsive/bg-geral-1920.webp", "width": 1920 }
+    ]
+  },
   "accessibility": {
     "skip_link": "Ir para o conteúdo",
     "menu_toggle": "Menu",
@@ -14,6 +22,18 @@
     "close_menu": "Fechar menu",
     "main_navigation": "Navegação principal",
     "footer_navigation": "Navegação do rodapé"
+  },
+  "lightbox": {
+    "label": "Dashboard ampliado",
+    "zoom_controls": "Controles de ampliação",
+    "zoom_in": "Ampliar imagem",
+    "zoom_out": "Reduzir imagem",
+    "fit": "Ajustar à tela",
+    "close": "Fechar imagem ampliada",
+    "loading": "Carregando imagem original…",
+    "error": "Não foi possível carregar a imagem. Use o link para abrir o arquivo original.",
+    "help": "Use + e − para ampliar. Arraste para explorar os detalhes. Esc fecha a imagem.",
+    "open_original": "Abrir original"
   },
   "navigation": [
     {
@@ -119,95 +139,271 @@
     "eyebrow": "",
     "title": "Inteligência de ponta a ponta para o seu mandato.",
     "description": "Uma visão completa da sua força eleitoral. Descubra onde estão seus votos, quem sustenta sua candidatura, como seus recursos foram utilizados e como sua atuação política se influenciou o resultado das urnas.",
-    "image_note": "Imagens ilustrativas dos módulos.",
+    "card_background": {
+      "path": "img/bg-secoes.png",
+      "width": 1920,
+      "height": 1080,
+      "sources": [
+        { "path": "img/responsive/bg-secoes-1920.webp", "width": 1920 }
+      ]
+    },
     "modules": [
       {
         "id": "raiox",
         "label": "RaioX Territorial",
         "title": "Onde você é forte",
+        "gallery": {
+          "label": "Visões do dashboard RaioX Territorial",
+          "expand": "Ampliar imagem",
+          "role": "carrossel",
+          "slide_role": "imagem",
+          "previous": "Imagem anterior",
+          "next": "Próxima imagem",
+          "go_to": "Ver imagem",
+          "of": "de",
+          "slides": [
+            {
+              "title": "Visão do estado",
+              "image": {
+                "path": "img/raioxestado.png",
+                "width": 1215,
+                "height": 682,
+                "quality": 0.96,
+                "alt": "Dashboard RaioX Territorial com o mapa de Minas Gerais e a votação por município e mesorregião.",
+                "sources": [
+                  { "path": "img/responsive/raioxestado-480.webp", "width": 480 },
+                  { "path": "img/responsive/raioxestado-800.webp", "width": 800 },
+                  { "path": "img/responsive/raioxestado-1215.webp", "width": 1215 }
+                ]
+              }
+            },
+            {
+              "title": "Votação por bairro",
+              "image": {
+                "path": "img/raioxbairro.png",
+                "width": 1238,
+                "height": 661,
+                "quality": 0.96,
+                "alt": "Dashboard de votação por bairro em Belo Horizonte, com mapa e filtros territoriais.",
+                "sources": [
+                  { "path": "img/responsive/raioxbairro-480.webp", "width": 480 },
+                  { "path": "img/responsive/raioxbairro-800.webp", "width": 800 },
+                  { "path": "img/responsive/raioxbairro-1238.webp", "width": 1238 }
+                ]
+              }
+            },
+            {
+              "title": "Concentração dos votos",
+              "image": {
+                "path": "img/raioxconcentracao.png",
+                "width": 1767,
+                "height": 663,
+                "quality": 0.96,
+                "alt": "Dashboard de concentração territorial dos votos, com indicadores dos principais municípios e gráficos de participação.",
+                "sources": [
+                  { "path": "img/responsive/raioxconcentracao-480.webp", "width": 480 },
+                  { "path": "img/responsive/raioxconcentracao-800.webp", "width": 800 },
+                  { "path": "img/responsive/raioxconcentracao-1767.webp", "width": 1767 }
+                ]
+              }
+            }
+          ]
+        },
         "points": [
           "Identifica os municípios e mesorregiões com maior volume de votos.",
           "Detalha a distribuição dos votos dentro de cada município.",
           "Compara seu resultado com eleições anteriores, identificando crescimento, estabilidade e queda.",
           "Apresenta diagnósticos de potencial territorial para 2030"
-        ],
-        "image": {
-          "path": "img/RAIOXTERRITORIAL.png",
-          "width": 1586,
-          "height": 992,
-          "sources": [
-            { "path": "img/responsive/RAIOXTERRITORIAL-480.webp", "width": 480 },
-            { "path": "img/responsive/RAIOXTERRITORIAL-800.webp", "width": 800 },
-            { "path": "img/responsive/RAIOXTERRITORIAL-1200.webp", "width": 1200 }
-          ],
-          "alt": "Ilustração do RaioX Territorial com mapa de Minas Gerais e indicadores de distribuição e concentração dos votos."
-        }
+        ]
       },
       {
         "id": "dna",
         "label": "DNA do Eleitor",
         "title": "Quem sustenta sua votação",
+        "gallery": {
+          "label": "Visões do dashboard DNA do Eleitor",
+          "expand": "Ampliar imagem",
+          "role": "carrossel",
+          "slide_role": "imagem",
+          "previous": "Imagem anterior",
+          "next": "Próxima imagem",
+          "go_to": "Ver imagem",
+          "of": "de",
+          "slides": [
+            {
+              "title": "Perfil demográfico",
+              "image": {
+                "path": "img/dna1.png",
+                "width": 1467,
+                "height": 632,
+                "quality": 0.96,
+                "alt": "Dashboard DNA do Eleitor com distribuição de escolaridade, gráfico demográfico e filtros de gênero, idade e estado civil.",
+                "sources": [
+                  { "path": "img/responsive/dna1-480.webp", "width": 480 },
+                  { "path": "img/responsive/dna1-800.webp", "width": 800 },
+                  { "path": "img/responsive/dna1-1467.webp", "width": 1467 }
+                ]
+              }
+            },
+            {
+              "title": "Base eleitoral",
+              "image": {
+                "path": "img/dna3.png",
+                "width": 1687,
+                "height": 668,
+                "quality": 0.96,
+                "alt": "Dashboard da base eleitoral com os grupos Base Principal, Eleitor Consolidado e Eleitor Emergente e suas participações na votação.",
+                "sources": [
+                  { "path": "img/responsive/dna3-480.webp", "width": 480 },
+                  { "path": "img/responsive/dna3-800.webp", "width": 800 },
+                  { "path": "img/responsive/dna3-1687.webp", "width": 1687 }
+                ]
+              }
+            },
+            {
+              "title": "Eleitor ideal",
+              "image": {
+                "path": "img/dna2.png",
+                "width": 1578,
+                "height": 617,
+                "quality": 0.96,
+                "alt": "Dashboard de perfil do eleitor com indicadores de gênero, faixa etária, escolaridade e estado civil.",
+                "sources": [
+                  { "path": "img/responsive/dna2-480.webp", "width": 480 },
+                  { "path": "img/responsive/dna2-800.webp", "width": 800 },
+                  { "path": "img/responsive/dna2-1578.webp", "width": 1578 }
+                ]
+              }
+            }
+          ]
+        },
         "points": [
           "Segmenta os perfis em Base Principal, Eleitor Consolidado e Eleitor Emergente",
           "Compara a participação das categorias de gênero, idade, escolaridade e estado civil",
           "Cruza o perfil eleitoral do seu eleitorado com a população local",
           "Apresenta áreas que merecem proteção, expansão ou desenvolvimento para 2030"
-        ],
-        "image": {
-          "path": "img/PERFILELEITOR.png",
-          "width": 1586,
-          "height": 992,
-          "sources": [
-            { "path": "img/responsive/PERFILELEITOR-480.webp", "width": 480 },
-            { "path": "img/responsive/PERFILELEITOR-800.webp", "width": 800 },
-            { "path": "img/responsive/PERFILELEITOR-1200.webp", "width": 1200 }
-          ],
-          "alt": "Ilustração do DNA do Eleitor com perfil demográfico, base eleitoral e gráficos do eleitorado."
-        }
+        ]
       },
       {
         "id": "dre",
         "label": "DRE da Campanha",
         "title": "Como seus recursos foram utilizados",
+        "gallery": {
+          "label": "Visões do dashboard DRE da Campanha",
+          "expand": "Ampliar imagem",
+          "role": "carrossel",
+          "slide_role": "imagem",
+          "previous": "Imagem anterior",
+          "next": "Próxima imagem",
+          "go_to": "Ver imagem",
+          "of": "de",
+          "slides": [
+            {
+              "title": "Receitas e orçamento",
+              "image": {
+                "path": "img/dre1.png",
+                "width": 1665,
+                "height": 727,
+                "quality": 0.96,
+                "alt": "Dashboard DRE da Campanha com composição das receitas, despesas contratadas e pagas e comprometimento orçamentário.",
+                "sources": [
+                  { "path": "img/responsive/dre1-480.webp", "width": 480 },
+                  { "path": "img/responsive/dre1-800.webp", "width": 800 },
+                  { "path": "img/responsive/dre1-1665.webp", "width": 1665 }
+                ]
+              }
+            },
+            {
+              "title": "Contratado × pago",
+              "image": {
+                "path": "img/dre2.png",
+                "width": 1676,
+                "height": 711,
+                "quality": 0.96,
+                "alt": "Dashboard de comparação entre despesas contratadas e pagas, com valores por categoria e indicadores de execução e saldo em aberto.",
+                "sources": [
+                  { "path": "img/responsive/dre2-480.webp", "width": 480 },
+                  { "path": "img/responsive/dre2-800.webp", "width": 800 },
+                  { "path": "img/responsive/dre2-1676.webp", "width": 1676 }
+                ]
+              }
+            },
+            {
+              "title": "Origem e destino dos recursos",
+              "image": {
+                "path": "img/dre3.png",
+                "width": 1675,
+                "height": 715,
+                "quality": 0.96,
+                "alt": "Dashboard de origem e destino dos recursos da campanha, com fontes de financiamento, gráficos e tabela de pagamentos por categoria e fornecedor.",
+                "sources": [
+                  { "path": "img/responsive/dre3-480.webp", "width": 480 },
+                  { "path": "img/responsive/dre3-800.webp", "width": 800 },
+                  { "path": "img/responsive/dre3-1675.webp", "width": 1675 }
+                ]
+              }
+            }
+          ]
+        },
         "points": [
           "Consolida receitas financeiras e despesas contratadas",
           "Compara arrecadação, contratação e pagamento em uma visão executiva",
           "Identifica os maiores doadores da campanha",
           "Permite analisar despesas por categoria e fornecedor"
-        ],
-        "image": {
-          "path": "img/DRECAMPANHA.png",
-          "width": 1586,
-          "height": 992,
-          "sources": [
-            { "path": "img/responsive/DRECAMPANHA-480.webp", "width": 480 },
-            { "path": "img/responsive/DRECAMPANHA-800.webp", "width": 800 },
-            { "path": "img/responsive/DRECAMPANHA-1200.webp", "width": 1200 }
-          ],
-          "alt": "Ilustração da DRE Campanha com receitas, despesas, doadores e comparação de valores contratados e pagos."
-        }
+        ]
       },
       {
         "id": "impacto",
         "label": "Impacto Político",
         "title": "Qual o peso da sua atuação política",
+        "gallery": {
+          "label": "Visões do dashboard Impacto Político",
+          "expand": "Ampliar imagem",
+          "role": "carrossel",
+          "slide_role": "imagem",
+          "previous": "Imagem anterior",
+          "next": "Próxima imagem",
+          "go_to": "Ver imagem",
+          "of": "de",
+          "slides": [
+            {
+              "title": "Força das alianças locais",
+              "image": {
+                "path": "img/forca1.png",
+                "width": 1673,
+                "height": 677,
+                "quality": 0.96,
+                "alt": "Dashboard de força das alianças locais com mapa de Minas Gerais e comparação da votação em municípios com e sem apoio de prefeitos e vereadores.",
+                "sources": [
+                  { "path": "img/responsive/forca1-480.webp", "width": 480 },
+                  { "path": "img/responsive/forca1-800.webp", "width": 800 },
+                  { "path": "img/responsive/forca1-1673.webp", "width": 1673 }
+                ]
+              }
+            },
+            {
+              "title": "Atuação parlamentar e votos",
+              "image": {
+                "path": "img/forca2.png",
+                "width": 1675,
+                "height": 771,
+                "quality": 0.96,
+                "alt": "Dashboard da atuação parlamentar com mapa de emendas por município, taxa de reciprocidade e relação entre recursos destinados e votos recebidos.",
+                "sources": [
+                  { "path": "img/responsive/forca2-480.webp", "width": 480 },
+                  { "path": "img/responsive/forca2-800.webp", "width": 800 },
+                  { "path": "img/responsive/forca2-1675.webp", "width": 1675 }
+                ]
+              }
+            }
+          ]
+        },
         "points": [
           "Analisa a influência de prefeitos e vereadores associados à candidatura",
           "Identifica municípios onde as alianças coincidem com resultados eleitorais expressivos",
           "Cruza sua votação com os valores de Emendas Parlamentares destinadas aos municipios",
           "Permite visualizar os valores das emendas por município, finalidade e tipo de indicação"
-        ],
-        "image": {
-          "path": "img/FORCALOCAL.png",
-          "width": 1586,
-          "height": 992,
-          "sources": [
-            { "path": "img/responsive/FORCALOCAL-480.webp", "width": 480 },
-            { "path": "img/responsive/FORCALOCAL-800.webp", "width": 800 },
-            { "path": "img/responsive/FORCALOCAL-1200.webp", "width": 1200 }
-          ],
-          "alt": "Ilustração do Impacto Político com mapas de Minas Gerais sobre atuação parlamentar, emendas e força de prefeitos e vereadores."
-        }
+        ]
       }
     ]
   },
@@ -235,6 +431,14 @@
     ]
   },
   "audience": {
+    "background": {
+      "path": "img/bg-secoes.png",
+      "width": 1920,
+      "height": 1080,
+      "sources": [
+        { "path": "img/responsive/bg-secoes-1920.webp", "width": 1920 }
+      ]
+    },
     "title": "Para quem é o MANDATO 360",
     "groups": [
       {
