@@ -284,6 +284,10 @@ Até 820 px, o menu pode ser aberto pelo botão **Menu** e fecha por seleção,
 toque fora ou Escape. Seu estado também é ajustado ao redimensionar a tela.
 Sem JavaScript, os links continuam visíveis no fluxo da página. O cabeçalho
 recolhido mede 65 px, e as âncoras compensam sua altura real.
+O cabeçalho, o menu mobile aberto e o rodapé usam fundo `#080D16`, definido em
+`--cor-moldura`. O cabeçalho tem borda inferior de 1 px e o rodapé tem borda
+superior de 1 px, ambas em `rgba(103,232,249,0.12)`. O primeiro link do menu,
+**Como Funciona**, leva à seção de módulos.
 
 Em telas de até 560 px, os textos corridos usam 16 px, os textos auxiliares
 usam ao menos 14 px e os títulos têm escala própria para celular. Links e

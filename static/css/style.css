@@ -36,7 +36,8 @@
   --cor-primaria-hover: color-mix(in srgb, var(--cor-primaria) 85%, black);
   --cor-borda-destaque: color-mix(in srgb, var(--cor-primaria) 45%, transparent);
   --cor-vidro: rgb(9 22 39 / 28%);
-  --cor-cabecalho: rgb(9 10 15 / 72%);
+  --cor-moldura: #080d16;
+  --cor-borda-moldura: rgba(103, 232, 249, 0.12);
 
   --fonte-corpo: "Montserrat", Arial, sans-serif;
   --fonte-titulo: var(--fonte-corpo);
@@ -164,7 +165,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--cor-ciano-claro
 .atalho-conteudo { position: fixed; top: var(--espaco-4); left: var(--espaco-4); z-index: 100; padding: var(--espaco-3) var(--espaco-4); background: var(--cor-primaria); color: var(--cor-branca); transform: translateY(-200%); }
 .atalho-conteudo:focus { transform: translateY(0); }
 
-.cabecalho { position: sticky; top: 0; z-index: 10; border-bottom: 1px solid var(--cor-borda); background: var(--cor-fundo); }
+.cabecalho { position: sticky; top: 0; z-index: 10; border-bottom: 1px solid var(--cor-borda-moldura); background: var(--cor-moldura); }
 .cabecalho-conteudo, .navegacao { display: flex; align-items: center; gap: var(--espaco-6); }
 .cabecalho-conteudo { position: relative; min-height: 5rem; padding-block: var(--espaco-4); justify-content: space-between; }
 .marca { display: inline-flex; align-items: center; min-height: 44px; color: var(--cor-texto); font-size: 1.25rem; font-weight: var(--peso-destaque); letter-spacing: -0.035em; }
@@ -358,7 +359,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--cor-ciano-claro
 .chamada-conteudo { max-width: 52rem; text-align: center; }
 .chamada-conteudo > .secao-descricao { margin-block: var(--espaco-6) var(--espaco-8); }
 
-.rodape { margin-top: auto; padding-block: var(--espaco-12); border-top: 1px solid var(--cor-borda); background-color: var(--cor-fundo); }
+.rodape { margin-top: auto; padding-block: var(--espaco-12); border-top: 1px solid var(--cor-borda-moldura); background-color: var(--cor-moldura); }
 .rodape-conteudo { display: flex; justify-content: space-between; gap: var(--espaco-8); }
 .rodape-conteudo p { max-width: 28rem; margin-top: var(--espaco-4); font-size: 0.875rem; line-height: 1.428571; }
 .rodape nav { display: flex; flex-wrap: wrap; align-content: start; gap: var(--espaco-6); font-size: 0.875rem; }
@@ -372,7 +373,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--cor-ciano-claro
 
 @supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
   .cabecalho {
-    background-color: var(--cor-cabecalho);
+    background-color: var(--cor-moldura);
     -webkit-backdrop-filter: blur(var(--blur-cabecalho));
     backdrop-filter: blur(var(--blur-cabecalho));
   }
@@ -409,9 +410,9 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--cor-ciano-claro
     max-height: calc(100dvh - 5rem);
     overflow-y: auto;
     padding: var(--espaco-4);
-    border: 1px solid var(--cor-borda);
+    border: 1px solid var(--cor-borda-moldura);
     border-radius: 0 0 var(--raio-card) var(--raio-card);
-    background: var(--cor-fundo);
+    background: var(--cor-moldura);
     box-shadow: var(--sombra-suave);
     font-size: 1rem;
   }
