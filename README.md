@@ -121,7 +121,7 @@ Os quatro cards dos módulos usam o mesmo fundo decorativo, baseado em
 `../assets/BG geral.png`. A cópia original está em `static/img/bg-geral.png`, e
 a versão exibida é `static/img/responsive/bg-geral-1920.webp`, de 1920 × 1080 px
 e cerca de 32 KB. O navegador compartilha esse arquivo entre todos os cards
-e o fundo da chamada final.
+dos módulos.
 O fundo preenche cada card sem distorção, alinhado ao centro inferior para
 priorizar a parte de baixo da imagem; os textos usam cores claras para
 preservar a leitura. As ilustrações individuais e sua legenda foram retiradas
@@ -195,17 +195,11 @@ movimento reduzido. Sem JavaScript, as imagens continuam acessíveis por deslize
 com uma seta de orientação estática. Acima de 820 px, permanecem as imagens
 horizontais e o Coverflow original, com navegação independente da galeria mobile.
 
-A seção de módulos (seção 2) usa o fundo em CSS da versão original, com a cor
-`#1c2c42` e uma grade de 56 × 56 px a 28% de opacidade, suavizada nas extremidades.
-A regra `.secao-solucao` desativa a imagem de fundo nessa seção.
-
-A chamada final (seção 4) usa `../assets/BG geral.png`, com o original em
-`static/img/bg-geral.png` e a versão exibida em `static/img/responsive/bg-geral-1920.webp`,
-de 1920 × 1080 px, definida em `section_background`. A seção de público-alvo
-(seção 3) mantém `../assets/bg.png`, configurado em `audience.background`, com
-a versão `static/img/responsive/bg-secoes-1920.webp`. A classe `secao-fundo` centraliza e cobre os
-fundos de imagem sem distorção nem repetição. A chamada final usa uma camada
-escura discreta sobre a imagem, e os textos corridos têm cor clara para preservar a leitura.
+As seções de módulos (seção 2), público-alvo (seção 3) e chamada final (seção 4)
+compartilham o fundo em CSS da seção 2: cor `#1c2c42` e grade de 56 × 56 px
+a 28% de opacidade, suavizada nas extremidades. A classe `.secao-fundo` centraliza
+esse visual em todas as larguras de tela. Os fundos dos cards dos módulos usam
+`solution.card_background`, e os textos corridos mantêm cores claras para leitura.
 
 Para regenerar os WebP dos fundos, do carrossel ou da imagem alternativa do hero,
 atualize os caminhos e dimensões em `section_background`, `audience.background`, `solution.card_background`,

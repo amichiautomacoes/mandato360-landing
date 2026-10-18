@@ -33,7 +33,7 @@
     </header>
 
     <!-- As seções recebem os textos editáveis de content.json. -->
-    <main id="main-content" style="--fundo-secoes: url('{{ url_for('static', filename=content.section_background.sources[0].path) }}');">
+    <main id="main-content">
       <section id="section-hero" class="secao secao-hero{% if content.hero.video %} hero-com-video{% endif %}" aria-labelledby="hero-title">
         {% if content.hero.video %}
         <div class="hero-video-fundo" aria-hidden="true">
@@ -93,7 +93,7 @@
         </div>
       </section>
 
-      <section id="section-audience" class="secao secao-publico secao-fundo" aria-labelledby="audience-title" style="--fundo-secoes: url('{{ url_for('static', filename=content.audience.background.sources[0].path) }}');">
+      <section id="section-audience" class="secao secao-publico secao-fundo" aria-labelledby="audience-title">
         <div class="conteiner">
           <header class="secao-cabecalho">
             <h2 id="audience-title">{{ content.audience.title }}</h2>
