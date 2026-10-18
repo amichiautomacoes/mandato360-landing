@@ -939,26 +939,26 @@
         { "path": "img/responsive/bg-secoes-1920.webp", "width": 1920 }
       ]
     },
-    "title": "Para quem é o MANDATO 360",
+    "title": "O MANDATO 360 é para você?",
     "groups": [
       {
-        "label": "SIM",
-        "title": "Para quem transforma dados em estratégia",
+        "label": "É PARA VOCÊ",
+        "icon": "✓",
         "class": "publico-indicado",
         "points": [
-          "Deputados estaduais e equipes que querem proteger seus redutos e identificar oportunidades de expansão.",
-          "Gabinetes que buscam avaliar alianças, atuação parlamentar e resultados eleitorais.",
-          "Gestores e consultorias que precisam planejar campanhas com inteligência territorial, demográfica e financeira."
+          "Quer compreender seus redutos e oportunidades.",
+          "Busca avaliar alianças e resultados eleitorais.",
+          "Precisa de inteligência territorial, demográfica e financeira."
         ]
       },
       {
-        "label": "NÃO",
-        "title": "Para quem prefere decisões sem análise de dados",
+        "label": "NÃO É PARA VOCÊ",
+        "icon": "✕",
         "class": "publico-nao-indicado",
         "points": [
-          "Quem toma decisões eleitorais exclusivamente com base na intuição.",
-          "Quem não considera necessário avaliar o desempenho de redutos e alianças políticas.",
-          "Quem busca apenas gráficos genéricos, sem diagnóstico estratégico da candidatura."
+          "Precisa apenas consultar resultados eleitorais básicos.",
+          "Não necessita analisar alianças ou atuação parlamentar.",
+          "Busca somente gráficos simples, sem diagnósticos aprofundados."
         ]
       }
     ]

@@ -117,10 +117,11 @@ entrarem na tela, uma vez por imagem e após o carregamento. A animação usa
 `IntersectionObserver` e respeita a preferência por movimento reduzido;
 sem JavaScript ou suporte ao observador, as imagens ficam visíveis normalmente.
 
-Todos os cards internos usam um gradiente azul discreto, definido em
+Os cards internos usam um gradiente azul discreto, definido em
 `--gradiente-card`: de `#1a3452` a `#0e1e33`, passando por `#142a44`, a 145°.
-O mesmo fundo é aplicado aos quatro módulos da seção 2 e aos cards de público-alvo
-da seção 3, tanto no celular quanto no desktop. Os textos usam cores claras para
+O mesmo fundo é aplicado aos quatro módulos da seção 2 e ao card negativo da
+seção 3, tanto no celular quanto no desktop. O card positivo tem uma variação
+esverdeada discreta. Os textos usam cores claras para
 preservar a leitura. Os arquivos decorativos antigos permanecem em `static/img/`.
 
 Os quatro cards ocupam a largura da grade para apresentar os dashboards.
@@ -201,6 +202,14 @@ compartilham o fundo em CSS da seção 2: cor `#1c2c42` e grade de 56 × 56 px
 a 28% de opacidade, suavizada nas extremidades. A classe `.secao-fundo` centraliza
 esse visual em todas as larguras de tela. Os cards internos usam `--gradiente-card`,
 e os textos corridos mantêm cores claras para leitura.
+
+A seção 3 tem o título **O MANDATO 360 é para você?**, com fonte de 26 a 40 px
+e distância de 48 a 72 px até os cards. As cápsulas **✓ É PARA VOCÊ** e
+**✕ NÃO É PARA VOCÊ** usam texto de 16 px em negrito, verde e vermelho,
+respectivamente. Cada card abre diretamente com a cápsula e três tópicos de
+`audience.groups[].points`; os rótulos e símbolos ficam em `label` e `icon`.
+A classe `.publico-indicado` usa um gradiente verde azulado suave, enquanto
+`.publico-nao-indicado` mantém o gradiente azul.
 
 Para regenerar os WebP dos fundos, do carrossel ou da imagem alternativa do hero,
 atualize os caminhos e dimensões em `section_background`, `audience.background`, `solution.card_background`,

@@ -215,7 +215,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--cor-ciano-claro
 
 .secao-problema { padding-block: clamp(4rem, 7vw, var(--espaco-28)); border-top: 1px solid var(--cor-borda); }
 .secao-problema .conteiner { max-width: var(--largura-container-amplo); width: min(calc(100% - 2 * var(--recuo-lateral)), var(--largura-container-amplo)); }
-.secao-problema h2, .secao-publico h2 { font-size: var(--tamanho-titulo-grande); }
+.secao-problema h2 { font-size: var(--tamanho-titulo-grande); }
 .grade-problemas { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--espaco-6); }
 .card-problema, .card-modulo, .card-diferencial, .card-publico {
   min-width: 0;
@@ -323,14 +323,19 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--cor-ciano-claro
 .card-diferencial h3 { font-family: var(--fonte-corpo); font-size: 1rem; line-height: 1.5; }
 .card-diferencial p { font-size: 0.875rem; line-height: 1.428571; }
 .secao-publico { padding-block: clamp(4rem, 7vw, var(--espaco-24)); border-top: 1px solid var(--cor-borda); }
+.secao-publico .secao-cabecalho { margin-bottom: clamp(3rem, 5vw, 4.5rem); }
+.secao-publico h2 { font-size: clamp(1.625rem, 3vw, 2.5rem); line-height: 1.2; }
 .grade-publico { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--espaco-4); }
 .card-publico { padding: var(--espaco-8); }
-.card-publico h3 { font-family: var(--fonte-titulo); font-size: clamp(1.25rem, 1.8vw, 1.5rem); line-height: 1.333333; }
-.publico-indicado { border-color: var(--cor-borda-destaque); }
-.publico-nao-indicado .sobretitulo { color: var(--cor-texto-secundario); }
+.card-publico .publico-tag { display: inline-flex; align-items: center; gap: var(--espaco-2); max-width: 100%; margin: 0; padding: 0.4375rem 0.75rem; border: 1px solid; border-radius: var(--raio-pilula); background: rgb(7 24 43 / 60%); font-family: var(--fonte-titulo); font-size: 1rem; font-weight: var(--peso-destaque); line-height: 1.4; letter-spacing: 0.04em; }
+.publico-tag > span:first-child { flex: none; }
+.publico-indicado { --gradiente-card: linear-gradient(145deg, #193b3a 0%, #133136 52%, #0e2230 100%); background-color: #133136; border-color: rgb(74 222 128 / 20%); }
+.publico-indicado .publico-tag { color: #86efac; border-color: rgb(74 222 128 / 20%); }
+.publico-nao-indicado .publico-tag { color: #fca5a5; border-color: rgb(248 113 113 / 20%); }
 .card-publico ul { margin: var(--espaco-6) 0 0; padding-left: var(--espaco-5); }
 .card-publico li + li { margin-top: var(--espaco-4); }
-.publico-indicado li::marker { color: var(--cor-ciano-claro); }
+.publico-indicado li::marker { color: #86efac; }
+.publico-nao-indicado li::marker { color: #fca5a5; }
 .secao-chamada { border-top: 1px solid var(--cor-borda); }
 .chamada-conteudo { max-width: 52rem; text-align: center; }
 .chamada-conteudo > .secao-descricao { margin-block: var(--espaco-6) var(--espaco-8); }
@@ -459,7 +464,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--cor-ciano-claro
   .hero-titulo { max-width: none; }
   .sobretitulo { font-size: 0.875rem; letter-spacing: 0.08em; }
   .card-problema h3 { font-size: 1.375rem; line-height: 1.25; }
-  .modulo-conteudo h3, .card-publico h3 { font-size: 1.25rem; line-height: 1.35; }
+  .modulo-conteudo h3 { font-size: 1.25rem; line-height: 1.35; }
   .lista-etiquetas li { font-size: 0.875rem; line-height: 1.45; overflow-wrap: anywhere; }
   .imagem-legenda, .direitos-autorais { font-size: 0.875rem; line-height: 1.6; }
   .rodape-conteudo p, .rodape nav { font-size: 1rem; line-height: 1.6; }

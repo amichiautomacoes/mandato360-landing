@@ -105,9 +105,11 @@
           </header>
           <div class="grade-publico">
             {% for group in content.audience.groups %}
-            <article class="card-publico {{ group.class }}">
-              <p class="sobretitulo">{{ group.label }}</p>
-              <h3>{{ group.title }}</h3>
+            <article class="card-publico {{ group.class }}" aria-labelledby="publico-titulo-{{ loop.index }}">
+              <h3 id="publico-titulo-{{ loop.index }}" class="publico-tag">
+                <span aria-hidden="true">{{ group.icon }}</span>
+                <span>{{ group.label }}</span>
+              </h3>
               <ul>
                 {% for point in group.points %}
                 <li>{{ point }}</li>
