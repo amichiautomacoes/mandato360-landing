@@ -110,6 +110,12 @@ Rodapé. As classes CSS usam nomes em português, como `hero-titulo`,
 
 ## Assets e estilos
 
+O header e o rodapé usam a logo `static/img/logoland.png`, copiada de
+`../assets/Logoland.png`. O caminho e as dimensões originais ficam em
+`brand.logo` no `content.json`. O CSS enquadra as margens transparentes do
+arquivo sem distorcer a marca, com uma base clara para preservar a leitura
+das letras azul-escuras. O tamanho acompanha o layout de desktop e celular.
+
 Os templates geram os caminhos de CSS, JavaScript e imagens com
 `url_for('static', filename=...)`. O layout e a navegação são responsivos.
 As imagens do hero estático aparecem com uma transição suave de opacidade e deslocamento ao

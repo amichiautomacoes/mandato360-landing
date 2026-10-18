@@ -5,7 +5,12 @@
     "description": "Inteligência eleitoral e eficiência financeira para deputados estaduais."
   },
   "brand": {
-    "name": "MANDATO 360"
+    "name": "MANDATO 360",
+    "logo": {
+      "path": "img/logoland.png",
+      "width": 1000,
+      "height": 500
+    }
   },
   "section_background": {
     "path": "img/bg-geral.png",
