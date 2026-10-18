@@ -202,11 +202,13 @@ movimento reduzido. Sem JavaScript, as imagens continuam acessíveis por deslize
 com uma seta de orientação estática. Acima de 820 px, permanecem as imagens
 horizontais e o Coverflow original, com navegação independente da galeria mobile.
 
-As seções de módulos (seção 2), público-alvo (seção 3) e chamada final (seção 4)
-compartilham o fundo em CSS da seção 2: cor `#1c2c42` e grade de 56 × 56 px
-a 28% de opacidade, suavizada nas extremidades. A classe `.secao-fundo` centraliza
-esse visual em todas as larguras de tela. Os cards internos usam `--gradiente-card`,
-e os textos corridos mantêm cores claras para leitura.
+As três seções após o hero alternam os fundos: módulos em `#1B2C43`, público-alvo
+em `#142338` e chamada final em `#1B2C43`. Os tons ficam em `--cor-secao-clara`
+e `--cor-secao-profunda`. Todas mantêm a grade de 56 × 56 px a 28% de opacidade,
+suavizada nas extremidades, definida em `.secao-fundo`. Os cards internos usam
+`--gradiente-card`, e os textos corridos mantêm cores claras para leitura.
+O título dos módulos começa entre 32 e 40 px abaixo do hero, cuja base recebe
+um gradiente de 64 a 112 px até o primeiro tom azul, formando uma transição suave.
 
 A seção 3 tem o título **O MANDATO 360 é para você?**, com fonte de 26 a 40 px
 e distância de 48 a 72 px até os cards. As cápsulas **✓ É PARA VOCÊ** e
@@ -240,12 +242,15 @@ fusão com o início, criando uma emenda suave no loop sem apagar a imagem. O
 arquivo preparado tem cerca de sete segundos. O celular usa
 `../assets/fundocel.mp4`, vertical 9:16, com a mesma preparação do loop.
 No desktop, o vídeo cobre todo o fundo da primeira seção com `object-fit: cover`.
-Até 820 px, a seção divide o espaço em duas faixas de mesma altura: o texto e o
-botão ficam na faixa superior e o mapa na inferior. O vídeo e sua capa usam
+Até 820 px, o texto e o botão ficam em uma faixa de altura natural, com 16 px
+de intervalo até a faixa reservada ao mapa, de 288 a 416 px conforme a largura.
+O vídeo e sua capa usam
 `object-fit: contain`, ancorados na base, para preservar a composição vertical.
 A altura acompanha o conteúdo em telas pequenas e com texto ampliado, evitando
-sobreposição com o mapa. Os vídeos mantêm a luminosidade original. A seção
-ocupa pelo menos a altura disponível da tela abaixo do cabeçalho. O vídeo
+sobreposição com o mapa; a altura do vídeo também é limitada ao dobro da faixa
+do mapa. No desktop, a altura mínima do hero acompanha 88% da tela menos o
+cabeçalho, até 768 px, com preenchimento vertical de 48 a 80 px. O gradiente
+suave na base conecta o vídeo ao fundo dos módulos. O vídeo
 inicia automaticamente, sem som, em loop, e
 continua ao rolar a página, sem controles de reprodução visíveis. Ao trocar
 de aba, a reprodução pausa e retoma automaticamente no retorno.

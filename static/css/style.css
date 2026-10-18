@@ -28,6 +28,8 @@
   --cor-primaria: #00808f;
   --cor-acento: #3b82f6;
   --cor-azul-profundo: oklch(0.327367 0.078237 259.821);
+  --cor-secao-clara: #1b2c43;
+  --cor-secao-profunda: #142338;
   --cor-borda: lab(76.559 2.17107 -11.0556 / 0.12);
   --cor-branca: #fff;
   --cor-ciano-claro: color-mix(in srgb, var(--cor-primaria) 55%, white);
@@ -140,9 +142,9 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--cor-ciano-claro
 .conteiner { width: min(calc(100% - 2 * var(--recuo-lateral)), var(--largura-container)); margin-inline: auto; }
 .secao { position: relative; isolation: isolate; padding-block: clamp(4rem, 6vw, var(--espaco-20)); scroll-margin-top: calc(var(--altura-cabecalho) + var(--espaco-6)); }
 .secao-fundo {
-  background-color: #1c2c42;
+  background-color: var(--cor-secao-clara);
 }
-/* As seções 2, 3 e 4 compartilham a mesma grade e suavização. */
+/* Os fundos alternam os tons de azul, com a mesma grade discreta. */
 .secao-fundo::before {
   position: absolute;
   inset: 0;
@@ -200,13 +202,15 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--cor-ciano-claro
 .botao-secundario:hover { background: var(--cor-superficie); }
 .grupo-botoes { display: flex; flex-wrap: wrap; gap: var(--espaco-4); margin-top: var(--espaco-8); }
 
-.secao-hero { padding-block: clamp(4rem, 8vw, var(--espaco-32)); background-image: var(--gradiente-hero); }
+.secao-hero { padding-block: clamp(3rem, 5vw, var(--espaco-20)); background-image: var(--gradiente-hero); }
+/* A base do hero se funde à cor da próxima seção sem bloquear as interações. */
+.secao-hero::after { position: absolute; inset: auto 0 0; z-index: 1; height: clamp(4rem, 8vw, 7rem); background: linear-gradient(to bottom, rgb(27 44 67 / 0%), var(--cor-secao-clara)); pointer-events: none; content: ""; }
 .hero-grade { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: center; gap: var(--espaco-12); }
 .hero-titulo { max-width: 16ch; }
 .hero-conteudo .secao-descricao { max-width: 34.5rem; }
 .hero-imagem { overflow: hidden; border: 1px solid var(--cor-borda); border-radius: var(--raio-midia); box-shadow: var(--sombra-suave); }
 .hero-imagem img { object-fit: contain; }
-.hero-com-video { display: grid; align-items: center; min-height: calc(100vh - var(--altura-cabecalho)); min-height: calc(100svh - var(--altura-cabecalho)); overflow: hidden; background-image: none; }
+.hero-com-video { display: grid; align-items: center; min-height: min(48rem, calc(88vh - var(--altura-cabecalho))); min-height: min(48rem, calc(88svh - var(--altura-cabecalho))); overflow: hidden; background-image: none; }
 .hero-com-video .hero-grade { position: relative; z-index: 2; grid-template-columns: minmax(0, 1fr); }
 .hero-com-video .hero-conteudo { max-width: 42rem; text-shadow: 0 2px 4px rgb(0 0 0 / 65%); }
 .hero-com-video .secao-descricao { color: #e1e6ef; }
@@ -246,7 +250,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--cor-ciano-claro
 .lista-etiquetas { display: flex; flex-wrap: wrap; gap: var(--espaco-2); margin: auto 0 0; padding: var(--espaco-6) 0 0; list-style: none; }
 .lista-etiquetas li { max-width: 100%; padding: var(--espaco-1) 0.625rem; border: 1px solid transparent; border-radius: var(--raio-pilula); background: #15803d; color: var(--cor-branca); font-size: 0.75rem; font-weight: var(--peso-destaque); line-height: 1.333333; }
 
-.secao-solucao { border-block: 1px solid var(--cor-borda); }
+.secao.secao-solucao { padding-top: clamp(2rem, 3vw, 2.5rem); border-bottom: 1px solid var(--cor-borda); }
 .grade-modulos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--espaco-10); }
 .card-modulo { overflow: hidden; }
 .modulo-conteudo { padding: var(--espaco-6); }
@@ -336,7 +340,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--cor-ciano-claro
 .card-diferencial { border-top: 2px solid var(--cor-primaria); }
 .card-diferencial h3 { font-family: var(--fonte-corpo); font-size: 1rem; line-height: 1.5; }
 .card-diferencial p { font-size: 0.875rem; line-height: 1.428571; }
-.secao-publico { padding-block: clamp(4rem, 7vw, var(--espaco-24)); border-top: 1px solid var(--cor-borda); }
+.secao-publico { padding-block: clamp(4rem, 7vw, var(--espaco-24)); border-top: 1px solid var(--cor-borda); background-color: var(--cor-secao-profunda); }
 .secao-publico .secao-cabecalho { margin-bottom: clamp(3rem, 5vw, 4.5rem); }
 .secao-publico h2 { font-size: clamp(1.625rem, 3vw, 2.5rem); line-height: 1.2; }
 .grade-publico { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--espaco-4); }
@@ -415,16 +419,17 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--cor-ciano-claro
   .menu-interativo .navegacao > .botao { justify-content: center; }
   .hero-grade { grid-template-columns: 1fr; }
   .hero-titulo { max-width: 18ch; }
-  /* Duas faixas de mesma altura: texto em cima e mapa embaixo.
-     A altura acompanha o texto; o vídeo inteiro fica ancorado na base. */
+  /* Texto com altura natural e uma faixa compacta reservada ao mapa.
+     O limite do vídeo acompanha essa faixa mesmo com o texto ampliado. */
   .secao-hero.hero-com-video {
-    grid-template-rows: 1fr 1fr;
+    --altura-mapa-hero: clamp(18rem, 90vw, 26rem);
+    grid-template-rows: auto var(--altura-mapa-hero);
     align-items: start;
-    row-gap: var(--espaco-10);
+    min-height: 0;
+    row-gap: var(--espaco-4);
     padding-block: var(--espaco-6) 0;
   }
   .hero-com-video .hero-grade { grid-row: 1; align-items: start; }
-  .hero-com-video::after { grid-row: 2; content: ""; pointer-events: none; }
   .hero-com-video .hero-conteudo { width: 100%; max-width: 36rem; }
   .hero-com-video .sobretitulo { margin-bottom: var(--espaco-3); }
   .hero-com-video .hero-titulo + p { margin-top: var(--espaco-4); }
@@ -432,7 +437,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--cor-ciano-claro
   .hero-com-video .hero-video-fundo picture, .hero-com-video .hero-video {
     inset: auto 0 0;
     height: auto;
-    max-height: 100%;
+    max-height: min(100%, calc(var(--altura-mapa-hero) * 2));
     aspect-ratio: 9 / 16;
     -webkit-mask-image: linear-gradient(transparent, #000 18%);
     mask-image: linear-gradient(transparent, #000 18%);
