@@ -117,12 +117,17 @@ entrarem na tela, uma vez por imagem e após o carregamento. A animação usa
 `IntersectionObserver` e respeita a preferência por movimento reduzido;
 sem JavaScript ou suporte ao observador, as imagens ficam visíveis normalmente.
 
-Os cards internos usam um gradiente azul discreto, definido em
-`--gradiente-card`: de `#1a3452` a `#0e1e33`, passando por `#142a44`, a 145°.
+Os cards internos usam o estilo **Elevated Glass Card**, com gradiente azul
+translúcido a 135° definido em `--gradiente-card`. O canto superior esquerdo
+mais claro, a borda superior iluminada e a sombra inferior profunda dão volume.
 O mesmo fundo é aplicado aos quatro módulos da seção 2 e ao card negativo da
 seção 3, tanto no celular quanto no desktop. O card positivo tem uma variação
 esverdeada discreta. Os textos usam cores claras para
-preservar a leitura. Os arquivos decorativos antigos permanecem em `static/img/`.
+preservar a leitura. Em navegadores compatíveis, o vidro usa blur de 16 px e
+saturação de 1,15; há fundo sólido de apoio para os demais. No desktop acima
+de 820 px com ponteiro preciso, o hover eleva o card em 6 px durante 280 ms e
+intensifica a sombra e o brilho superior. A preferência por movimento reduzido
+mantém os cards estáticos. Os arquivos decorativos antigos permanecem em `static/img/`.
 
 Os quatro cards ocupam a largura da grade para apresentar os dashboards.
 Os textos descritivos aparecem logo abaixo do título de cada card, antes das imagens.
@@ -288,8 +293,8 @@ em `static/img/`.
 O `static/css/style.css` usa os valores de `../output/computed_styles.json`:
 fundo `#090A0F`, texto `#F4F5F7`, texto secundário `#9BA1B0`, ciano `#00808F`,
 azul `#3B82F6`, gradiente de seção a 160°, botões com raio de 4 px, sombra
-das ações e blur de 12 px no cabeçalho. Os cards usam o gradiente azul opaco
-definido em `--gradiente-card`.
+das ações e blur de 12 px no cabeçalho. Os cards usam o gradiente translúcido
+definido em `--gradiente-card`, com sombras em `--sombra-card` e `--sombra-card-hover`.
 As variáveis de `:root`, como `--cor-primaria`, `--fonte-corpo`,
 `--fonte-titulo`, `--espaco-6` e `--gradiente-card`, permitem ajustar a identidade.
 
@@ -305,7 +310,8 @@ WOFF2 locais em `static/fonts/`. A fonte foi obtida do Google Fonts; a licença
 está em `static/fonts/Montserrat-OFL.txt`, e o projeto original está no
 [repositório Google Fonts](https://github.com/google/fonts/tree/main/ofl/montserrat).
 Os caminhos são relativos ao CSS, sem chamadas a serviços externos de fontes.
-Grid e Flexbox controlam o layout; os cards usam fundo opaco em todos os navegadores.
+Grid e Flexbox controlam o layout; os cards têm fundo opaco como fallback para
+navegadores sem `backdrop-filter`.
 
 O fundo comum dos módulos é definido em `--gradiente-card`; os textos
 continuam em `solution.modules`. Os caminhos das capturas são relativos à pasta

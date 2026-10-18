@@ -33,7 +33,7 @@
   --cor-ciano-claro: color-mix(in srgb, var(--cor-primaria) 55%, white);
   --cor-primaria-hover: color-mix(in srgb, var(--cor-primaria) 85%, black);
   --cor-borda-destaque: color-mix(in srgb, var(--cor-primaria) 45%, transparent);
-  --cor-vidro: rgb(18 21 28 / 62%);
+  --cor-vidro: rgb(9 22 39 / 28%);
   --cor-cabecalho: rgb(9 10 15 / 72%);
 
   --fonte-corpo: "Montserrat", Arial, sans-serif;
@@ -77,13 +77,17 @@
   --raio-pilula: 9999px;
   --sombra-suave: 0 10px 15px -3px rgb(0 0 0 / 10%),
     0 4px 6px -4px rgb(0 0 0 / 10%);
+  --sombra-card: 0 24px 48px -18px rgb(0 0 0 / 65%), 0 8px 20px -12px rgb(0 0 0 / 45%), inset 0 1px 0 rgb(222 244 255 / 14%);
+  --sombra-card-hover: 0 34px 64px -20px rgb(0 0 0 / 75%), 0 12px 24px -12px rgb(0 0 0 / 45%), inset 0 1px 0 rgb(222 244 255 / 22%);
+  --brilho-card: rgb(180 224 255 / 32%);
+  --brilho-card-hover: rgb(210 242 255 / 48%);
   --blur-cabecalho: 12px;
-  --blur-vidro: 20px;
-  --saturacao-vidro: 1.4;
+  --blur-vidro: 16px;
+  --saturacao-vidro: 1.15;
 
   /* Gradiente das seções e linhas de grade extraídos da captura. */
   --gradiente-secao: linear-gradient(160deg, var(--cor-azul-profundo) 0%, var(--cor-fundo) 70%);
-  --gradiente-card: linear-gradient(145deg, #1a3452 0%, #142a44 52%, #0e1e33 100%);
+  --gradiente-card: linear-gradient(135deg, rgb(36 66 100 / 76%) 0%, rgb(20 42 68 / 82%) 52%, rgb(10 24 43 / 94%) 100%);
   --gradiente-hero: radial-gradient(ellipse at 85% 15%, rgb(0 128 143 / 16%), transparent 60%), var(--gradiente-secao);
   --gradiente-grade: linear-gradient(to right, rgb(244 245 247 / 14%) 1px, transparent 1px),
     linear-gradient(rgb(244 245 247 / 14%) 1px, transparent 1px);
@@ -220,10 +224,20 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--cor-ciano-claro
 .card-problema, .card-modulo, .card-diferencial, .card-publico {
   min-width: 0;
   border: 1px solid var(--cor-borda);
+  border-top-color: var(--brilho-card);
   border-radius: var(--raio-card);
   background-color: #142a44;
   background-image: var(--gradiente-card);
-  box-shadow: var(--sombra-suave);
+  box-shadow: var(--sombra-card);
+  transition: transform 280ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 280ms ease, border-color 280ms ease;
+}
+/* A elevação fica restrita ao desktop com mouse ou outro ponteiro preciso. */
+@media (min-width: 821px) and (hover: hover) and (pointer: fine) {
+  :is(.card-problema, .card-modulo, .card-diferencial, .card-publico):hover {
+    transform: translateY(-6px);
+    border-top-color: var(--brilho-card-hover);
+    box-shadow: var(--sombra-card-hover);
+  }
 }
 .card-problema, .card-diferencial, .card-publico { padding: var(--espaco-6); }
 .card-problema { display: flex; flex-direction: column; }
@@ -329,7 +343,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--cor-ciano-claro
 .card-publico { padding: var(--espaco-8); }
 .card-publico .publico-tag { display: inline-flex; align-items: center; gap: var(--espaco-2); max-width: 100%; margin: 0; padding: 0.4375rem 0.75rem; border: 1px solid; border-radius: var(--raio-pilula); background: rgb(7 24 43 / 60%); font-family: var(--fonte-titulo); font-size: 1rem; font-weight: var(--peso-destaque); line-height: 1.4; letter-spacing: 0.04em; }
 .publico-tag > span:first-child { flex: none; }
-.publico-indicado { --gradiente-card: linear-gradient(145deg, #193b3a 0%, #133136 52%, #0e2230 100%); background-color: #133136; border-color: rgb(74 222 128 / 20%); }
+.publico-indicado { --gradiente-card: linear-gradient(135deg, rgb(32 76 68 / 76%) 0%, rgb(19 49 54 / 84%) 52%, rgb(12 30 42 / 94%) 100%); --brilho-card: rgb(134 239 172 / 32%); --brilho-card-hover: rgb(166 255 200 / 48%); background-color: #133136; border-color: rgb(74 222 128 / 20%); border-top-color: var(--brilho-card); }
 .publico-indicado .publico-tag { color: #86efac; border-color: rgb(74 222 128 / 20%); }
 .publico-nao-indicado .publico-tag { color: #fca5a5; border-color: rgb(248 113 113 / 20%); }
 .card-publico ul { margin: var(--espaco-6) 0 0; padding-left: var(--espaco-5); }
@@ -357,6 +371,11 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--cor-ciano-claro
     background-color: var(--cor-cabecalho);
     -webkit-backdrop-filter: blur(var(--blur-cabecalho));
     backdrop-filter: blur(var(--blur-cabecalho));
+  }
+  .card-problema, .card-modulo, .card-diferencial, .card-publico {
+    background-color: var(--cor-vidro);
+    -webkit-backdrop-filter: blur(var(--blur-vidro)) saturate(var(--saturacao-vidro));
+    backdrop-filter: blur(var(--blur-vidro)) saturate(var(--saturacao-vidro));
   }
 }
 
@@ -483,5 +502,6 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--cor-ciano-claro
   :root { scroll-behavior: auto; }
   .imagem-entrada { opacity: 1; transform: none; }
   .dashboard-lightbox[open] { animation: none; }
+  :is(.card-problema, .card-modulo, .card-diferencial, .card-publico):hover { transform: none; }
   *, *::before, *::after { transition: none !important; }
 }
