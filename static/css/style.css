@@ -25,6 +25,7 @@
   --cor-superficie: #12151c;
   --cor-texto: #f4f5f7;
   --cor-texto-secundario: #9ba1b0;
+  --cor-dourada: #d6bd8a;
   --cor-primaria: #00808f;
   --cor-acento: #3b82f6;
   --cor-azul-profundo: oklch(0.327367 0.078237 259.821);
@@ -208,7 +209,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--cor-ciano-claro
 .secao-hero::after { position: absolute; inset: auto 0 0; z-index: 1; height: clamp(4rem, 8vw, 7rem); background: linear-gradient(to bottom, rgb(27 44 67 / 0%), var(--cor-secao-clara)); pointer-events: none; content: ""; }
 .hero-grade { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: center; gap: var(--espaco-12); }
 .hero-titulo { max-width: 16ch; }
-.hero-conteudo .sobretitulo { color: #d6bd8a; letter-spacing: 0.16em; }
+.hero-conteudo .sobretitulo { color: var(--cor-dourada); letter-spacing: 0.16em; }
 .hero-conteudo .secao-descricao { max-width: 34.5rem; }
 .hero-imagem { overflow: hidden; border: 1px solid var(--cor-borda); border-radius: var(--raio-midia); box-shadow: var(--sombra-suave); }
 .hero-imagem img { object-fit: contain; }
@@ -261,7 +262,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--cor-ciano-claro
 /* A cápsula e o título formam um único bloco, com hierarquia preservada. */
 .modulo-cabecalho { display: grid; justify-items: start; gap: var(--espaco-2); margin-bottom: var(--espaco-4); }
 .modulo-cabecalho h3 { margin-bottom: 0; }
-.modulo-conteudo .modulo-tag { display: inline-flex; align-items: center; gap: var(--espaco-2); max-width: 100%; margin: 0; padding: 0.4375rem 0.75rem; border: 1px solid rgba(103, 232, 249, 0.18); border-radius: var(--raio-pilula); background: rgb(7 24 43 / 80%); color: #fff; font-size: 0.9375rem; font-weight: var(--peso-destaque); line-height: 1.4; letter-spacing: 0.06em; text-transform: uppercase; }
+.modulo-conteudo .modulo-tag { display: inline-flex; align-items: center; gap: var(--espaco-2); max-width: 100%; margin: 0; padding: 0.4375rem 0.75rem; border: 1px solid rgba(103, 232, 249, 0.18); border-radius: var(--raio-pilula); background: rgb(7 24 43 / 80%); color: var(--cor-dourada); font-size: 0.9375rem; font-weight: var(--peso-destaque); line-height: 1.4; letter-spacing: 0.06em; text-transform: uppercase; }
 .modulo-tag-icone { flex: none; font-family: "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", sans-serif; font-size: 1.125rem; line-height: 1; }
 .modulo-topicos li::marker { color: #a5e4ef; }
 .modulo-resumo { color: var(--cor-texto); font-weight: var(--peso-destaque); }
@@ -357,6 +358,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--cor-ciano-claro
 .publico-indicado li::marker { color: #86efac; }
 .publico-nao-indicado li::marker { color: #fca5a5; }
 .secao-chamada { border-top: 1px solid var(--cor-borda); }
+.secao-chamada .sobretitulo { color: var(--cor-dourada); }
 .chamada-conteudo { max-width: 52rem; text-align: center; }
 .chamada-conteudo > .secao-descricao { margin-block: var(--espaco-6) var(--espaco-8); }
 

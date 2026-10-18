@@ -132,7 +132,7 @@ mantém os cards estáticos. Os arquivos decorativos antigos permanecem em `stat
 Os quatro cards ocupam a largura da grade para apresentar os dashboards.
 Os textos descritivos aparecem logo abaixo do título de cada card, antes das imagens.
 As tags dos módulos usam cápsulas com fundo `#07182B` a 80% de opacidade,
-borda `rgba(103,232,249,0.18)` e texto branco em negrito de 15 px. Os ícones
+borda `rgba(103,232,249,0.18)` e texto dourado `#D6BD8A` em negrito de 15 px. Os ícones
 📍, 🧬, 📊 e 🏛️ ficam em `solution.modules[].icon`, e os rótulos em `label`.
 O bloco `.modulo-cabecalho` mantém 8 px entre a cápsula e o título, no celular
 e no desktop, preservando a hierarquia dos títulos.
@@ -237,6 +237,8 @@ arquivos de imagem do desktop, execute na pasta `Lpaas`:
 
 A tag do hero mostra **INTELIGÊNCIA ELEITORAL 360°**, definida em `hero.eyebrow`,
 com letras maiúsculas, cor `#D6BD8A` e espaçamento de `0.16em` entre caracteres.
+O mesmo dourado, centralizado em `--cor-dourada`, aparece nas tags dos quatro
+módulos da seção 2 e no sobretítulo da chamada final, na seção 4.
 
 O hero usa vídeos próprios para celular e desktop. O desktop foi preparado a
 partir de `../assets/download.mp4`, horizontal 16:9, com cerca de oito segundos
