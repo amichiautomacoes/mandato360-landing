@@ -4,6 +4,7 @@ Execute com o Python da venv que contém Playwright, a partir de qualquer pasta.
 A conversão usa o encoder WebP do Chromium e mantém a proporção das imagens.
 """
 
+import argparse
 import base64
 import json
 import os
@@ -18,6 +19,9 @@ STATIC_DIR = LANDING_DIR / "static"
 
 
 def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--mobile-only", action="store_true", help="Gera apenas as imagens verticais dos módulos.")
+    args = parser.parse_args()
     browsers = Path(sys.prefix) / "ms-playwright"
     if browsers.is_dir():
         os.environ.setdefault("PLAYWRIGHT_BROWSERS_PATH", str(browsers))
@@ -29,6 +33,10 @@ def main():
     images.append(content["audience"]["background"])
     for module in content["solution"]["modules"]:
         images.extend(slide["image"] for slide in module.get("gallery", {}).get("slides", []))
+    if args.mobile_only:
+        images = []
+    for module in content["solution"]["modules"]:
+        images.extend(slide["image"] for slide in module.get("gallery", {}).get("mobile", {}).get("slides", []))
     with sync_playwright() as playwright:
         browser = playwright.chromium.launch(headless=True)
         try:

@@ -283,6 +283,9 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--cor-ciano-claro
 .carrossel-animando .carrossel-slide { will-change: transform, opacity; }
 .carrossel-animando .carrossel-revelacao { will-change: clip-path; }
 
+/* A galeria vertical tem navegação própria e preserva o Coverflow do desktop. */
+.carrossel-mobile { display: none; }
+
 :root.lightbox-aberto { overflow: hidden; scroll-behavior: auto; }
 .dashboard-lightbox { width: min(96vw, 1760px); height: min(94vh, 1100px); height: min(94dvh, 1100px); max-width: calc(100vw - 16px); max-height: calc(100dvh - 16px); margin: auto; padding: 0; overflow: hidden; border: 1px solid rgb(165 228 239 / 30%); border-radius: 16px; background: #051126; color: #e1e6ef; box-shadow: 0 24px 80px rgb(0 0 0 / 55%); }
 .dashboard-lightbox[open] { display: flex; flex-direction: column; animation: lightbox-entrar 160ms ease-out; }
@@ -431,6 +434,24 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--cor-ciano-claro
   .grade-modulos { gap: var(--espaco-6); }
   .grade-modulos-com-destaque { grid-template-columns: 1fr; }
   .card-modulo-destaque .modulo-topicos { grid-template-columns: 1fr; }
+  .card-modulo-destaque .modulo-conteudo { --recuo-modulo: var(--espaco-6); }
+  .carrossel-desktop { display: none; }
+  .carrossel-mobile { display: block; margin-inline: calc(-1 * var(--recuo-modulo)); border-radius: 0; }
+  .carrossel-mobile-faixa { display: flex; width: 100%; overflow-x: auto; overflow-y: hidden; scroll-snap-type: x mandatory; overscroll-behavior-x: contain; scrollbar-width: none; border-block: 1px solid rgb(148 210 235 / 25%); background: #041028; }
+  .carrossel-mobile-faixa::-webkit-scrollbar { display: none; }
+  .carrossel-mobile-slide { position: relative; flex: 0 0 100%; min-width: 0; scroll-snap-align: start; scroll-snap-stop: always; }
+  .carrossel-mobile-slide picture, .carrossel-mobile-slide img { width: 100%; aspect-ratio: 4 / 5; }
+  .carrossel-mobile-slide img { height: auto; object-fit: contain; }
+  .carrossel-mobile .carrossel-sinal-ampliar { opacity: 0.9; }
+  .carrossel-mobile-rodape { display: flex; align-items: center; justify-content: space-between; gap: var(--espaco-3); padding: var(--espaco-4) var(--recuo-modulo) 0; }
+  .modulo-conteudo .carrossel-mobile-ajuda { color: #d6e8f5; font-size: 0.875rem; line-height: 1.4; }
+  .carrossel-mobile-contagem { display: block; margin-top: var(--espaco-1); color: #a5e4ef; font-size: 0.875rem; font-variant-numeric: tabular-nums; letter-spacing: 0.08em; }
+  .carrossel-mobile-gesto { flex: none; color: #a5e4ef; }
+  .carrossel-mobile-pronto .carrossel-mobile-gesto { display: none; }
+  .carrossel-mobile-controles { display: flex; gap: var(--espaco-2); flex: none; }
+  .carrossel-mobile-seta { display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border: 1px solid rgb(165 228 239 / 45%); border-radius: 50%; background: linear-gradient(145deg, #12334f, #06172f); color: #c5f1ff; box-shadow: inset 0 1px rgb(255 255 255 / 6%); transition: border-color var(--transicao), background var(--transicao); }
+  .carrossel-mobile-seta:hover:enabled { border-color: #a5e4ef; background: #16425d; }
+  .carrossel-mobile-seta:disabled { cursor: default; opacity: 0.3; }
   .rodape-conteudo { flex-direction: column; }
   .card-publico { padding: var(--espaco-6); }
 }
@@ -466,6 +487,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--cor-ciano-claro
   .navegacao > a:not(.botao) { padding-block: var(--espaco-2); }
   .secao-cabecalho { text-align: left; }
   .modulo-conteudo, .card-problema, .card-diferencial, .card-publico { padding: var(--espaco-5); }
+  .card-modulo-destaque .modulo-conteudo { --recuo-modulo: var(--espaco-5); }
 }
 
 @media (prefers-reduced-motion: reduce) {

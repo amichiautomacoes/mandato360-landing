@@ -139,7 +139,7 @@ da última para a primeira. As proporções originais são preservadas, sem cort
 
 O clique nas prévias laterais, as teclas de direção, Home/End, o arraste com mouse
 e o swipe no celular permitem navegar, sem reprodução automática. Não há legendas,
-contadores, setas ou indicadores visíveis abaixo das imagens; a posição continua
+contadores, setas ou indicadores visíveis abaixo das imagens no desktop; a posição continua
 disponível para leitores de tela. O arraste não
 abre a imagem por engano. A preferência por movimento reduzido elimina a animação, e sem
 JavaScript as imagens continuam acessíveis por rolagem horizontal. As capturas
@@ -173,6 +173,27 @@ adjacente aparecem nas duas laterais, preservando a transição nos dois sentido
 Essas cópias não acrescentam etapas nem indicadores e ficam ocultas dos leitores
 de tela. O card mantém seu conteúdo textual e fundo.
 
+Até 820 px, os quatro módulos exibem uma galeria exclusiva para celular, com
+imagens verticais de 1080 × 1350 px (4:5). Cada captura ocupa toda a largura interna
+do card, sem prévias laterais, cortes ou distorção. Os textos mantêm seus recuos.
+O RaioX usa oito imagens de `../assets/raioxcel`; DNA, DRE e Impacto usam quatro
+imagens de `../assets/Dnacel`, `../assets/drecel` e `../assets/impactocel`, respectivamente.
+A ordem segue os nomes numéricos dos arquivos, de `1.png` em diante.
+
+Os originais ficam em `static/img/mobile/<módulo>/`, e as versões WebP em
+480, 800 e 1080 px ficam em `static/img/responsive/`. A configuração de cada
+galeria está em `solution.modules[].gallery.mobile`, incluindo títulos,
+textos alternativos e a indicação **Deslize para explorar**. A navegação usa
+rolagem horizontal nativa com encaixe de uma imagem por vez; abaixo das capturas,
+setas locais em SVG com alvos de 44 × 44 px e um indicador de posição complementam
+o deslize. As teclas de direção e Home/End também navegam. O toque na imagem
+abre o mesmo lightbox, usando o PNG vertical original.
+
+O comportamento mobile está em `static/js/mobile-carousel.js` e respeita
+movimento reduzido. Sem JavaScript, as imagens continuam acessíveis por deslize,
+com uma seta de orientação estática. Acima de 820 px, permanecem as imagens
+horizontais e o Coverflow original, com navegação independente da galeria mobile.
+
 A seção de módulos (seção 2) usa o fundo em CSS da versão original, com a cor
 `#1c2c42` e uma grade de 56 × 56 px a 28% de opacidade, suavizada nas extremidades.
 A regra `.secao-solucao` desativa a imagem de fundo nessa seção.
@@ -187,11 +208,19 @@ escura discreta sobre a imagem, e os textos corridos têm cor clara para preserv
 
 Para regenerar os WebP dos fundos, do carrossel ou da imagem alternativa do hero,
 atualize os caminhos e dimensões em `section_background`, `audience.background`, `solution.card_background`,
-`solution.modules[].gallery.slides[].image` ou `hero.image`
+`solution.modules[].gallery.slides[].image`,
+`solution.modules[].gallery.mobile.slides[].image` ou `hero.image`
 no JSON e execute na pasta `Lpaas`, com a venv que já contém Playwright:
 
 ```powershell
 .\.venv\Scripts\python.exe landing\tools\optimize_images.py
+```
+
+Para regenerar apenas as versões WebP da galeria mobile, preservando todos os
+arquivos de imagem do desktop, execute na pasta `Lpaas`:
+
+```powershell
+.\.venv\Scripts\python.exe landing\tools\optimize_images.py --mobile-only
 ```
 
 O hero usa vídeos próprios para celular e desktop. O desktop foi preparado a
