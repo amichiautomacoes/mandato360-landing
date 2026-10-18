@@ -154,7 +154,6 @@
         "title": "Onde você é forte",
         "gallery": {
           "mobile": {
-            "swipe_hint": "Deslize para explorar",
             "slides": [
               {
                 "title": "Votação por mesorregião",
@@ -419,7 +418,6 @@
         "title": "Quem sustenta sua votação",
         "gallery": {
           "mobile": {
-            "swipe_hint": "Deslize para explorar",
             "slides": [
               {
                 "title": "Perfis da base eleitoral",
@@ -588,7 +586,6 @@
         "title": "Como seus recursos foram utilizados",
         "gallery": {
           "mobile": {
-            "swipe_hint": "Deslize para explorar",
             "slides": [
               {
                 "title": "Composição das receitas",
@@ -757,7 +754,6 @@
         "title": "Qual o peso da sua atuação política",
         "gallery": {
           "mobile": {
-            "swipe_hint": "Deslize para explorar",
             "slides": [
               {
                 "title": "Força da política local",

@@ -182,11 +182,12 @@ A ordem segue os nomes numéricos dos arquivos, de `1.png` em diante.
 
 Os originais ficam em `static/img/mobile/<módulo>/`, e as versões WebP em
 480, 800 e 1080 px ficam em `static/img/responsive/`. A configuração de cada
-galeria está em `solution.modules[].gallery.mobile`, incluindo títulos,
-textos alternativos e a indicação **Deslize para explorar**. A navegação usa
-rolagem horizontal nativa com encaixe de uma imagem por vez; abaixo das capturas,
-setas locais em SVG com alvos de 44 × 44 px e um indicador de posição complementam
-o deslize. As teclas de direção e Home/End também navegam. O toque na imagem
+galeria está em `solution.modules[].gallery.mobile`, incluindo títulos e
+textos alternativos. A navegação usa rolagem horizontal nativa com encaixe de
+uma imagem por vez; setas discretas em SVG ficam sobre as laterais da imagem,
+com alvos de 44 × 48 px. Não há texto de orientação nem contador visível abaixo
+das capturas; a posição é anunciada para leitores de tela. As teclas de direção
+e Home/End também navegam. O toque na imagem
 abre o mesmo lightbox, usando o PNG vertical original.
 
 O comportamento mobile está em `static/js/mobile-carousel.js` e respeita

@@ -19,7 +19,7 @@
   <p class="somente-leitores" data-carrossel-status role="status" aria-live="polite" aria-atomic="true"></p>
 </div>
 {% if gallery.mobile %}
-<div class="carrossel-dashboard carrossel-mobile" data-carrossel-mobile data-of="{{ gallery.of }}" role="region" aria-roledescription="{{ gallery.role }}" aria-label="{{ gallery.label }}" aria-describedby="carrossel-mobile-ajuda-{{ id }}" tabindex="0">
+<div class="carrossel-dashboard carrossel-mobile" data-carrossel-mobile data-of="{{ gallery.of }}" role="region" aria-roledescription="{{ gallery.role }}" aria-label="{{ gallery.label }}" tabindex="0">
   <div id="carrossel-mobile-{{ id }}" class="carrossel-mobile-faixa" data-mobile-faixa>
     {% for slide in gallery.mobile.slides %}
     <figure class="carrossel-mobile-slide" data-slide data-title="{{ slide.title }}" role="group" aria-roledescription="{{ gallery.slide_role }}" aria-label="{{ loop.index }} {{ gallery.of }} {{ gallery.mobile.slides|length }}: {{ slide.title }}">
@@ -33,20 +33,14 @@
     </figure>
     {% endfor %}
   </div>
-  <div class="carrossel-mobile-rodape">
-    <div>
-      <p id="carrossel-mobile-ajuda-{{ id }}" class="carrossel-mobile-ajuda">{{ gallery.mobile.swipe_hint }}</p>
-      <span class="carrossel-mobile-contagem" data-mobile-contagem aria-hidden="true" hidden></span>
-    </div>
-    <svg class="carrossel-mobile-gesto" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16M8 8l-4 4 4 4m8-8 4 4-4 4"/></svg>
-    <div class="carrossel-mobile-controles" data-mobile-controles hidden>
-      <button type="button" class="carrossel-mobile-seta" data-mobile-anterior aria-controls="carrossel-mobile-{{ id }}" aria-label="{{ gallery.previous }}">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5m6-6-6 6 6 6"/></svg>
-      </button>
-      <button type="button" class="carrossel-mobile-seta" data-mobile-proxima aria-controls="carrossel-mobile-{{ id }}" aria-label="{{ gallery.next }}">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
-      </button>
-    </div>
+  <svg class="carrossel-mobile-gesto" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
+  <div class="carrossel-mobile-controles" data-mobile-controles hidden>
+    <button type="button" class="carrossel-mobile-seta carrossel-mobile-anterior" data-mobile-anterior aria-controls="carrossel-mobile-{{ id }}" aria-label="{{ gallery.previous }}">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 6-6 6 6 6"/></svg>
+    </button>
+    <button type="button" class="carrossel-mobile-seta carrossel-mobile-proxima" data-mobile-proxima aria-controls="carrossel-mobile-{{ id }}" aria-label="{{ gallery.next }}">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
+    </button>
   </div>
   <p class="somente-leitores" data-mobile-status role="status" aria-live="polite" aria-atomic="true"></p>
 </div>

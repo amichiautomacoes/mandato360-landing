@@ -6,7 +6,6 @@ document.querySelectorAll("[data-carrossel-mobile]").forEach((carrossel) => {
   const slides = [...faixa.querySelectorAll("[data-slide]")];
   const anterior = carrossel.querySelector("[data-mobile-anterior]");
   const proxima = carrossel.querySelector("[data-mobile-proxima]");
-  const contagem = carrossel.querySelector("[data-mobile-contagem]");
   const status = carrossel.querySelector("[data-mobile-status]");
   const movimentoReduzido = window.matchMedia("(prefers-reduced-motion: reduce)");
   let atual = 0;
@@ -18,7 +17,6 @@ document.querySelectorAll("[data-carrossel-mobile]").forEach((carrossel) => {
     atual = Math.max(0, Math.min(slides.length - 1, Math.round(faixa.scrollLeft / faixa.clientWidth)));
     anterior.disabled = atual === 0;
     proxima.disabled = atual === slides.length - 1;
-    contagem.textContent = `${atual + 1} / ${slides.length}`;
     slides.forEach((slide, indice) => {
       slide.setAttribute("aria-hidden", String(indice !== atual));
       slide.querySelector("[data-ampliar]").tabIndex = indice === atual ? 0 : -1;
@@ -54,7 +52,6 @@ document.querySelectorAll("[data-carrossel-mobile]").forEach((carrossel) => {
   else window.addEventListener("resize", ajustarTamanho);
 
   carrossel.querySelector("[data-mobile-controles]").hidden = false;
-  contagem.hidden = false;
   carrossel.classList.add("carrossel-mobile-pronto");
   atualizar();
 });
