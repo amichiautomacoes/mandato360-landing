@@ -125,6 +125,11 @@ preservar a leitura. Os arquivos decorativos antigos permanecem em `static/img/`
 
 Os quatro cards ocupam a largura da grade para apresentar os dashboards.
 Os textos descritivos aparecem logo abaixo do título de cada card, antes das imagens.
+As tags dos módulos usam cápsulas com fundo `#07182B` a 80% de opacidade,
+borda `rgba(103,232,249,0.18)` e texto branco em negrito de 15 px. Os ícones
+📍, 🧬, 📊 e 🏛️ ficam em `solution.modules[].icon`, e os rótulos em `label`.
+O bloco `.modulo-cabecalho` mantém 8 px entre a cápsula e o título, no celular
+e no desktop, preservando a hierarquia dos títulos.
 O RaioX Territorial usa
 as capturas reais `raioxestado.png`, `raioxbairro.png` e `raioxconcentracao.png`.
 O carrossel combina Coverflow 3D com máscaras `clip-path`: a captura central

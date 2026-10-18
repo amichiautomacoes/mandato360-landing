@@ -237,8 +237,12 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--cor-ciano-claro
 .card-modulo { overflow: hidden; }
 .modulo-conteudo { padding: var(--espaco-6); }
 .modulo-conteudo h3 { margin-bottom: var(--espaco-4); font-family: var(--fonte-titulo); font-size: clamp(1.25rem, 2.2vw, 1.875rem); line-height: 1.2; }
-.modulo-conteudo .sobretitulo { color: #a5e4ef; font-size: 0.75rem; }
 .modulo-conteudo p, .modulo-topicos li { color: #e1e6ef; }
+/* A cápsula e o título formam um único bloco, com hierarquia preservada. */
+.modulo-cabecalho { display: grid; justify-items: start; gap: var(--espaco-2); margin-bottom: var(--espaco-4); }
+.modulo-cabecalho h3 { margin-bottom: 0; }
+.modulo-conteudo .modulo-tag { display: inline-flex; align-items: center; gap: var(--espaco-2); max-width: 100%; margin: 0; padding: 0.4375rem 0.75rem; border: 1px solid rgba(103, 232, 249, 0.18); border-radius: var(--raio-pilula); background: rgb(7 24 43 / 80%); color: #fff; font-size: 0.9375rem; font-weight: var(--peso-destaque); line-height: 1.4; letter-spacing: 0.06em; text-transform: uppercase; }
+.modulo-tag-icone { flex: none; font-family: "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", sans-serif; font-size: 1.125rem; line-height: 1; }
 .modulo-topicos li::marker { color: #a5e4ef; }
 .modulo-resumo { color: var(--cor-texto); font-weight: var(--peso-destaque); }
 .modulo-topicos { margin: var(--espaco-4) 0 0; padding-left: var(--espaco-5); }
@@ -453,7 +457,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--cor-ciano-claro
   .secao-cabecalho { margin-bottom: var(--espaco-8); }
   .secao-cabecalho h2 + p, .hero-titulo + p { margin-top: var(--espaco-4); }
   .hero-titulo { max-width: none; }
-  .sobretitulo, .modulo-conteudo .sobretitulo { font-size: 0.875rem; letter-spacing: 0.08em; }
+  .sobretitulo { font-size: 0.875rem; letter-spacing: 0.08em; }
   .card-problema h3 { font-size: 1.375rem; line-height: 1.25; }
   .modulo-conteudo h3, .card-publico h3 { font-size: 1.25rem; line-height: 1.35; }
   .lista-etiquetas li { font-size: 0.875rem; line-height: 1.45; overflow-wrap: anywhere; }

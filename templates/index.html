@@ -71,8 +71,13 @@
             {% for module in content.solution.modules %}
             <article id="module-{{ module.id }}" class="card-modulo{% if module.gallery %} card-modulo-destaque{% endif %}" aria-labelledby="module-title-{{ module.id }}">
               <div class="modulo-conteudo">
-                <p class="sobretitulo">{{ module.label }}</p>
-                <h3 id="module-title-{{ module.id }}">{{ module.title }}</h3>
+                <div class="modulo-cabecalho">
+                  <p class="modulo-tag">
+                    <span class="modulo-tag-icone" aria-hidden="true">{{ module.icon }}</span>
+                    <span>{{ module.label }}</span>
+                  </p>
+                  <h3 id="module-title-{{ module.id }}">{{ module.title }}</h3>
+                </div>
                 {% if module.description %}
                 <p{% if module.points %} class="modulo-resumo"{% endif %}>{{ module.description }}</p>
                 {% endif %}
