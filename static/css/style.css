@@ -83,6 +83,7 @@
 
   /* Gradiente das seções e linhas de grade extraídos da captura. */
   --gradiente-secao: linear-gradient(160deg, var(--cor-azul-profundo) 0%, var(--cor-fundo) 70%);
+  --gradiente-card: linear-gradient(145deg, #1a3452 0%, #142a44 52%, #0e1e33 100%);
   --gradiente-hero: radial-gradient(ellipse at 85% 15%, rgb(0 128 143 / 16%), transparent 60%), var(--gradiente-secao);
   --gradiente-grade: linear-gradient(to right, rgb(244 245 247 / 14%) 1px, transparent 1px),
     linear-gradient(rgb(244 245 247 / 14%) 1px, transparent 1px);
@@ -220,7 +221,8 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--cor-ciano-claro
   min-width: 0;
   border: 1px solid var(--cor-borda);
   border-radius: var(--raio-card);
-  background-color: var(--cor-superficie);
+  background-color: #142a44;
+  background-image: var(--gradiente-card);
   box-shadow: var(--sombra-suave);
 }
 .card-problema, .card-diferencial, .card-publico { padding: var(--espaco-6); }
@@ -232,13 +234,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--cor-ciano-claro
 
 .secao-solucao { border-block: 1px solid var(--cor-borda); }
 .grade-modulos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--espaco-10); }
-.card-modulo {
-  overflow: hidden;
-  background-image: var(--fundo-modulo);
-  background-position: center bottom;
-  background-size: cover;
-  background-repeat: no-repeat;
-}
+.card-modulo { overflow: hidden; }
 .modulo-conteudo { padding: var(--espaco-6); }
 .modulo-conteudo h3 { margin-bottom: var(--espaco-4); font-family: var(--fonte-titulo); font-size: clamp(1.25rem, 2.2vw, 1.875rem); line-height: 1.2; }
 .modulo-conteudo .sobretitulo { color: #a5e4ef; font-size: 0.75rem; }
@@ -353,11 +349,6 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--cor-ciano-claro
     -webkit-backdrop-filter: blur(var(--blur-cabecalho));
     backdrop-filter: blur(var(--blur-cabecalho));
   }
-  .card-problema, .card-diferencial, .card-publico {
-    background-color: var(--cor-vidro);
-    -webkit-backdrop-filter: blur(var(--blur-vidro)) saturate(var(--saturacao-vidro));
-    backdrop-filter: blur(var(--blur-vidro)) saturate(var(--saturacao-vidro));
-  }
 }
 
 
@@ -469,7 +460,6 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--cor-ciano-claro
   .imagem-legenda, .direitos-autorais { font-size: 0.875rem; line-height: 1.6; }
   .rodape-conteudo p, .rodape nav { font-size: 1rem; line-height: 1.6; }
   .botao { min-height: 48px; font-size: 1rem; }
-  .card-problema, .card-modulo, .card-publico { background-color: var(--cor-superficie); backdrop-filter: none; -webkit-backdrop-filter: none; }
   .grade-problemas, .grade-modulos, .grade-diferenciais, .grade-publico { grid-template-columns: 1fr; }
   .grupo-botoes { flex-direction: column; align-items: stretch; }
   .botao-pequeno { min-height: 2.75rem; }

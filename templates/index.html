@@ -67,7 +67,7 @@
             <h2 id="solution-title">{{ content.solution.title }}</h2>
             <p class="secao-descricao">{{ content.solution.description }}</p>
           </header>
-          <div class="grade-modulos{% if content.solution.modules[0].gallery %} grade-modulos-com-destaque{% endif %}" style="--fundo-modulo: url('{{ url_for('static', filename=content.solution.card_background.sources[0].path) }}');">
+          <div class="grade-modulos{% if content.solution.modules[0].gallery %} grade-modulos-com-destaque{% endif %}">
             {% for module in content.solution.modules %}
             <article id="module-{{ module.id }}" class="card-modulo{% if module.gallery %} card-modulo-destaque{% endif %}" aria-labelledby="module-title-{{ module.id }}">
               <div class="modulo-conteudo">

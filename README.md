@@ -117,15 +117,11 @@ entrarem na tela, uma vez por imagem e após o carregamento. A animação usa
 `IntersectionObserver` e respeita a preferência por movimento reduzido;
 sem JavaScript ou suporte ao observador, as imagens ficam visíveis normalmente.
 
-Os quatro cards dos módulos usam o mesmo fundo decorativo, baseado em
-`../assets/BG geral.png`. A cópia original está em `static/img/bg-geral.png`, e
-a versão exibida é `static/img/responsive/bg-geral-1920.webp`, de 1920 × 1080 px
-e cerca de 32 KB. O navegador compartilha esse arquivo entre todos os cards
-dos módulos.
-O fundo preenche cada card sem distorção, alinhado ao centro inferior para
-priorizar a parte de baixo da imagem; os textos usam cores claras para
-preservar a leitura. As ilustrações individuais e sua legenda foram retiradas
-da seção. Os arquivos antigos permanecem em `static/img/`.
+Todos os cards internos usam um gradiente azul discreto, definido em
+`--gradiente-card`: de `#1a3452` a `#0e1e33`, passando por `#142a44`, a 145°.
+O mesmo fundo é aplicado aos quatro módulos da seção 2 e aos cards de público-alvo
+da seção 3, tanto no celular quanto no desktop. Os textos usam cores claras para
+preservar a leitura. Os arquivos decorativos antigos permanecem em `static/img/`.
 
 Os quatro cards ocupam a largura da grade para apresentar os dashboards.
 Os textos descritivos aparecem logo abaixo do título de cada card, antes das imagens.
@@ -198,8 +194,8 @@ horizontais e o Coverflow original, com navegação independente da galeria mobi
 As seções de módulos (seção 2), público-alvo (seção 3) e chamada final (seção 4)
 compartilham o fundo em CSS da seção 2: cor `#1c2c42` e grade de 56 × 56 px
 a 28% de opacidade, suavizada nas extremidades. A classe `.secao-fundo` centraliza
-esse visual em todas as larguras de tela. Os fundos dos cards dos módulos usam
-`solution.card_background`, e os textos corridos mantêm cores claras para leitura.
+esse visual em todas as larguras de tela. Os cards internos usam `--gradiente-card`,
+e os textos corridos mantêm cores claras para leitura.
 
 Para regenerar os WebP dos fundos, do carrossel ou da imagem alternativa do hero,
 atualize os caminhos e dimensões em `section_background`, `audience.background`, `solution.card_background`,
@@ -278,9 +274,10 @@ em `static/img/`.
 O `static/css/style.css` usa os valores de `../output/computed_styles.json`:
 fundo `#090A0F`, texto `#F4F5F7`, texto secundário `#9BA1B0`, ciano `#00808F`,
 azul `#3B82F6`, gradiente de seção a 160°, botões com raio de 4 px, sombra
-das ações e blur de 12 px no cabeçalho e 20 px com saturação de 1,4 nos cards.
+das ações e blur de 12 px no cabeçalho. Os cards usam o gradiente azul opaco
+definido em `--gradiente-card`.
 As variáveis de `:root`, como `--cor-primaria`, `--fonte-corpo`,
-`--fonte-titulo`, `--espaco-6` e `--blur-vidro`, permitem ajustar a identidade.
+`--fonte-titulo`, `--espaco-6` e `--gradiente-card`, permitem ajustar a identidade.
 
 Os seletores genéricos de card, hero, btn e container e o seletor `h4` não
 tinham elementos na extração. Esses componentes foram adaptados a partir de
@@ -294,12 +291,11 @@ WOFF2 locais em `static/fonts/`. A fonte foi obtida do Google Fonts; a licença
 está em `static/fonts/Montserrat-OFL.txt`, e o projeto original está no
 [repositório Google Fonts](https://github.com/google/fonts/tree/main/ofl/montserrat).
 Os caminhos são relativos ao CSS, sem chamadas a serviços externos de fontes.
-Grid e Flexbox controlam o layout; os cards têm fundo opaco como fallback quando
-o navegador não suporta `backdrop-filter`.
+Grid e Flexbox controlam o layout; os cards usam fundo opaco em todos os navegadores.
 
-O fundo comum dos módulos é definido em `solution.card_background`; os textos
-continuam em `solution.modules`. Os caminhos das imagens são relativos à pasta
-`static/`, por exemplo `img/bg-geral.png`.
+O fundo comum dos módulos é definido em `--gradiente-card`; os textos
+continuam em `solution.modules`. Os caminhos das capturas são relativos à pasta
+`static/`, por exemplo `img/mobile/raiox/1.png`.
 
 ## Boas práticas
 
