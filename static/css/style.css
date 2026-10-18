@@ -208,6 +208,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--cor-ciano-claro
 .secao-hero::after { position: absolute; inset: auto 0 0; z-index: 1; height: clamp(4rem, 8vw, 7rem); background: linear-gradient(to bottom, rgb(27 44 67 / 0%), var(--cor-secao-clara)); pointer-events: none; content: ""; }
 .hero-grade { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: center; gap: var(--espaco-12); }
 .hero-titulo { max-width: 16ch; }
+.hero-conteudo .sobretitulo { color: #d6bd8a; letter-spacing: 0.16em; }
 .hero-conteudo .secao-descricao { max-width: 34.5rem; }
 .hero-imagem { overflow: hidden; border: 1px solid var(--cor-borda); border-radius: var(--raio-midia); box-shadow: var(--sombra-suave); }
 .hero-imagem img { object-fit: contain; }

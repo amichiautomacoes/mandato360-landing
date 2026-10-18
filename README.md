@@ -235,6 +235,9 @@ arquivos de imagem do desktop, execute na pasta `Lpaas`:
 .\.venv\Scripts\python.exe landing\tools\optimize_images.py --mobile-only
 ```
 
+A tag do hero mostra **INTELIGÊNCIA ELEITORAL 360°**, definida em `hero.eyebrow`,
+com letras maiúsculas, cor `#D6BD8A` e espaçamento de `0.16em` entre caracteres.
+
 O hero usa vídeos próprios para celular e desktop. O desktop foi preparado a
 partir de `../assets/download.mp4`, horizontal 16:9, com cerca de oito segundos
 no original. A abertura preta é removida e os últimos 0,6 segundo recebem uma
