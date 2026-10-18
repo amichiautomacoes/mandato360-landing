@@ -59,24 +59,24 @@
     "description": "A auditoria 360° do seu desempenho em Minas Gerais: cruze votação por bairro, perfil do eleitorado, raio-x financeiro da campanha e a força real das alianças locais",
     "secondary_button": "Como Funciona",
     "video": {
-      "mobile_path": "video/hero-mobile.mp4",
-      "desktop_path": "video/hero-desktop.mp4",
+      "mobile_path": "video/hero-mobile-hq.mp4",
+      "desktop_path": "video/hero-desktop-hq.mp4",
       "width": 1280,
       "height": 720,
       "label": "Animação do mapa de Minas Gerais com gráficos e indicadores eleitorais.",
       "desktop_poster": {
-        "path": "img/responsive/hero-video-poster-desktop.webp",
+        "path": "img/responsive/hero-video-poster-desktop-hq.webp",
         "width": 1280,
         "height": 720,
         "alt": "Mapa de Minas Gerais iluminado em uma composição horizontal de inteligência eleitoral."
       },
       "poster": {
-        "path": "img/responsive/hero-video-poster-540.webp",
-        "width": 540,
-        "height": 960,
+        "path": "img/responsive/hero-video-poster-mobile-hq.webp",
+        "width": 720,
+        "height": 1280,
         "alt": "Mapa de Minas Gerais iluminado na parte inferior, com espaço livre acima para a apresentação do MANDATO 360.",
         "sources": [
-          { "path": "img/responsive/hero-video-poster-540.webp", "width": 540 }
+          { "path": "img/responsive/hero-video-poster-mobile-hq.webp", "width": 720 }
         ]
       }
     },

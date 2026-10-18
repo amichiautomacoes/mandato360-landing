@@ -263,27 +263,47 @@ de aba, a reprodução pausa e retoma automaticamente no retorno.
 `hero.video` no JSON centraliza os arquivos, as dimensões e as capas. `poster`
 define a capa do celular; `desktop_poster` define a composição horizontal, usada
 acima de 820 px tanto no vídeo quanto no fallback `picture`.
-As versões em `static/video/` usam H.264: 540 × 960 px e cerca de 314 KB para
-celular, 1280 × 720 px e cerca de 1,03 MB para desktop, sem ampliar a resolução
-do original. As capas WebP mantêm o
-visual durante o carregamento, em caso de falha ou sem JavaScript. O vídeo
-original é preservado. Para regenerar somente o desktop e sua capa, execute na
-pasta `Lpaas`:
+As versões `static/video/hero-desktop-hq.mp4` e `hero-mobile-hq.mp4` usam H.264
+com libx264, qualidade constante CRF 16, preset slow, 24 fps e faststart. O desktop
+mantém os 1280 × 720 px do original, com cerca de 3,61 MB; o celular preserva
+720 × 1280 px, com cerca de 3,40 MB. Ambos têm cerca de 6,92 segundos. O preparo
+evita a gravação em tempo real por canvas, que reduzia o bitrate e os detalhes.
+As resoluções nativas são respeitadas; os limites de saída são 1920 px de largura
+no desktop e 1080 px no celular, sempre sem ampliar o original.
+
+As capas `hero-video-poster-desktop-hq.webp` e `hero-video-poster-mobile-hq.webp`
+usam qualidade 96 e mantêm o visual durante o carregamento, em caso de falha ou
+sem JavaScript. Os nomes novos evitam reutilizar versões antigas em cache.
+Ao cruzar 820 px, o player troca o vídeo e a capa para o layout correto.
+Os vídeos originais permanecem em `assets/`.
+
+O FFmpeg é necessário somente para preparar os assets; não é instalado no
+container de produção. O script aceita `--ffmpeg CAMINHO_DO_EXECUTAVEL` ou usa
+o pacote opcional `imageio-ffmpeg` na venv. Para instalar esse pacote na pasta
+`Lpaas`:
+
+```powershell
+.\.venv\Scripts\python.exe -m pip install imageio-ffmpeg==0.6.0
+```
+
+Para regenerar somente o desktop e sua capa, execute na pasta `Lpaas`:
 
 ```powershell
 .\.venv\Scripts\python.exe landing\tools\prepare_hero_video.py --target desktop
 ```
 
-O destino padrão é `desktop`, para evitar substituir o vídeo vertical do celular
-ao atualizar o original horizontal. Para regenerar o vídeo do celular e a capa
-de 540 px, use:
+O destino padrão é `desktop`. Para regenerar o vídeo do celular e a capa
+de 720 px, use:
 
 ```powershell
 .\.venv\Scripts\python.exe landing\tools\prepare_hero_video.py --target mobile --source assets\fundocel.mp4
 ```
 
 Os parâmetros `--trim-start`
-e `--crossfade` ajustam, em segundos, o corte inicial e a duração da fusão.
+e `--crossfade` ajustam, em segundos, o corte inicial e a duração da fusão,
+arredondados para quadros completos. `--crf` ajusta a qualidade constante;
+valores menores preservam mais detalhes e aumentam o arquivo. `--target both`
+prepara os dois destinos a partir dos respectivos originais.
 
 Até 820 px, o menu pode ser aberto pelo botão **Menu** e fecha por seleção,
 toque fora ou Escape. Seu estado também é ajustado ao redimensionar a tela.

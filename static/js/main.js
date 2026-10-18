@@ -89,10 +89,16 @@ document.querySelectorAll('a[href^="#"]').forEach((ancora) => {
       if (entradas.some(entrada => entrada.isIntersecting)) reproduzir();
     }).observe(video);
   }
-  const celular = window.matchMedia("(max-width: 820px)").matches;
-  video.poster = celular ? video.dataset.posterMobile : video.dataset.posterDesktop;
-  video.src = celular ? video.dataset.srcMobile : video.dataset.srcDesktop;
-  reproduzir();
+  // Evita ampliar o vídeo vertical ao passar do celular para o layout desktop.
+  const celular = window.matchMedia("(max-width: 820px)");
+  const atualizarFonte = () => {
+    hero.classList.remove("video-pronto");
+    video.poster = celular.matches ? video.dataset.posterMobile : video.dataset.posterDesktop;
+    video.src = celular.matches ? video.dataset.srcMobile : video.dataset.srcDesktop;
+    reproduzir();
+  };
+  celular.addEventListener("change", atualizarFonte);
+  atualizarFonte();
 })();
 
 // Revela as imagens uma única vez, depois de carregarem e entrarem na tela.

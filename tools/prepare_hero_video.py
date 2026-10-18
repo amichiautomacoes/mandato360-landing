@@ -1,174 +1,147 @@
-"""Prepara vídeos H.264 silenciosos e capas WebP, preservando o original.
+"""Prepara vídeos H.264 de alta qualidade e capas WebP, preservando os originais.
 
-Usa o encoder H.264 do Chromium via MediaRecorder, sem dependências de produção.
-Por padrão, atualiza apenas o desktop. A emenda do loop é preparada no próprio
-arquivo, com uma fusão curta entre o final e o início, sem escurecer a imagem.
+Usa FFmpeg/libx264 com qualidade constante, sem dependência no container de produção.
+O corte e a fusão são calculados por quadro para manter a cadência e a emenda do loop.
+Informe --ffmpeg ou instale imageio-ffmpeg somente no ambiente de preparação.
 """
 
 import argparse
-import base64
-import os
-import sys
+import re
+import shutil
+import subprocess
+import tempfile
 from pathlib import Path
-
-from playwright.sync_api import sync_playwright
 
 
 LANDING_DIR = Path(__file__).resolve().parents[1]
-SOURCE = LANDING_DIR.parent / "assets" / "download.mp4"
+ASSETS_DIR = LANDING_DIR.parent / "assets"
+SPECS = {
+    "desktop": {"source": "download.mp4", "max_width": 1920},
+    "mobile": {"source": "fundocel.mp4", "max_width": 1080},
+}
+
+
+def find_ffmpeg(explicit):
+    """Aceita um binário local ou o executável incluído no pacote de preparação."""
+    if explicit:
+        return explicit.resolve()
+    installed = shutil.which("ffmpeg")
+    if installed:
+        return Path(installed)
+    try:
+        import imageio_ffmpeg
+    except ImportError:
+        return None
+    return Path(imageio_ffmpeg.get_ffmpeg_exe())
+
+
+def run_ffmpeg(executable, *arguments):
+    result = subprocess.run(
+        [str(executable), "-hide_banner", *map(str, arguments)],
+        capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=300,
+    )
+    if result.returncode:
+        raise RuntimeError(f"Falha no FFmpeg:\n{result.stderr[-4000:]}")
+    return result
+
+
+def probe_video(executable, source):
+    """Decodifica a faixa de vídeo para contar os quadros reais, sem incluir áudio."""
+    result = run_ffmpeg(
+        executable, "-i", source, "-map", "0:v:0", "-an", "-sn", "-dn",
+        "-fps_mode", "passthrough", "-progress", "pipe:1", "-nostats", "-f", "null", "-",
+    )
+    stream = next((line for line in result.stderr.splitlines() if "Video:" in line), "")
+    dimensions = re.search(r"\b(\d{2,5})x(\d{2,5})\b", stream)
+    rate = re.search(r"\b(\d+(?:\.\d+)?) fps\b", stream)
+    frames = re.findall(r"^frame=(\d+)", result.stdout, re.MULTILINE)
+    if not dimensions or not rate or not frames:
+        raise RuntimeError(f"Não foi possível inspecionar os quadros de {source}.")
+    return {
+        "width": int(dimensions[1]), "height": int(dimensions[2]),
+        "fps": float(rate[1]), "frames": int(frames[-1]),
+    }
+
+
+def prepare_video(executable, name, source, trim_start, crossfade, crf, preset):
+    info = probe_video(executable, source)
+    fps = info["fps"]
+    trim_frames = round(trim_start * fps)
+    fade_frames = max(2, round(crossfade * fps))
+    body_frames = info["frames"] - trim_frames - fade_frames
+    if body_frames <= fade_frames:
+        raise ValueError("O vídeo é curto demais para os cortes e a fusão configurados.")
+    width = max(2, min(SPECS[name]["max_width"], info["width"]) // 2 * 2)
+    height = max(2, round(width * info["height"] / info["width"] / 2) * 2)
+    rate = f"{fps:g}"
+    # A abertura termina no quadro imediatamente anterior ao reinício do corpo.
+    # Os dois ramos mantêm a mesma cadência e base de tempo antes da fusão.
+    filters = (
+        "[0:v:0]split=2[body0][head0];"
+        f"[body0]trim=start_frame={trim_frames + fade_frames}:end_frame={info['frames']},"
+        f"setpts=PTS-STARTPTS,fps={rate},settb=AVTB[body];"
+        f"[head0]trim=start_frame={trim_frames}:end_frame={trim_frames + fade_frames},"
+        f"setpts=PTS-STARTPTS,fps={rate},settb=AVTB[head];"
+        f"[body][head]xfade=transition=fade:duration={fade_frames / fps:.9f}:"
+        f"offset={(body_frames - fade_frames) / fps:.9f},"
+        f"scale={width}:{height}:flags=lanczos,format=yuv420p[video]"
+    )
+    video_dir = LANDING_DIR / "static" / "video"
+    poster_dir = LANDING_DIR / "static" / "img" / "responsive"
+    video_dir.mkdir(parents=True, exist_ok=True)
+    poster_dir.mkdir(parents=True, exist_ok=True)
+    video_path = video_dir / f"hero-{name}-hq.mp4"
+    poster_path = poster_dir / f"hero-video-poster-{name}-hq.webp"
+    # Os arquivos finais só são trocados depois que vídeo e capa estiverem prontos.
+    with tempfile.TemporaryDirectory(prefix=".hero-hq-", dir=video_dir) as temporary:
+        temporary_video = Path(temporary) / "video.mp4"
+        temporary_poster = Path(temporary) / "poster.webp"
+        run_ffmpeg(
+            executable, "-loglevel", "error", "-y", "-i", source,
+            "-filter_complex", filters, "-map", "[video]", "-an",
+            "-c:v", "libx264", "-preset", preset, "-crf", crf, "-pix_fmt", "yuv420p",
+            "-frames:v", body_frames, "-r", rate, "-fps_mode", "cfr",
+            "-movflags", "+faststart", temporary_video,
+        )
+        run_ffmpeg(
+            executable, "-loglevel", "error", "-y", "-i", temporary_video,
+            "-frames:v", "1", "-an", "-c:v", "libwebp", "-quality", "96",
+            "-compression_level", "6", temporary_poster,
+        )
+        # A cópia herda as permissões de static/, em vez das permissões privadas
+        # da pasta temporária no Windows, permitindo leitura pelo Git e servidor.
+        shutil.copyfile(temporary_video, video_path)
+        shutil.copyfile(temporary_poster, poster_path)
+    print(
+        f"{video_path.name}: {width}x{height}, {rate} fps, "
+        f"{body_frames / fps:.2f}s, {video_path.stat().st_size:,} bytes", flush=True,
+    )
+    print(f"{poster_path.name}: {poster_path.stat().st_size:,} bytes", flush=True)
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--source", type=Path, default=SOURCE)
+    parser.add_argument("--source", type=Path, help="Substitui o original do destino selecionado.")
     parser.add_argument("--target", choices=("desktop", "mobile", "both"), default="desktop")
-    parser.add_argument("--trim-start", type=float, default=0.5,
-                        help="Segundos descartados da abertura (padrão: 0.5).")
-    parser.add_argument("--crossfade", type=float, default=0.6,
-                        help="Duração da fusão no loop (padrão: 0.6 segundo).")
+    parser.add_argument("--ffmpeg", type=Path, help="Caminho do executável FFmpeg com libx264 e libwebp.")
+    parser.add_argument("--trim-start", type=float, default=0.5)
+    parser.add_argument("--crossfade", type=float, default=0.6)
+    parser.add_argument("--crf", type=int, default=16, help="Qualidade constante; menor preserva mais detalhes.")
+    parser.add_argument("--preset", choices=("fast", "medium", "slow", "slower", "veryslow"), default="slow")
     args = parser.parse_args()
-    if args.trim_start < 0 or args.crossfade <= 0:
-        parser.error("Use --trim-start >= 0 e --crossfade > 0.")
-
-    browsers = Path(sys.prefix) / "ms-playwright"
-    if browsers.is_dir():
-        os.environ.setdefault("PLAYWRIGHT_BROWSERS_PATH", str(browsers))
-    encoded = base64.b64encode(args.source.read_bytes()).decode("ascii")
-    specs = []
-    if args.target in ("desktop", "both"):
-        specs.append({"name": "hero-desktop.mp4", "width": 1920,
-                      "bitrate": 3000000, "posterName": "hero-video-poster-desktop.webp"})
-    if args.target in ("mobile", "both"):
-        specs.append({"name": "hero-mobile.mp4", "width": 540,
-                      "bitrate": 900000, "posterName": "hero-video-poster-540.webp"})
-    print(f"Preparando {args.target}: {args.source}", flush=True)
-    with sync_playwright() as playwright:
-        browser = playwright.chromium.launch(headless=True)
-        try:
-            page = browser.new_page()
-            page.set_default_timeout(60000)
-            page.set_content('<video muted playsinline></video>')
-            result = page.evaluate(
-                """async ({encoded, specs, trimStart, crossfade}) => {
-                    const type = 'video/mp4;codecs=avc1.64001f';
-                    const fps = 24;
-                    if (!MediaRecorder.isTypeSupported(type)) throw new Error('Encoder H.264 indisponível.');
-                    const video = document.querySelector('video');
-                    video.muted = true;
-                    video.src = 'data:video/mp4;base64,' + encoded;
-                    await new Promise((resolve, reject) => {
-                        video.addEventListener('loadeddata', resolve, {once:true});
-                        video.addEventListener('error', () => reject(new Error('Falha ao ler o vídeo.')), {once:true});
-                    });
-                    if (video.duration <= trimStart + crossfade * 2) {
-                        throw new Error('O vídeo é curto demais para os cortes e a fusão configurados.');
-                    }
-                    const seek = time => new Promise(resolve => {
-                        video.addEventListener('seeked', resolve, {once:true});
-                        video.currentTime = time;
-                    });
-                    // A duração do MP4 pode avançar além do último quadro real.
-                    // Usa o timestamp decodificado para completar a fusão antes do loop.
-                    const fadeEnd = await new Promise(resolve => {
-                        video.requestVideoFrameCallback((_now, metadata) => resolve(metadata.mediaTime));
-                        video.currentTime = video.duration - 0.001;
-                    });
-                    // Guarda a abertura visível para sobrepô-la à cauda do vídeo.
-                    // A fusão fica no arquivo; a página precisa de apenas um player.
-                    const fadeFrames = [];
-                    const fadeCount = Math.ceil(crossfade * fps);
-                    for (let i = 0; i <= fadeCount; i++) {
-                        await seek(trimStart + crossfade * i / fadeCount);
-                        fadeFrames.push(await createImageBitmap(video));
-                    }
-                    // O último quadro da fusão desemboca exatamente neste início.
-                    const start = trimStart + crossfade;
-                    await seek(start);
-                    const records = specs.map(spec => {
-                        const canvas = document.createElement('canvas');
-                        canvas.width = Math.max(2, Math.floor(Math.min(spec.width, video.videoWidth) / 2) * 2);
-                        canvas.height = Math.max(2, Math.round(canvas.width * video.videoHeight / video.videoWidth / 2) * 2);
-                        const context = canvas.getContext('2d', {alpha:false});
-                        context.imageSmoothingQuality = 'high';
-                        context.drawImage(fadeFrames[fadeCount],0,0,canvas.width,canvas.height);
-                        const poster = canvas.toDataURL('image/webp',0.86).split(',')[1];
-                        // Entrega cada quadro explicitamente, inclusive os extremos.
-                        const stream = canvas.captureStream(0);
-                        const recorder = new MediaRecorder(stream, {mimeType:type,videoBitsPerSecond:spec.bitrate});
-                        const chunks = [];
-                        recorder.addEventListener('dataavailable', event => {
-                            if (event.data.size) chunks.push(event.data);
-                        });
-                        const done = new Promise((resolve, reject) => {
-                            recorder.addEventListener('stop', () => resolve(new Blob(chunks,{type:'video/mp4'})), {once:true});
-                            recorder.addEventListener('error', () => reject(new Error('Falha na codificação.')), {once:true});
-                        });
-                        return {...spec, canvas, context, recorder, stream, done, poster};
-                    });
-                    let finished = false;
-                    const draw = (_now, metadata) => {
-                        if (finished) return;
-                        const progress = Math.max(0, Math.min(1,
-                            (metadata.mediaTime - (fadeEnd - crossfade)) / crossfade));
-                        const frame = fadeFrames[Math.min(fadeCount, Math.round(progress * fadeCount))];
-                        records.forEach(({context, canvas, stream}) => {
-                            context.globalAlpha = 1;
-                            context.drawImage(video,0,0,canvas.width,canvas.height);
-                            if (progress > 0) {
-                                context.globalAlpha = progress * progress * (3 - 2 * progress);
-                                context.drawImage(frame,0,0,canvas.width,canvas.height);
-                                context.globalAlpha = 1;
-                            }
-                            stream.getVideoTracks()[0].requestFrame();
-                        });
-                        video.requestVideoFrameCallback(draw);
-                    };
-                    const ended = new Promise(resolve => video.addEventListener('ended', resolve, {once:true}));
-                    records.forEach(record => record.recorder.start(1000));
-                    records.forEach(record => record.stream.getVideoTracks()[0].requestFrame());
-                    await new Promise(resolve => setTimeout(resolve, 2000 / fps));
-                    video.requestVideoFrameCallback(draw);
-                    await video.play();
-                    await ended;
-                    finished = true;
-                    // Entrega o quadro de fechamento ao encoder antes de parar.
-                    // Ele coincide com o primeiro quadro, evitando um salto na volta.
-                    records.forEach(({context, canvas, stream}) => {
-                        context.globalAlpha = 1;
-                        context.drawImage(fadeFrames[fadeCount],0,0,canvas.width,canvas.height);
-                        stream.getVideoTracks()[0].requestFrame();
-                    });
-                    await new Promise(resolve => setTimeout(resolve, 2000 / fps));
-                    records.forEach(record => record.recorder.stop());
-                    fadeFrames.forEach(frame => frame.close());
-                    return await Promise.all(records.map(async record => {
-                        const blob = await record.done;
-                        record.stream.getTracks().forEach(track => track.stop());
-                        const bytes = new Uint8Array(await blob.arrayBuffer());
-                        let binary = '';
-                        for (let offset=0; offset<bytes.length; offset+=32768) {
-                            binary += String.fromCharCode(...bytes.subarray(offset,offset+32768));
-                        }
-                        return {name:record.name,width:record.canvas.width,height:record.canvas.height,
-                            duration:video.duration-start,video:btoa(binary),
-                            posterName:record.posterName,poster:record.poster};
-                    }));
-                }""",
-                {"encoded": encoded, "specs": specs, "trimStart": args.trim_start,
-                 "crossfade": args.crossfade},
-            )
-            for item in result:
-                target = LANDING_DIR / "static" / "video" / item["name"]
-                target.parent.mkdir(parents=True, exist_ok=True)
-                target.write_bytes(base64.b64decode(item["video"]))
-                poster = LANDING_DIR / "static" / "img" / "responsive" / item["posterName"]
-                poster.parent.mkdir(parents=True, exist_ok=True)
-                poster.write_bytes(base64.b64decode(item["poster"]))
-                print(f"{target.name}: {item['width']}x{item['height']}, "
-                      f"{item['duration']:.2f}s, {target.stat().st_size:,} bytes", flush=True)
-                print(f"{poster.name}: {poster.stat().st_size:,} bytes", flush=True)
-        finally:
-            browser.close()
+    if args.trim_start < 0 or args.crossfade <= 0 or not 0 <= args.crf <= 51:
+        parser.error("Use --trim-start >= 0, --crossfade > 0 e --crf entre 0 e 51.")
+    if args.target == "both" and args.source:
+        parser.error("Use --source com --target desktop ou mobile; both usa os dois originais próprios.")
+    executable = find_ffmpeg(args.ffmpeg)
+    if executable is None or not executable.is_file():
+        parser.error("Informe --ffmpeg ou instale imageio-ffmpeg na venv de preparação.")
+    for name in (SPECS if args.target == "both" else (args.target,)):
+        source = (args.source or ASSETS_DIR / SPECS[name]["source"]).resolve()
+        if not source.is_file():
+            parser.error(f"Original não encontrado: {source}")
+        print(f"Preparando {name}: {source}", flush=True)
+        prepare_video(executable, name, source, args.trim_start, args.crossfade, args.crf, args.preset)
 
 
 if __name__ == "__main__":
