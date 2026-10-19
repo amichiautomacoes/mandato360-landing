@@ -20,23 +20,29 @@ STATIC_DIR = LANDING_DIR / "static"
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--mobile-only", action="store_true", help="Gera apenas as imagens verticais dos módulos.")
+    targets = parser.add_mutually_exclusive_group()
+    targets.add_argument("--mobile-only", action="store_true", help="Gera apenas as imagens verticais dos módulos.")
+    targets.add_argument("--desktop-only", action="store_true", help="Gera apenas as imagens horizontais dos módulos.")
     args = parser.parse_args()
     browsers = Path(sys.prefix) / "ms-playwright"
     if browsers.is_dir():
         os.environ.setdefault("PLAYWRIGHT_BROWSERS_PATH", str(browsers))
 
     content = json.loads((LANDING_DIR / "content.json").read_text(encoding="utf-8"))
-    images = [content["hero"]["image"]]
-    images.append(content["solution"]["card_background"])
-    images.append(content["section_background"])
-    images.append(content["audience"]["background"])
+    images = []
+    if not args.mobile_only and not args.desktop_only:
+        images = [
+            content["hero"]["image"],
+            content["solution"]["card_background"],
+            content["section_background"],
+            content["audience"]["background"],
+        ]
     for module in content["solution"]["modules"]:
-        images.extend(slide["image"] for slide in module.get("gallery", {}).get("slides", []))
-    if args.mobile_only:
-        images = []
-    for module in content["solution"]["modules"]:
-        images.extend(slide["image"] for slide in module.get("gallery", {}).get("mobile", {}).get("slides", []))
+        gallery = module.get("gallery", {})
+        if not args.mobile_only:
+            images.extend(slide["image"] for slide in gallery.get("slides", []))
+        if not args.desktop_only:
+            images.extend(slide["image"] for slide in gallery.get("mobile", {}).get("slides", []))
     with sync_playwright() as playwright:
         browser = playwright.chromium.launch(headless=True)
         try:

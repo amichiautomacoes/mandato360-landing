@@ -353,47 +353,177 @@
           "of": "de",
           "slides": [
             {
-              "title": "Visão do estado",
+              "title": "Votação por mesorregião",
+              "description": "Visualize a distribuição dos seus votos pelas mesorregiões de Minas Gerais e identifique onde sua força eleitoral é mais expressiva.",
               "image": {
-                "path": "img/raioxestado.png",
-                "width": 1215,
-                "height": 682,
+                "path": "img/desktop/raiox/1.png",
+                "width": 1600,
+                "height": 900,
                 "quality": 0.96,
-                "alt": "Dashboard RaioX Territorial com o mapa de Minas Gerais e a votação por município e mesorregião.",
+                "alt": "RaioX Territorial: Votação por mesorregião em uma captura horizontal do dashboard.",
                 "sources": [
-                  { "path": "img/responsive/raioxestado-480.webp", "width": 480 },
-                  { "path": "img/responsive/raioxestado-800.webp", "width": 800 },
-                  { "path": "img/responsive/raioxestado-1215.webp", "width": 1215 }
+                  {
+                    "path": "img/responsive/raiox-desktop-1-480.webp",
+                    "width": 480
+                  },
+                  {
+                    "path": "img/responsive/raiox-desktop-1-800.webp",
+                    "width": 800
+                  },
+                  {
+                    "path": "img/responsive/raiox-desktop-1-1600.webp",
+                    "width": 1600
+                  }
+                ]
+              }
+            },
+            {
+              "title": "Votação por município",
+              "description": "Explore sua votação nos 853 municípios mineiros, identificando as cidades com maior concentração de votos e seus principais redutos eleitorais.",
+              "image": {
+                "path": "img/desktop/raiox/2.png",
+                "width": 1600,
+                "height": 900,
+                "quality": 0.96,
+                "alt": "RaioX Territorial: Votação por município em uma captura horizontal do dashboard.",
+                "sources": [
+                  {
+                    "path": "img/responsive/raiox-desktop-2-480.webp",
+                    "width": 480
+                  },
+                  {
+                    "path": "img/responsive/raiox-desktop-2-800.webp",
+                    "width": 800
+                  },
+                  {
+                    "path": "img/responsive/raiox-desktop-2-1600.webp",
+                    "width": 1600
+                  }
                 ]
               }
             },
             {
               "title": "Votação por bairro",
+              "description": "Aprofunde a análise por bairros e setores censitários, identificando redutos locais, concentração de votos e evolução do desempenho eleitoral ao longo das eleições.",
               "image": {
-                "path": "img/raioxbairro.png",
-                "width": 1238,
-                "height": 661,
+                "path": "img/desktop/raiox/3.png",
+                "width": 1600,
+                "height": 900,
                 "quality": 0.96,
-                "alt": "Dashboard de votação por bairro em Belo Horizonte, com mapa e filtros territoriais.",
+                "alt": "RaioX Territorial: Votação por bairro em uma captura horizontal do dashboard.",
                 "sources": [
-                  { "path": "img/responsive/raioxbairro-480.webp", "width": 480 },
-                  { "path": "img/responsive/raioxbairro-800.webp", "width": 800 },
-                  { "path": "img/responsive/raioxbairro-1238.webp", "width": 1238 }
+                  {
+                    "path": "img/responsive/raiox-desktop-3-480.webp",
+                    "width": 480
+                  },
+                  {
+                    "path": "img/responsive/raiox-desktop-3-800.webp",
+                    "width": 800
+                  },
+                  {
+                    "path": "img/responsive/raiox-desktop-3-1600.webp",
+                    "width": 1600
+                  }
                 ]
               }
             },
             {
-              "title": "Concentração dos votos",
+              "title": "Potencial territorial por município",
+              "description": "Identifique municípios com maior potencial de expansão eleitoral, regiões onde proteger sua base e territórios estratégicos para conquistar novos votos em 2030.",
               "image": {
-                "path": "img/raioxconcentracao.png",
-                "width": 1767,
-                "height": 663,
+                "path": "img/desktop/raiox/4.png",
+                "width": 1600,
+                "height": 900,
                 "quality": 0.96,
-                "alt": "Dashboard de concentração territorial dos votos, com indicadores dos principais municípios e gráficos de participação.",
+                "alt": "RaioX Territorial: Potencial territorial por município em uma captura horizontal do dashboard.",
                 "sources": [
-                  { "path": "img/responsive/raioxconcentracao-480.webp", "width": 480 },
-                  { "path": "img/responsive/raioxconcentracao-800.webp", "width": 800 },
-                  { "path": "img/responsive/raioxconcentracao-1767.webp", "width": 1767 }
+                  {
+                    "path": "img/responsive/raiox-desktop-4-480.webp",
+                    "width": 480
+                  },
+                  {
+                    "path": "img/responsive/raiox-desktop-4-800.webp",
+                    "width": 800
+                  },
+                  {
+                    "path": "img/responsive/raiox-desktop-4-1600.webp",
+                    "width": 1600
+                  }
+                ]
+              }
+            },
+            {
+              "title": "Potencial territorial por bairro",
+              "description": "Descubra, dentro de cada cidade, os bairros com maior potencial de crescimento eleitoral, cruzando o perfil do seu eleitor com as características demográficas de cada território.",
+              "image": {
+                "path": "img/desktop/raiox/5.png",
+                "width": 1600,
+                "height": 900,
+                "quality": 0.96,
+                "alt": "RaioX Territorial: Potencial territorial por bairro em uma captura horizontal do dashboard.",
+                "sources": [
+                  {
+                    "path": "img/responsive/raiox-desktop-5-480.webp",
+                    "width": 480
+                  },
+                  {
+                    "path": "img/responsive/raiox-desktop-5-800.webp",
+                    "width": 800
+                  },
+                  {
+                    "path": "img/responsive/raiox-desktop-5-1600.webp",
+                    "width": 1600
+                  }
+                ]
+              }
+            },
+            {
+              "title": "Concentração nos principais municípios",
+              "description": "Descubra quanto da sua votação está concentrada nos 1, 5, 15 e 20 principais municípios, identificando o peso dos seus maiores redutos eleitorais.",
+              "image": {
+                "path": "img/desktop/raiox/6.png",
+                "width": 1600,
+                "height": 900,
+                "quality": 0.96,
+                "alt": "RaioX Territorial: Concentração nos principais municípios em uma captura horizontal do dashboard.",
+                "sources": [
+                  {
+                    "path": "img/responsive/raiox-desktop-6-480.webp",
+                    "width": 480
+                  },
+                  {
+                    "path": "img/responsive/raiox-desktop-6-800.webp",
+                    "width": 800
+                  },
+                  {
+                    "path": "img/responsive/raiox-desktop-6-1600.webp",
+                    "width": 1600
+                  }
+                ]
+              }
+            },
+            {
+              "title": "Curva de concentração dos votos",
+              "description": "Visualize como seus votos se acumulam entre os municípios e descubra se sua força eleitoral depende de poucos redutos ou está distribuída pelo estado.",
+              "image": {
+                "path": "img/desktop/raiox/7.png",
+                "width": 1600,
+                "height": 900,
+                "quality": 0.96,
+                "alt": "RaioX Territorial: Curva de concentração dos votos em uma captura horizontal do dashboard.",
+                "sources": [
+                  {
+                    "path": "img/responsive/raiox-desktop-7-480.webp",
+                    "width": 480
+                  },
+                  {
+                    "path": "img/responsive/raiox-desktop-7-800.webp",
+                    "width": 800
+                  },
+                  {
+                    "path": "img/responsive/raiox-desktop-7-1600.webp",
+                    "width": 1600
+                  }
                 ]
               }
             }
@@ -527,47 +657,102 @@
           "of": "de",
           "slides": [
             {
-              "title": "Perfil demográfico",
+              "title": "Perfis da base eleitoral",
+              "description": "Conheça os perfis demográficos que sustentam sua votação, classificados em Base Principal, Eleitor Consolidado e Emergente, com suas características e participação eleitoral.",
               "image": {
-                "path": "img/dna1.png",
-                "width": 1467,
-                "height": 632,
+                "path": "img/desktop/dna/1.png",
+                "width": 1600,
+                "height": 900,
                 "quality": 0.96,
-                "alt": "Dashboard DNA do Eleitor com distribuição de escolaridade, gráfico demográfico e filtros de gênero, idade e estado civil.",
+                "alt": "DNA do Eleitor: Perfis da base eleitoral em uma captura horizontal do dashboard.",
                 "sources": [
-                  { "path": "img/responsive/dna1-480.webp", "width": 480 },
-                  { "path": "img/responsive/dna1-800.webp", "width": 800 },
-                  { "path": "img/responsive/dna1-1467.webp", "width": 1467 }
+                  {
+                    "path": "img/responsive/dna-desktop-1-480.webp",
+                    "width": 480
+                  },
+                  {
+                    "path": "img/responsive/dna-desktop-1-800.webp",
+                    "width": 800
+                  },
+                  {
+                    "path": "img/responsive/dna-desktop-1-1600.webp",
+                    "width": 1600
+                  }
                 ]
               }
             },
             {
-              "title": "Base eleitoral",
+              "title": "Perfil demográfico do eleitor",
+              "description": "Explore a composição estimada dos seus votos por gênero, idade, escolaridade e estado civil, com filtros por mesorregião e município.",
               "image": {
-                "path": "img/dna3.png",
-                "width": 1687,
-                "height": 668,
+                "path": "img/desktop/dna/2.png",
+                "width": 1600,
+                "height": 900,
                 "quality": 0.96,
-                "alt": "Dashboard da base eleitoral com os grupos Base Principal, Eleitor Consolidado e Eleitor Emergente e suas participações na votação.",
+                "alt": "DNA do Eleitor: Perfil demográfico do eleitor em uma captura horizontal do dashboard.",
                 "sources": [
-                  { "path": "img/responsive/dna3-480.webp", "width": 480 },
-                  { "path": "img/responsive/dna3-800.webp", "width": 800 },
-                  { "path": "img/responsive/dna3-1687.webp", "width": 1687 }
+                  {
+                    "path": "img/responsive/dna-desktop-2-480.webp",
+                    "width": 480
+                  },
+                  {
+                    "path": "img/responsive/dna-desktop-2-800.webp",
+                    "width": 800
+                  },
+                  {
+                    "path": "img/responsive/dna-desktop-2-1600.webp",
+                    "width": 1600
+                  }
                 ]
               }
             },
             {
-              "title": "Eleitor ideal",
+              "title": "Eleitor ideal por município",
+              "description": "Descubra em quais municípios seus perfis eleitorais apresentam maior potencial de expansão, identificando onde fortalecer sua base e onde buscar novos eleitores.",
               "image": {
-                "path": "img/dna2.png",
-                "width": 1578,
-                "height": 617,
+                "path": "img/desktop/dna/3.png",
+                "width": 1600,
+                "height": 900,
                 "quality": 0.96,
-                "alt": "Dashboard de perfil do eleitor com indicadores de gênero, faixa etária, escolaridade e estado civil.",
+                "alt": "DNA do Eleitor: Eleitor ideal por município em uma captura horizontal do dashboard.",
                 "sources": [
-                  { "path": "img/responsive/dna2-480.webp", "width": 480 },
-                  { "path": "img/responsive/dna2-800.webp", "width": 800 },
-                  { "path": "img/responsive/dna2-1578.webp", "width": 1578 }
+                  {
+                    "path": "img/responsive/dna-desktop-3-480.webp",
+                    "width": 480
+                  },
+                  {
+                    "path": "img/responsive/dna-desktop-3-800.webp",
+                    "width": 800
+                  },
+                  {
+                    "path": "img/responsive/dna-desktop-3-1600.webp",
+                    "width": 1600
+                  }
+                ]
+              }
+            },
+            {
+              "title": "Perfil para expansão por bairro",
+              "description": "Aprofunde a análise dentro de cada município, cruzando seus perfis eleitorais com dados demográficos para identificar bairros e setores com maior potencial de crescimento em 2030.",
+              "image": {
+                "path": "img/desktop/dna/4.png",
+                "width": 1600,
+                "height": 900,
+                "quality": 0.96,
+                "alt": "DNA do Eleitor: Perfil para expansão por bairro em uma captura horizontal do dashboard.",
+                "sources": [
+                  {
+                    "path": "img/responsive/dna-desktop-4-480.webp",
+                    "width": 480
+                  },
+                  {
+                    "path": "img/responsive/dna-desktop-4-800.webp",
+                    "width": 800
+                  },
+                  {
+                    "path": "img/responsive/dna-desktop-4-1600.webp",
+                    "width": 1600
+                  }
                 ]
               }
             }
@@ -701,47 +886,52 @@
           "of": "de",
           "slides": [
             {
-              "title": "Receitas e orçamento",
+              "title": "Balanço macro e liquidez de caixa",
+              "description": "Tenha uma visão geral da saúde financeira da campanha, acompanhando arrecadação, despesas contratadas, pagamentos realizados e os principais doadores.",
               "image": {
-                "path": "img/dre1.png",
-                "width": 1665,
-                "height": 727,
+                "path": "img/desktop/dre/1.png",
+                "width": 1600,
+                "height": 900,
                 "quality": 0.96,
-                "alt": "Dashboard DRE da Campanha com composição das receitas, despesas contratadas e pagas e comprometimento orçamentário.",
+                "alt": "DRE Campanha: Balanço macro e liquidez de caixa em uma captura horizontal do dashboard.",
                 "sources": [
-                  { "path": "img/responsive/dre1-480.webp", "width": 480 },
-                  { "path": "img/responsive/dre1-800.webp", "width": 800 },
-                  { "path": "img/responsive/dre1-1665.webp", "width": 1665 }
+                  {
+                    "path": "img/responsive/dre-desktop-1-480.webp",
+                    "width": 480
+                  },
+                  {
+                    "path": "img/responsive/dre-desktop-1-800.webp",
+                    "width": 800
+                  },
+                  {
+                    "path": "img/responsive/dre-desktop-1-1600.webp",
+                    "width": 1600
+                  }
                 ]
               }
             },
             {
-              "title": "Contratado × pago",
+              "title": "Composição das receitas",
+              "description": "Descubra como a campanha foi financiada, diferenciando recursos financeiros de doações de bens e serviços e identificando a participação de cada fonte na arrecadação.",
               "image": {
-                "path": "img/dre2.png",
-                "width": 1676,
-                "height": 711,
+                "path": "img/desktop/dre/2.png",
+                "width": 1600,
+                "height": 900,
                 "quality": 0.96,
-                "alt": "Dashboard de comparação entre despesas contratadas e pagas, com valores por categoria e indicadores de execução e saldo em aberto.",
+                "alt": "DRE Campanha: Composição das receitas em uma captura horizontal do dashboard.",
                 "sources": [
-                  { "path": "img/responsive/dre2-480.webp", "width": 480 },
-                  { "path": "img/responsive/dre2-800.webp", "width": 800 },
-                  { "path": "img/responsive/dre2-1676.webp", "width": 1676 }
-                ]
-              }
-            },
-            {
-              "title": "Origem e destino dos recursos",
-              "image": {
-                "path": "img/dre3.png",
-                "width": 1675,
-                "height": 715,
-                "quality": 0.96,
-                "alt": "Dashboard de origem e destino dos recursos da campanha, com fontes de financiamento, gráficos e tabela de pagamentos por categoria e fornecedor.",
-                "sources": [
-                  { "path": "img/responsive/dre3-480.webp", "width": 480 },
-                  { "path": "img/responsive/dre3-800.webp", "width": 800 },
-                  { "path": "img/responsive/dre3-1675.webp", "width": 1675 }
+                  {
+                    "path": "img/responsive/dre-desktop-2-480.webp",
+                    "width": 480
+                  },
+                  {
+                    "path": "img/responsive/dre-desktop-2-800.webp",
+                    "width": 800
+                  },
+                  {
+                    "path": "img/responsive/dre-desktop-2-1600.webp",
+                    "width": 1600
+                  }
                 ]
               }
             }
@@ -875,32 +1065,52 @@
           "of": "de",
           "slides": [
             {
-              "title": "Força das alianças locais",
+              "title": "Força da política local",
+              "description": "Visualize a influência de prefeitos e vereadores nos resultados eleitorais de cada município, identificando alianças de alto retorno e localidades onde sua votação é independente de apoios políticos.",
               "image": {
-                "path": "img/forca1.png",
-                "width": 1673,
-                "height": 677,
+                "path": "img/desktop/impacto/1.png",
+                "width": 1600,
+                "height": 900,
                 "quality": 0.96,
-                "alt": "Dashboard de força das alianças locais com mapa de Minas Gerais e comparação da votação em municípios com e sem apoio de prefeitos e vereadores.",
+                "alt": "Impacto Político: Força da política local em uma captura horizontal do dashboard.",
                 "sources": [
-                  { "path": "img/responsive/forca1-480.webp", "width": 480 },
-                  { "path": "img/responsive/forca1-800.webp", "width": 800 },
-                  { "path": "img/responsive/forca1-1673.webp", "width": 1673 }
+                  {
+                    "path": "img/responsive/impacto-desktop-1-480.webp",
+                    "width": 480
+                  },
+                  {
+                    "path": "img/responsive/impacto-desktop-1-800.webp",
+                    "width": 800
+                  },
+                  {
+                    "path": "img/responsive/impacto-desktop-1-1600.webp",
+                    "width": 1600
+                  }
                 ]
               }
             },
             {
-              "title": "Atuação parlamentar e votos",
+              "title": "Emendas por município",
+              "description": "Cruze a distribuição das emendas parlamentares com os votos recebidos em cada município, identificando a relação entre recursos destinados e desempenho eleitoral.",
               "image": {
-                "path": "img/forca2.png",
-                "width": 1675,
-                "height": 771,
+                "path": "img/desktop/impacto/3.png",
+                "width": 1600,
+                "height": 900,
                 "quality": 0.96,
-                "alt": "Dashboard da atuação parlamentar com mapa de emendas por município, taxa de reciprocidade e relação entre recursos destinados e votos recebidos.",
+                "alt": "Impacto Político: Emendas por município em uma captura horizontal do dashboard.",
                 "sources": [
-                  { "path": "img/responsive/forca2-480.webp", "width": 480 },
-                  { "path": "img/responsive/forca2-800.webp", "width": 800 },
-                  { "path": "img/responsive/forca2-1675.webp", "width": 1675 }
+                  {
+                    "path": "img/responsive/impacto-desktop-3-480.webp",
+                    "width": 480
+                  },
+                  {
+                    "path": "img/responsive/impacto-desktop-3-800.webp",
+                    "width": 800
+                  },
+                  {
+                    "path": "img/responsive/impacto-desktop-3-1600.webp",
+                    "width": 1600
+                  }
                 ]
               }
             }

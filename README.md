@@ -148,29 +148,34 @@ decorativos antigos permanecem em `static/img/`.
 
 Os quatro cards ocupam a largura da grade para apresentar os dashboards.
 O nome de cada módulo (`solution.modules[].label`) é o título principal do
-card, acompanhado da pergunta em `title` e dos tópicos em `points`. No desktop,
-identificação e benefícios ficam lado a lado; no celular, em uma coluna.
-Nos quatro módulos, até 820 px, os tópicos dão lugar ao resumo de
-`solution.modules[].mobile_description`; no desktop, os tópicos permanecem.
+card, acompanhado da pergunta em `title` e do resumo simples de
+`solution.modules[].mobile_description`, compartilhado entre desktop e celular.
+No desktop, título e pergunta ficam ao lado do resumo; até 820 px, em uma coluna.
+Os tópicos em `points` permanecem no JSON como conteúdo de referência.
 Os ícones SVG locais de `templates/_icons.html` compartilham o mesmo traço e
 substituem os emojis na interface. Os campos `icon` originais permanecem no JSON.
-O RaioX Territorial usa
-as capturas reais `raioxestado.png`, `raioxbairro.png` e `raioxconcentracao.png`.
+As galerias desktop usam as capturas horizontais de 1600 × 900 px (16:9),
+copiadas para `static/img/desktop/<módulo>/`. O RaioX Territorial usa as sete
+imagens de `../assets/Raioxdesktop`, na ordem de `1.png` a `7.png`.
 O carrossel combina Coverflow 3D com máscaras `clip-path`: a captura central
 fica inteira, sem blur, enquanto as laterais usam perspectiva, escala e
 opacidade menores. Deslocamento e revelação compartilham uma animação de
-700 ms, com inclinação lateral discreta de 14°; a terceira imagem cruza por trás ao trocar de lado, inclusive na volta
-da última para a primeira. As proporções originais são preservadas, sem cortes.
+700 ms, com inclinação lateral discreta de 14°; as prévias entram e saem por
+trás, inclusive na volta da última para a primeira. Apenas a captura central
+e suas duas vizinhas ficam visíveis. As proporções originais são preservadas, sem cortes.
 
 O clique nas prévias laterais, as teclas de direção, Home/End, o arraste com mouse
-e o swipe no celular permitem navegar, sem reprodução automática. Uma barra
-abaixo das imagens mostra o assunto da captura, a posição e botões anterior/próxima
-com alvos de 44 px. A lupa permanece visível na imagem central. A posição também
-é anunciada para leitores de tela. O arraste não
+e o swipe no celular permitem navegar, sem reprodução automática. As setas de
+anterior/próxima ficam sobre as laterais da captura central, com a mesma aparência
+do celular e alvos de 44 × 48 px. A barra abaixo mostra o título, a posição e
+a mesma descrição da captura correspondente no celular. Os textos ficam em
+`solution.modules[].gallery.slides[].title` e `description` e acompanham a navegação.
+A lupa permanece visível na imagem central. A posição e a descrição também
+são anunciadas para leitores de tela. O arraste não
 abre a imagem por engano. A preferência por movimento reduzido elimina a animação, e sem
 JavaScript as imagens continuam acessíveis por rolagem horizontal. As capturas
-são carregadas sob demanda, com WebP de alta qualidade em 480, 800 e largura
-original, mantendo os PNGs como fallback. Configurações, legendas e textos
+são carregadas sob demanda, com WebP de alta qualidade em 480, 800 e 1600 px,
+mantendo os PNGs como fallback. Configurações, legendas e textos
 alternativos ficam em `solution.modules[0].gallery`. O componente está em
 `templates/_carousel.html` e `static/js/carousel.js`.
 
@@ -185,17 +190,19 @@ animada do lightbox. Sem JavaScript ou suporte a diálogo, o link abre o PNG ori
 Os textos do lightbox ficam em `lightbox` no JSON, e o rótulo de ampliação em
 `solution.modules[].gallery.expand`.
 
-O DNA do Eleitor usa o mesmo carrossel com `dna1.png`, `dna3.png` e `dna2.png`,
-nessa ordem, configurado em `solution.modules[1].gallery`. A navegação de cada
-carrossel é independente.
+O DNA do Eleitor usa as quatro imagens de `../assets/DnaEleitordesktop`, na
+ordem numérica, configuradas em `solution.modules[1].gallery`. A navegação de
+cada carrossel é independente.
 
-A DRE da Campanha usa `dre1 (1).png`, `dre2.png` e `dre3.png`, nessa ordem,
-configurados em `solution.modules[2].gallery`. A primeira captura é copiada
-para `static/img/dre1.png`.
+A DRE da Campanha usa `1.png` e `2.png` de `../assets/DREdesktop`, configuradas
+em `solution.modules[2].gallery`, com as legendas e descrições das capturas
+1 e 2 do celular.
 
-O Impacto Político usa `forca1.png` e `forca2.png`, nessa ordem, configurados em
-`solution.modules[3].gallery`. Com duas capturas, prévias decorativas da imagem
-adjacente aparecem nas duas laterais, preservando a transição nos dois sentidos.
+O Impacto Político usa `1.png` e `3.png` de `../assets/Impactopoliticodesktop`,
+configuradas em `solution.modules[3].gallery`, com as legendas e descrições
+das capturas 1 e 3 do celular. Nos carrosséis de duas capturas (DRE e Impacto),
+prévias decorativas da imagem adjacente aparecem nas duas laterais,
+preservando a transição nos dois sentidos.
 Essas cópias não acrescentam etapas nem indicadores e ficam ocultas dos leitores
 de tela. O card mantém seu conteúdo textual e fundo.
 
@@ -257,6 +264,13 @@ arquivos de imagem do desktop, execute na pasta `Lpaas`:
 
 ```powershell
 .\.venv\Scripts\python.exe landing\tools\optimize_images.py --mobile-only
+```
+
+Para regenerar apenas as versões WebP das galerias desktop, preservando
+as imagens do celular e do hero, execute na pasta `Lpaas`:
+
+```powershell
+.\.venv\Scripts\python.exe landing\tools\optimize_images.py --desktop-only
 ```
 
 A legenda na base do mapa mostra **INTELIGÊNCIA ELEITORAL 360°**, definida em

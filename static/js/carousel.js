@@ -8,6 +8,7 @@ document.querySelectorAll("[data-carrossel]").forEach((carrossel) => {
 
   const status = carrossel.querySelector("[data-carrossel-status]");
   const legenda = carrossel.querySelector("[data-gallery-caption]");
+  const descricao = carrossel.querySelector("[data-gallery-description]");
   const posicao = carrossel.querySelector("[data-gallery-position]");
   const movimentoReduzido = window.matchMedia("(prefers-reduced-motion: reduce)");
   const total = slides.length;
@@ -34,11 +35,12 @@ document.querySelectorAll("[data-carrossel]").forEach((carrossel) => {
     : lado < 0 ? "inset(0% 55% 0% 0%)" : "inset(0% 0% 0% 0%)";
   const transformar = (x, z, giro, escala) =>
     `translate(-50%, -50%) translate3d(${x}px, 0px, ${z}px) rotateY(${giro}deg) scale(${escala})`;
-  const estado = (lado) => ({
+  const escondido = () => ({ transform: transformar(0, -260, 0, 0.78), opacity: 0 });
+  // Galerias maiores mostram apenas a captura central e as duas vizinhas.
+  const estado = (lado) => Math.abs(lado) > 1 ? escondido() : ({
     transform: transformar(lado * palco.clientWidth * 0.39, lado ? -100 : 0, lado * -14, lado ? 0.88 : 1),
     opacity: lado ? 0.48 : 1,
   });
-  const escondido = () => ({ transform: transformar(0, -260, 0, 0.78), opacity: 0 });
   const mascaraEscondida = "inset(0% 42% 0% 42%)";
   let atual = 0;
   let ocupado = false;
@@ -48,15 +50,18 @@ document.querySelectorAll("[data-carrossel]").forEach((carrossel) => {
   let ignorarCliqueAte = 0;
 
   const atualizarInformacao = () => {
-    status.textContent = `${atual + 1} ${carrossel.dataset.of} ${total}: ${slides[atual].dataset.title}`;
     legenda.textContent = slides[atual].dataset.title;
+    descricao.textContent = slides[atual].dataset.description || "";
+    descricao.hidden = !descricao.textContent;
+    status.textContent = `${atual + 1} ${carrossel.dataset.of} ${total}: ${legenda.textContent}${descricao.textContent ? `. ${descricao.textContent}` : ""}`;
     posicao.textContent = `${atual + 1} / ${total}`;
   };
   const posicionar = () => {
     slides.forEach((slide, indice) => {
       const lado = relativo(indice, atual);
       Object.assign(slide.style, estado(lado));
-      slide.style.zIndex = lado ? "1" : "3";
+      slide.style.zIndex = Math.abs(lado) > 1 ? "0" : lado ? "1" : "3";
+      slide.style.pointerEvents = Math.abs(lado) > 1 ? "none" : "auto";
       slide.querySelector(".carrossel-revelacao").style.clipPath = mascara(lado);
       slide.dataset.pos = String(lado);
       slide.setAttribute("aria-hidden", String(lado !== 0));
@@ -105,9 +110,9 @@ document.querySelectorAll("[data-carrossel]").forEach((carrossel) => {
           meio = { transform: transformar(-direcao * palco.clientWidth * 0.25, -65, direcao * 10, 0.93), opacity: 0.74 };
           recorte = direcao > 0 ? "inset(0% 28% 0% 0%)" : "inset(0% 0% 0% 28%)";
         } else {
-          // A terceira imagem cruza por trás, sem teletransportar entre laterais.
+          // As vizinhas entram e saem por trás; as demais continuam ocultas.
           slide.style.zIndex = "0";
-          meio = { ...escondido(), opacity: 0.08 };
+          meio = { ...escondido(), opacity: Math.abs(antes) <= 1 || Math.abs(depois) <= 1 ? 0.08 : 0 };
           recorte = "inset(0% 42% 0% 42%)";
         }
         animacoes.push(slide.animate([inicio, { ...meio, offset: 0.48 }, fim], timing));
@@ -169,6 +174,7 @@ document.querySelectorAll("[data-carrossel]").forEach((carrossel) => {
   carrossel.querySelector("[data-gallery-previous]").addEventListener("click", () => avancar(-1));
   carrossel.querySelector("[data-gallery-next]").addEventListener("click", () => avancar(1));
   carrossel.querySelector("[data-carrossel-controles]").hidden = false;
+  carrossel.querySelector("[data-carrossel-legenda]").hidden = false;
   carrossel.addEventListener("keydown", (evento) => {
     const base = pendente?.indice ?? atual;
     const destinos = { ArrowLeft: base - 1, ArrowRight: base + 1, Home: 0, End: total - 1 };
