@@ -56,6 +56,7 @@
   ],
   "contact_button": {
     "label": "Fale Conosco",
+    "channel": "Converse pelo WhatsApp",
     "url": "https://wa.me/5531975564544"
   },
   "hero": {
@@ -64,6 +65,8 @@
     "description": "A auditoria 360° do seu desempenho em Minas Gerais: cruze votação por bairro, perfil do eleitorado, raio-x financeiro da campanha e a força real das alianças locais",
     "secondary_button": "Como Funciona",
     "video": {
+      "pause": "Pausar animação do mapa",
+      "play": "Reproduzir animação do mapa",
       "mobile_path": "video/hero-mobile-hq.mp4",
       "desktop_path": "video/hero-desktop-hq.mp4",
       "width": 1280,
@@ -143,7 +146,8 @@
   "solution": {
     "eyebrow": "",
     "title": "Inteligência de ponta a ponta para o seu mandato.",
-    "description": "Uma visão completa da sua força eleitoral. Descubra onde estão seus votos, quem sustenta sua candidatura, como seus recursos foram utilizados e como sua atuação política se influenciou o resultado das urnas.",
+    "description": "Uma visão completa da sua força eleitoral. Descubra onde estão seus votos, quem sustenta sua candidatura, como seus recursos foram utilizados e como sua atuação política influenciou o resultado das urnas.",
+    "navigation_label": "Explore os quatro módulos",
     "card_background": {
       "path": "img/bg-geral.png",
       "width": 1920,

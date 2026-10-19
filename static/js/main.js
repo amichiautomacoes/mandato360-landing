@@ -56,14 +56,26 @@ document.querySelectorAll('a[href^="#"]').forEach((ancora) => {
   });
 });
 
-// O hero começa sozinho e permanece em loop, sem depender de clique ou rolagem.
+// O mapa respeita movimento reduzido e a pausa escolhida pelo visitante.
 (() => {
   const video = document.getElementById("hero-video");
   const hero = document.querySelector(".hero-com-video");
-  if (!video || !hero) return;
+  const controle = document.querySelector("[data-video-controle]");
+  if (!video || !hero || !controle) return;
+
+  const movimentoReduzido = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const celular = window.matchMedia("(max-width: 820px)");
+  let pausadoPeloUsuario = movimentoReduzido.matches;
+  const fonteAtual = () => celular.matches ? video.dataset.srcMobile : video.dataset.srcDesktop;
+  const atualizarControle = () => {
+    controle.setAttribute("aria-label", video.paused ? controle.dataset.labelReproduzir : controle.dataset.labelPausar);
+    controle.querySelector("[data-video-pausa]").hidden = video.paused;
+    controle.querySelector("[data-video-reproduzir]").hidden = !video.paused;
+  };
 
   const reproduzir = () => {
-    if (document.hidden || video.error) return;
+    if (document.hidden || pausadoPeloUsuario || video.error) return;
+    if (!video.getAttribute("src")) video.src = fonteAtual();
     video.play()?.catch(() => {});
   };
 
@@ -73,31 +85,40 @@ document.querySelectorAll('a[href^="#"]').forEach((ancora) => {
   video.playsInline = true;
   video.addEventListener("playing", () => {
     hero.classList.add("video-pronto");
+    atualizarControle();
   });
+  video.addEventListener("pause", atualizarControle);
   video.addEventListener("canplay", reproduzir);
   video.addEventListener("error", () => {
     hero.classList.remove("video-pronto");
+    controle.hidden = true;
   });
   document.addEventListener("visibilitychange", () => {
     if (document.hidden) video.pause();
     else reproduzir();
   });
-  // Alguns navegadores só liberam autoplay quando o vídeo entra na tela.
-  // Essa observação apenas tenta iniciar; sair da tela não pausa o vídeo.
-  if ("IntersectionObserver" in window) {
-    new IntersectionObserver((entradas) => {
-      if (entradas.some(entrada => entrada.isIntersecting)) reproduzir();
-    }).observe(video);
-  }
-  // Evita ampliar o vídeo vertical ao passar do celular para o layout desktop.
-  const celular = window.matchMedia("(max-width: 820px)");
+  controle.addEventListener("click", () => {
+    pausadoPeloUsuario = !video.paused;
+    if (pausadoPeloUsuario) video.pause();
+    else reproduzir();
+    atualizarControle();
+  });
+  movimentoReduzido.addEventListener("change", () => {
+    pausadoPeloUsuario = movimentoReduzido.matches;
+    if (pausadoPeloUsuario) video.pause();
+    else reproduzir();
+    atualizarControle();
+  });
+  // A troca de breakpoint mantém a escolha de pausa e atualiza a capa.
   const atualizarFonte = () => {
     hero.classList.remove("video-pronto");
     video.poster = celular.matches ? video.dataset.posterMobile : video.dataset.posterDesktop;
-    video.src = celular.matches ? video.dataset.srcMobile : video.dataset.srcDesktop;
+    if (video.getAttribute("src")) video.src = fonteAtual();
     reproduzir();
+    atualizarControle();
   };
   celular.addEventListener("change", atualizarFonte);
+  controle.hidden = false;
   atualizarFonte();
 })();
 

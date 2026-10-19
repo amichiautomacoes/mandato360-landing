@@ -12,3 +12,7 @@ __pycache__/
 *.log
 .DS_Store
 Thumbs.db
+
+# Capturas e scripts locais de verificação visual
+.impeccable/verification/
+.impeccable/live/

@@ -1,4 +1,5 @@
 {% from '_image.html' import responsive_image %}
+{% from '_icons.html' import icon %}
 {% macro dashboard_carousel(gallery, id) -%}
 <div class="carrossel-dashboard{% if gallery.mobile %} carrossel-desktop{% endif %}" data-carrossel data-of="{{ gallery.of }}" role="region" aria-roledescription="{{ gallery.role }}" aria-label="{{ gallery.label }}" tabindex="0">
   <div id="carrossel-{{ id }}" class="carrossel-palco">
@@ -15,6 +16,14 @@
       <figcaption class="somente-leitores">{{ slide.title }}</figcaption>
     </figure>
     {% endfor %}
+  </div>
+  <div class="galeria-barra" data-carrossel-controles hidden>
+    <p class="galeria-legenda" data-gallery-caption>{{ gallery.slides[0].title }}</p>
+    <div class="galeria-navegacao">
+      <span class="galeria-posicao" data-gallery-position aria-hidden="true">1 / {{ gallery.slides|length }}</span>
+      <button class="galeria-botao" type="button" data-gallery-previous aria-controls="carrossel-{{ id }}" aria-label="{{ gallery.previous }}">{{ icon('arrow-left', 18) }}</button>
+      <button class="galeria-botao" type="button" data-gallery-next aria-controls="carrossel-{{ id }}" aria-label="{{ gallery.next }}">{{ icon('arrow-right', 18) }}</button>
+    </div>
   </div>
   <p class="somente-leitores" data-carrossel-status role="status" aria-live="polite" aria-atomic="true"></p>
 </div>
@@ -41,6 +50,10 @@
     <button type="button" class="carrossel-mobile-seta carrossel-mobile-proxima" data-mobile-proxima aria-controls="carrossel-mobile-{{ id }}" aria-label="{{ gallery.next }}">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
     </button>
+  </div>
+  <div class="galeria-barra" data-mobile-caption hidden>
+    <p class="galeria-legenda" data-gallery-caption>{{ gallery.mobile.slides[0].title }}</p>
+    <span class="galeria-posicao" data-gallery-position aria-hidden="true">1 / {{ gallery.mobile.slides|length }}</span>
   </div>
   <p class="somente-leitores" data-mobile-status role="status" aria-live="polite" aria-atomic="true"></p>
 </div>

@@ -1,5 +1,6 @@
 {% from '_image.html' import responsive_image %}
 {% from '_carousel.html' import dashboard_carousel %}
+{% from '_icons.html' import icon %}
 <!DOCTYPE html>
 <html lang="{{ content.meta.language }}">
   <head>
@@ -29,7 +30,7 @@
           {% for link in content.navigation %}
           <a href="#{{ link.target }}">{{ link.label }}</a>
           {% endfor %}
-          <a class="botao botao-verde botao-pequeno" href="{{ content.contact_button.url }}" target="_blank" rel="noopener noreferrer">{{ content.contact_button.label }}</a>
+          <a class="botao botao-contato botao-pequeno" href="{{ content.contact_button.url }}" target="_blank" rel="noopener noreferrer" aria-label="{{ content.contact_button.label }} — {{ content.contact_button.channel }}">{{ content.contact_button.label }} {{ icon('external', 18) }}</a>
         </nav>
       </div>
     </header>
@@ -40,16 +41,19 @@
         {% if content.hero.video %}
         <div class="hero-video-fundo" aria-hidden="true">
           {{ responsive_image(content.hero.video.poster, '100vw', eager=true, desktop_image=content.hero.video.desktop_poster) }}
-          <video id="hero-video" class="hero-video" width="{{ content.hero.video.width }}" height="{{ content.hero.video.height }}" autoplay muted loop playsinline preload="auto" poster="{{ url_for('static', filename=content.hero.video.poster.path) }}" data-src-mobile="{{ url_for('static', filename=content.hero.video.mobile_path) }}" data-src-desktop="{{ url_for('static', filename=content.hero.video.desktop_path) }}" data-poster-mobile="{{ url_for('static', filename=content.hero.video.poster.path) }}" data-poster-desktop="{{ url_for('static', filename=content.hero.video.desktop_poster.path) }}"></video>
+          <video id="hero-video" class="hero-video" width="{{ content.hero.video.width }}" height="{{ content.hero.video.height }}" muted loop playsinline preload="none" poster="{{ url_for('static', filename=content.hero.video.poster.path) }}" data-src-mobile="{{ url_for('static', filename=content.hero.video.mobile_path) }}" data-src-desktop="{{ url_for('static', filename=content.hero.video.desktop_path) }}" data-poster-mobile="{{ url_for('static', filename=content.hero.video.poster.path) }}" data-poster-desktop="{{ url_for('static', filename=content.hero.video.desktop_poster.path) }}"></video>
         </div>
         {% endif %}
         <div class="conteiner hero-grade">
           <div class="hero-conteudo">
-            <p class="sobretitulo">{{ content.hero.eyebrow }}</p>
             <h1 id="hero-title" class="hero-titulo">{{ content.hero.title }}</h1>
             <p class="secao-descricao">{{ content.hero.description }}</p>
             <div class="grupo-botoes">
-              <a class="botao botao-verde" href="#section-solution">{{ content.hero.secondary_button }}</a>
+              <div class="hero-acao-principal">
+                <a class="botao botao-contato" href="{{ content.contact_button.url }}" target="_blank" rel="noopener noreferrer" aria-label="{{ content.contact_button.label }} — {{ content.contact_button.channel }}">{{ content.contact_button.label }} {{ icon('external', 20) }}</a>
+                <p class="contato-contexto">{{ content.contact_button.channel }}</p>
+              </div>
+              <a class="botao botao-texto" href="#section-solution">{{ content.hero.secondary_button }} {{ icon('arrow-down', 18) }}</a>
             </div>
           </div>
           {% if not content.hero.video %}
@@ -58,38 +62,50 @@
           </figure>
           {% endif %}
         </div>
+        <div class="hero-legenda conteiner">
+          <p>{{ content.hero.eyebrow }}</p>
+          {% if content.hero.video %}
+          <button class="hero-video-controle" type="button" aria-controls="hero-video" aria-label="{{ content.hero.video.pause }}" data-video-controle data-label-pausar="{{ content.hero.video.pause }}" data-label-reproduzir="{{ content.hero.video.play }}" hidden>
+            <span data-video-pausa>{{ icon('pause', 18) }}</span>
+            <span data-video-reproduzir hidden>{{ icon('play', 18) }}</span>
+          </button>
+          {% endif %}
+        </div>
       </section>
 
       <section id="section-solution" class="secao secao-solucao secao-fundo" aria-labelledby="solution-title">
         <div class="conteiner">
-          <header class="secao-cabecalho">
-            {% if content.solution.eyebrow %}
-            <p class="sobretitulo">{{ content.solution.eyebrow }}</p>
-            {% endif %}
+          <header class="secao-cabecalho solucao-cabecalho">
             <h2 id="solution-title">{{ content.solution.title }}</h2>
             <p class="secao-descricao">{{ content.solution.description }}</p>
           </header>
+          <nav class="indice-modulos" aria-label="{{ content.solution.navigation_label }}">
+            {% for module in content.solution.modules %}
+            <a href="#module-{{ module.id }}">{{ icon(module.id, 22) }}<span>{{ module.label }}</span>{{ icon('arrow-down', 16) }}</a>
+            {% endfor %}
+          </nav>
           <div class="grade-modulos{% if content.solution.modules[0].gallery %} grade-modulos-com-destaque{% endif %}">
             {% for module in content.solution.modules %}
             <article id="module-{{ module.id }}" class="card-modulo{% if module.gallery %} card-modulo-destaque{% endif %}" aria-labelledby="module-title-{{ module.id }}">
               <div class="modulo-conteudo">
-                <div class="modulo-cabecalho">
-                  <p class="modulo-tag">
-                    <span class="modulo-tag-icone" aria-hidden="true">{{ module.icon }}</span>
-                    <span>{{ module.label }}</span>
-                  </p>
-                  <h3 id="module-title-{{ module.id }}">{{ module.title }}</h3>
+                <div class="modulo-introducao">
+                  <div class="modulo-cabecalho">
+                    <h3 id="module-title-{{ module.id }}" class="modulo-nome">{{ icon(module.id, 28) }}<span>{{ module.label }}</span></h3>
+                    <p class="modulo-pergunta">{{ module.title }}</p>
+                  </div>
+                  <div class="modulo-detalhes">
+                    {% if module.description %}
+                    <p{% if module.points %} class="modulo-resumo"{% endif %}>{{ module.description }}</p>
+                    {% endif %}
+                    {% if module.points %}
+                    <ul class="modulo-topicos">
+                      {% for point in module.points %}
+                      <li>{{ point }}</li>
+                      {% endfor %}
+                    </ul>
+                    {% endif %}
+                  </div>
                 </div>
-                {% if module.description %}
-                <p{% if module.points %} class="modulo-resumo"{% endif %}>{{ module.description }}</p>
-                {% endif %}
-                {% if module.points %}
-                <ul class="modulo-topicos">
-                  {% for point in module.points %}
-                  <li>{{ point }}</li>
-                  {% endfor %}
-                </ul>
-                {% endif %}
                 {% if module.gallery %}
                 {{ dashboard_carousel(module.gallery, module.id) }}
                 {% endif %}
@@ -109,7 +125,7 @@
             {% for group in content.audience.groups %}
             <article class="card-publico {{ group.class }}" aria-labelledby="publico-titulo-{{ loop.index }}">
               <h3 id="publico-titulo-{{ loop.index }}" class="publico-tag">
-                <span aria-hidden="true">{{ group.icon }}</span>
+                {{ icon('check' if loop.first else 'close', 20) }}
                 <span>{{ group.label }}</span>
               </h3>
               <ul>
@@ -125,10 +141,14 @@
 
       <section id="section-cta" class="secao secao-chamada secao-fundo" aria-labelledby="cta-title">
         <div class="conteiner chamada-conteudo">
-          <p class="sobretitulo">{{ content.cta.eyebrow }}</p>
-          <h2 id="cta-title">{{ content.cta.title }}</h2>
-          <p class="secao-descricao">{{ content.cta.description }}</p>
-          <a class="botao botao-verde" href="{{ content.contact_button.url }}" target="_blank" rel="noopener noreferrer">{{ content.contact_button.label }}</a>
+          <div class="chamada-textos">
+            <h2 id="cta-title">{{ content.cta.title }}</h2>
+            <p class="secao-descricao">{{ content.cta.description }}</p>
+          </div>
+          <div class="chamada-acao">
+            <a class="botao botao-contato" href="{{ content.contact_button.url }}" target="_blank" rel="noopener noreferrer" aria-label="{{ content.contact_button.label }} — {{ content.contact_button.channel }}">{{ content.contact_button.label }} {{ icon('external', 20) }}</a>
+            <p class="contato-contexto">{{ content.contact_button.channel }}</p>
+          </div>
         </div>
       </section>
     </main>

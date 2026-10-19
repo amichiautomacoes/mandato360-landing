@@ -108,6 +108,22 @@ Rodapé. As classes CSS usam nomes em português, como `hero-titulo`,
 `secao-solucao`, `card-modulo` e `rodape`. Os IDs identificam os destinos das
 âncoras da navegação.
 
+## Refinamento com Impeccable
+
+A landing usa o modo **Persuade**, registrado em
+`.impeccable/surfaces/templates-index-html.md`. A crítica inicial, feita por duas
+avaliações independentes, está em `.impeccable/critique/` e recebeu 23/32 nas
+heurísticas aplicáveis. A nota descreve a versão anterior ao refinamento,
+sem medir conversão comercial.
+
+O hero oferece **Fale Conosco** como ação principal, com destino WhatsApp
+explícito em `contact_button.channel`; **Como Funciona** é secundário. O dourado
+da marca identifica o contato no header, no hero e no fechamento. Um índice
+com quatro âncoras apresenta os módulos antes das capturas. O refinamento
+preserva os textos factuais, a identidade Montserrat/azul/dourado e os assets.
+Capturas e scripts locais de verificação ficam em `.impeccable/verification/`,
+fora do Git.
+
 ## Assets e estilos
 
 O header e o rodapé usam a logo `static/img/logoland.png`, copiada de
@@ -123,25 +139,19 @@ entrarem na tela, uma vez por imagem e após o carregamento. A animação usa
 `IntersectionObserver` e respeita a preferência por movimento reduzido;
 sem JavaScript ou suporte ao observador, as imagens ficam visíveis normalmente.
 
-Os cards internos usam o estilo **Elevated Glass Card**, com gradiente azul
-translúcido a 135° definido em `--gradiente-card`. O canto superior esquerdo
-mais claro, a borda superior iluminada e a sombra inferior profunda dão volume.
-O mesmo fundo é aplicado aos quatro módulos da seção 2 e ao card negativo da
-seção 3, tanto no celular quanto no desktop. O card positivo tem uma variação
-esverdeada discreta. Os textos usam cores claras para
-preservar a leitura. Em navegadores compatíveis, o vidro usa blur de 16 px e
-saturação de 1,15; há fundo sólido de apoio para os demais. No desktop acima
-de 820 px com ponteiro preciso, o hover eleva o card em 6 px durante 280 ms e
-intensifica a sombra e o brilho superior. A preferência por movimento reduzido
-mantém os cards estáticos. Os arquivos decorativos antigos permanecem em `static/img/`.
+Os cards internos usam um gradiente azul discreto a 135°, definido em
+`--gradiente-card`, com borda fina, sem sombras amplas ou blur de fundo.
+O hover realça a borda sem deslocar as capturas durante a leitura. O card
+positivo do público-alvo mantém uma variação esverdeada; o negativo usa azul
+mais contido. Os textos usam cores claras para preservar a leitura. Os arquivos
+decorativos antigos permanecem em `static/img/`.
 
 Os quatro cards ocupam a largura da grade para apresentar os dashboards.
-Os textos descritivos aparecem logo abaixo do título de cada card, antes das imagens.
-As tags dos módulos usam cápsulas com fundo `#07182B` a 80% de opacidade,
-borda `rgba(103,232,249,0.18)` e texto dourado `#D6BD8A` em negrito de 15 px. Os ícones
-📍, 🧬, 📊 e 🏛️ ficam em `solution.modules[].icon`, e os rótulos em `label`.
-O bloco `.modulo-cabecalho` mantém 8 px entre a cápsula e o título, no celular
-e no desktop, preservando a hierarquia dos títulos.
+O nome de cada módulo (`solution.modules[].label`) é o título principal do
+card, acompanhado da pergunta em `title` e dos tópicos em `points`. No desktop,
+identificação e benefícios ficam lado a lado; no celular, em uma coluna.
+Os ícones SVG locais de `templates/_icons.html` compartilham o mesmo traço e
+substituem os emojis na interface. Os campos `icon` originais permanecem no JSON.
 O RaioX Territorial usa
 as capturas reais `raioxestado.png`, `raioxbairro.png` e `raioxconcentracao.png`.
 O carrossel combina Coverflow 3D com máscaras `clip-path`: a captura central
@@ -151,9 +161,10 @@ opacidade menores. Deslocamento e revelação compartilham uma animação de
 da última para a primeira. As proporções originais são preservadas, sem cortes.
 
 O clique nas prévias laterais, as teclas de direção, Home/End, o arraste com mouse
-e o swipe no celular permitem navegar, sem reprodução automática. Não há legendas,
-contadores, setas ou indicadores visíveis abaixo das imagens no desktop; a posição continua
-disponível para leitores de tela. O arraste não
+e o swipe no celular permitem navegar, sem reprodução automática. Uma barra
+abaixo das imagens mostra o assunto da captura, a posição e botões anterior/próxima
+com alvos de 44 px. A lupa permanece visível na imagem central. A posição também
+é anunciada para leitores de tela. O arraste não
 abre a imagem por engano. A preferência por movimento reduzido elimina a animação, e sem
 JavaScript as imagens continuam acessíveis por rolagem horizontal. As capturas
 são carregadas sob demanda, com WebP de alta qualidade em 480, 800 e largura
@@ -198,8 +209,8 @@ Os originais ficam em `static/img/mobile/<módulo>/`, e as versões WebP em
 galeria está em `solution.modules[].gallery.mobile`, incluindo títulos e
 textos alternativos. A navegação usa rolagem horizontal nativa com encaixe de
 uma imagem por vez; setas discretas em SVG ficam sobre as laterais da imagem,
-com alvos de 44 × 48 px. Não há texto de orientação nem contador visível abaixo
-das capturas; a posição é anunciada para leitores de tela. As teclas de direção
+com alvos de 44 × 48 px. Uma legenda e a posição aparecem abaixo das capturas;
+a posição também é anunciada para leitores de tela. As teclas de direção
 e Home/End também navegam. O toque na imagem
 abre o mesmo lightbox, usando o PNG vertical original.
 
@@ -210,16 +221,16 @@ horizontais e o Coverflow original, com navegação independente da galeria mobi
 
 As três seções após o hero alternam os fundos: módulos em `#1B2C43`, público-alvo
 em `#142338` e chamada final em `#1B2C43`. Os tons ficam em `--cor-secao-clara`
-e `--cor-secao-profunda`. Todas mantêm a grade de 56 × 56 px a 28% de opacidade,
-suavizada nas extremidades, definida em `.secao-fundo`. Os cards internos usam
-`--gradiente-card`, e os textos corridos mantêm cores claras para leitura.
-O título dos módulos começa entre 32 e 40 px abaixo do hero, cuja base recebe
+e `--cor-secao-profunda`. Os fundos são lisos para dar destaque às capturas reais.
+Os cards internos usam `--gradiente-card`, e os textos corridos mantêm cores
+claras para leitura. O título dos módulos começa entre 48 e 72 px abaixo do hero,
+cuja base recebe
 um gradiente de 64 a 112 px até o primeiro tom azul, formando uma transição suave.
 
 A seção 3 tem o título **O MANDATO 360 é para você?**, com fonte de 26 a 40 px
-e distância de 48 a 72 px até os cards. As cápsulas **✓ É PARA VOCÊ** e
-**✕ NÃO É PARA VOCÊ** usam texto de 16 px em negrito, verde e vermelho,
-respectivamente. Cada card abre diretamente com a cápsula e três tópicos de
+e distância de 48 a 72 px até os cards. Os rótulos **É PARA VOCÊ** e
+**NÃO É PARA VOCÊ** usam texto em negrito e ícones SVG de confirmação/fechamento.
+O bloco positivo recebe mais destaque. Cada card abre com o rótulo e três tópicos de
 `audience.groups[].points`; os rótulos e símbolos ficam em `label` e `icon`.
 A classe `.publico-indicado` usa um gradiente verde azulado suave, enquanto
 `.publico-nao-indicado` mantém o gradiente azul.
@@ -241,10 +252,11 @@ arquivos de imagem do desktop, execute na pasta `Lpaas`:
 .\.venv\Scripts\python.exe landing\tools\optimize_images.py --mobile-only
 ```
 
-A tag do hero mostra **INTELIGÊNCIA ELEITORAL 360°**, definida em `hero.eyebrow`,
-com letras maiúsculas, cor `#D6BD8A` e espaçamento de `0.16em` entre caracteres.
-O mesmo dourado, centralizado em `--cor-dourada`, aparece nas tags dos quatro
-módulos da seção 2 e no sobretítulo da chamada final, na seção 4.
+A legenda na base do mapa mostra **INTELIGÊNCIA ELEITORAL 360°**, definida em
+`hero.eyebrow`, junto do controle de reprodução. O dourado `#D6BD8A`, centralizado
+em `--cor-dourada`, aparece nos ícones, no índice dos módulos e nos botões de contato.
+A chamada final coloca a argumentação ao lado da ação no desktop e em uma coluna
+no celular.
 
 O hero usa vídeos próprios para celular e desktop. O desktop foi preparado a
 partir de `../assets/download.mp4`, horizontal 16:9, com cerca de oito segundos
@@ -263,8 +275,11 @@ do mapa. No desktop, a altura mínima do hero acompanha 88% da tela menos o
 cabeçalho, até 768 px, com preenchimento vertical de 48 a 80 px. O gradiente
 suave na base conecta o vídeo ao fundo dos módulos. O vídeo
 inicia automaticamente, sem som, em loop, e
-continua ao rolar a página, sem controles de reprodução visíveis. Ao trocar
-de aba, a reprodução pausa e retoma automaticamente no retorno.
+continua ao rolar a página. Um botão acessível na base do mapa permite pausar
+e reproduzir, com rótulos em `hero.video.pause` e `hero.video.play`. Ao trocar
+de aba, a reprodução pausa e só retoma se o visitante não tiver escolhido pausar.
+Essa escolha também é preservada ao trocar de breakpoint. Com movimento reduzido,
+a capa aparece inicialmente sem baixar o vídeo; a reprodução exige ação do visitante.
 
 `hero.video` no JSON centraliza os arquivos, as dimensões e as capas. `poster`
 define a capa do celular; `desktop_poster` define a composição horizontal, usada
@@ -314,7 +329,7 @@ prepara os dois destinos a partir dos respectivos originais.
 Até 820 px, o menu pode ser aberto pelo botão **Menu** e fecha por seleção,
 toque fora ou Escape. Seu estado também é ajustado ao redimensionar a tela.
 Sem JavaScript, os links continuam visíveis no fluxo da página. O cabeçalho
-recolhido mede 65 px, e as âncoras compensam sua altura real.
+recolhido tem sua altura real compensada pelas âncoras.
 O cabeçalho, o menu mobile aberto e o rodapé usam fundo `#080D16`, definido em
 `--cor-moldura`. O cabeçalho tem borda inferior de 1 px e o rodapé tem borda
 superior de 1 px, ambas em `rgba(103,232,249,0.12)`. O primeiro link do menu,
@@ -323,7 +338,7 @@ superior de 1 px, ambas em `rgba(103,232,249,0.12)`. O primeiro link do menu,
 Em telas de até 560 px, os textos corridos usam 16 px, os textos auxiliares
 usam ao menos 14 px e os títulos têm escala própria para celular. Links e
 botões têm alvos de toque de pelo menos 44 × 44 px. Os botões do WhatsApp
-ficam no menu e na seção final, sem elemento flutuante sobre o conteúdo.
+ficam no menu, no hero e na seção final, sem elemento flutuante sobre o conteúdo.
 
 Todos os arquivos de `../output/assets/` foram copiados com seus nomes originais:
 fontes `.woff`, `.woff2`, `.ttf` e `.otf` ficam em `static/fonts/`; os demais
@@ -331,10 +346,10 @@ assets ficam em `static/img/`. As imagens adicionais dos módulos também ficam
 em `static/img/`.
 
 O `static/css/style.css` usa os valores de `../output/computed_styles.json`:
-fundo `#090A0F`, texto `#F4F5F7`, texto secundário `#9BA1B0`, ciano `#00808F`,
+fundo `#090A0F`, texto `#F4F5F7`, texto secundário azul-claro `#BAC8D8`, ciano `#00808F`,
 azul `#3B82F6`, gradiente de seção a 160°, botões com raio de 4 px, sombra
-das ações e blur de 12 px no cabeçalho. Os cards usam o gradiente translúcido
-definido em `--gradiente-card`, com sombras em `--sombra-card` e `--sombra-card-hover`.
+das ações e blur de 12 px no cabeçalho. Os cards usam o gradiente
+definido em `--gradiente-card`, com bordas discretas.
 As variáveis de `:root`, como `--cor-primaria`, `--fonte-corpo`,
 `--fonte-titulo`, `--espaco-6` e `--gradiente-card`, permitem ajustar a identidade.
 
@@ -344,14 +359,15 @@ tinham elementos na extração. Esses componentes foram adaptados a partir de
 os raios dos cards e das imagens derivam do raio base dos botões.
 
 Toda a interface usa **Montserrat**, com peso **400** nos textos, **700** nos
-subtítulos, destaques e botões, e **900** nos títulos principais. Os `@font-face`
+subtítulos, destaques, botões e títulos principais. O peso **900** continua
+disponível nos `@font-face`, mas a landing usa 700 para títulos menos densos. Os `@font-face`
 usam `font-display: swap` e as variantes Latin e Latin Extended, em dois arquivos
 WOFF2 locais em `static/fonts/`. A fonte foi obtida do Google Fonts; a licença
 está em `static/fonts/Montserrat-OFL.txt`, e o projeto original está no
 [repositório Google Fonts](https://github.com/google/fonts/tree/main/ofl/montserrat).
 Os caminhos são relativos ao CSS, sem chamadas a serviços externos de fontes.
-Grid e Flexbox controlam o layout; os cards têm fundo opaco como fallback para
-navegadores sem `backdrop-filter`.
+Grid e Flexbox controlam o layout; os cards mantêm fundo próprio, sem depender
+de `backdrop-filter`.
 
 O fundo comum dos módulos é definido em `--gradiente-card`; os textos
 continuam em `solution.modules`. Os caminhos das capturas são relativos à pasta

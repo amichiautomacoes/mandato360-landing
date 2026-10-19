@@ -7,6 +7,8 @@ document.querySelectorAll("[data-carrossel]").forEach((carrossel) => {
   if (!palco || slides.length < 2 || !Element.prototype.animate) return;
 
   const status = carrossel.querySelector("[data-carrossel-status]");
+  const legenda = carrossel.querySelector("[data-gallery-caption]");
+  const posicao = carrossel.querySelector("[data-gallery-position]");
   const movimentoReduzido = window.matchMedia("(prefers-reduced-motion: reduce)");
   const total = slides.length;
   // Com duas capturas, cópias decorativas mantêm a prévia nos dois lados.
@@ -47,6 +49,8 @@ document.querySelectorAll("[data-carrossel]").forEach((carrossel) => {
 
   const atualizarInformacao = () => {
     status.textContent = `${atual + 1} ${carrossel.dataset.of} ${total}: ${slides[atual].dataset.title}`;
+    legenda.textContent = slides[atual].dataset.title;
+    posicao.textContent = `${atual + 1} / ${total}`;
   };
   const posicionar = () => {
     slides.forEach((slide, indice) => {
@@ -162,6 +166,9 @@ document.querySelectorAll("[data-carrossel]").forEach((carrossel) => {
   posicionar();
   atualizarInformacao();
   const avancar = (passo) => navegar((pendente?.indice ?? atual) + passo, passo);
+  carrossel.querySelector("[data-gallery-previous]").addEventListener("click", () => avancar(-1));
+  carrossel.querySelector("[data-gallery-next]").addEventListener("click", () => avancar(1));
+  carrossel.querySelector("[data-carrossel-controles]").hidden = false;
   carrossel.addEventListener("keydown", (evento) => {
     const base = pendente?.indice ?? atual;
     const destinos = { ArrowLeft: base - 1, ArrowRight: base + 1, Home: 0, End: total - 1 };
