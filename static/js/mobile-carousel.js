@@ -8,6 +8,7 @@ document.querySelectorAll("[data-carrossel-mobile]").forEach((carrossel) => {
   const proxima = carrossel.querySelector("[data-mobile-proxima]");
   const status = carrossel.querySelector("[data-mobile-status]");
   const legenda = carrossel.querySelector("[data-gallery-caption]");
+  const descricao = carrossel.querySelector("[data-gallery-description]");
   const posicao = carrossel.querySelector("[data-gallery-position]");
   const movimentoReduzido = window.matchMedia("(prefers-reduced-motion: reduce)");
   let atual = 0;
@@ -20,6 +21,8 @@ document.querySelectorAll("[data-carrossel-mobile]").forEach((carrossel) => {
     anterior.disabled = atual === 0;
     proxima.disabled = atual === slides.length - 1;
     legenda.textContent = slides[atual].dataset.title;
+    descricao.textContent = slides[atual].dataset.description || "";
+    descricao.hidden = !descricao.textContent;
     posicao.textContent = `${atual + 1} / ${slides.length}`;
     slides.forEach((slide, indice) => {
       slide.setAttribute("aria-hidden", String(indice !== atual));
@@ -27,7 +30,7 @@ document.querySelectorAll("[data-carrossel-mobile]").forEach((carrossel) => {
     });
     clearTimeout(anuncio);
     anuncio = setTimeout(() => {
-      status.textContent = `${atual + 1} ${carrossel.dataset.of} ${slides.length}: ${slides[atual].dataset.title}`;
+      status.textContent = `${atual + 1} ${carrossel.dataset.of} ${slides.length}: ${slides[atual].dataset.title}${descricao.textContent ? `. ${descricao.textContent}` : ""}`;
     }, 150);
   };
   const navegar = (indice) => {

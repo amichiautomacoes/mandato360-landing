@@ -162,11 +162,13 @@
         "icon": "📍",
         "label": "RaioX Territorial",
         "title": "Onde você é forte",
+        "mobile_description": "Descubra onde estão seus votos, quais territórios ganharam ou perderam força e onde surgem novas oportunidades de crescimento para 2030.",
         "gallery": {
           "mobile": {
             "slides": [
               {
                 "title": "Votação por mesorregião",
+                "description": "Visualize a distribuição dos seus votos pelas mesorregiões de Minas Gerais e identifique onde sua força eleitoral é mais expressiva.",
                 "image": {
                   "path": "img/mobile/raiox/1.png",
                   "width": 1080,
@@ -191,6 +193,7 @@
               },
               {
                 "title": "Votação por município",
+                "description": "Explore sua votação nos 853 municípios mineiros, identificando as cidades com maior concentração de votos e seus principais redutos eleitorais.",
                 "image": {
                   "path": "img/mobile/raiox/2.png",
                   "width": 1080,
@@ -215,6 +218,7 @@
               },
               {
                 "title": "Votação por bairro",
+                "description": "Aprofunde a análise por bairros e setores censitários, identificando redutos locais, concentração de votos e evolução do desempenho eleitoral ao longo das eleições.",
                 "image": {
                   "path": "img/mobile/raiox/3.png",
                   "width": 1080,
@@ -239,6 +243,7 @@
               },
               {
                 "title": "Potencial territorial por município",
+                "description": "Identifique municípios com maior potencial de expansão eleitoral, regiões onde proteger sua base e territórios estratégicos para conquistar novos votos em 2030.",
                 "image": {
                   "path": "img/mobile/raiox/4.png",
                   "width": 1080,
@@ -263,6 +268,7 @@
               },
               {
                 "title": "Potencial territorial por bairro",
+                "description": "Descubra, dentro de cada cidade, os bairros com maior potencial de crescimento eleitoral, cruzando o perfil do seu eleitor com as características demográficas de cada território.",
                 "image": {
                   "path": "img/mobile/raiox/5.png",
                   "width": 1080,
@@ -286,13 +292,14 @@
                 }
               },
               {
-                "title": "Concentração no principal município",
+                "title": "Concentração nos principais municípios",
+                "description": "Descubra quanto da sua votação está concentrada nos 1, 5, 15 e 20 principais municípios, identificando o peso dos seus maiores redutos eleitorais.",
                 "image": {
                   "path": "img/mobile/raiox/6.png",
                   "width": 1080,
                   "height": 1350,
                   "quality": 0.94,
-                  "alt": "Indicador de concentração dos votos no município com maior votação.",
+                  "alt": "Indicadores de concentração dos votos nos grupos de um, cinco, quinze e vinte municípios com maior votação.",
                   "sources": [
                     {
                       "path": "img/responsive/raiox-mobile-6-480.webp",
@@ -310,13 +317,14 @@
                 }
               },
               {
-                "title": "Concentração nos quinze principais municípios",
+                "title": "Curva de concentração dos votos",
+                "description": "Visualize como seus votos se acumulam entre os municípios e descubra se sua força eleitoral depende de poucos redutos ou está distribuída pelo estado.",
                 "image": {
                   "path": "img/mobile/raiox/7.png",
                   "width": 1080,
                   "height": 1350,
                   "quality": 0.94,
-                  "alt": "Indicador da participação dos quinze principais municípios na votação.",
+                  "alt": "Gráfico da participação acumulada dos principais municípios na votação.",
                   "sources": [
                     {
                       "path": "img/responsive/raiox-mobile-7-480.webp",
@@ -328,30 +336,6 @@
                     },
                     {
                       "path": "img/responsive/raiox-mobile-7-1080.webp",
-                      "width": 1080
-                    }
-                  ]
-                }
-              },
-              {
-                "title": "Curva de concentração dos votos",
-                "image": {
-                  "path": "img/mobile/raiox/8.png",
-                  "width": 1080,
-                  "height": 1350,
-                  "quality": 0.94,
-                  "alt": "Gráfico da participação acumulada dos principais municípios na votação.",
-                  "sources": [
-                    {
-                      "path": "img/responsive/raiox-mobile-8-480.webp",
-                      "width": 480
-                    },
-                    {
-                      "path": "img/responsive/raiox-mobile-8-800.webp",
-                      "width": 800
-                    },
-                    {
-                      "path": "img/responsive/raiox-mobile-8-1080.webp",
                       "width": 1080
                     }
                   ]
@@ -427,11 +411,13 @@
         "icon": "🧬",
         "label": "DNA do Eleitor",
         "title": "Quem sustenta sua votação",
+        "mobile_description": "Descubra quem são seus eleitores, quais perfis sustentam sua votação e onde estão as melhores oportunidades para fortalecer e expandir sua base eleitoral até 2030.",
         "gallery": {
           "mobile": {
             "slides": [
               {
                 "title": "Perfis da base eleitoral",
+                "description": "Conheça os perfis demográficos que sustentam sua votação, classificados em Base Principal, Eleitor Consolidado e Emergente, com suas características e participação eleitoral.",
                 "image": {
                   "path": "img/mobile/dna/1.png",
                   "width": 1080,
@@ -456,6 +442,7 @@
               },
               {
                 "title": "Perfil demográfico do eleitor",
+                "description": "Explore a composição estimada dos seus votos por gênero, idade, escolaridade e estado civil, com filtros por mesorregião e município.",
                 "image": {
                   "path": "img/mobile/dna/2.png",
                   "width": 1080,
@@ -480,6 +467,7 @@
               },
               {
                 "title": "Eleitor ideal por município",
+                "description": "Descubra em quais municípios seus perfis eleitorais apresentam maior potencial de expansão, identificando onde fortalecer sua base e onde buscar novos eleitores.",
                 "image": {
                   "path": "img/mobile/dna/3.png",
                   "width": 1080,
@@ -504,6 +492,7 @@
               },
               {
                 "title": "Perfil para expansão por bairro",
+                "description": "Aprofunde a análise dentro de cada município, cruzando seus perfis eleitorais com dados demográficos para identificar bairros e setores com maior potencial de crescimento em 2030.",
                 "image": {
                   "path": "img/mobile/dna/4.png",
                   "width": 1080,
@@ -596,17 +585,19 @@
         "icon": "📊",
         "label": "DRE Campanha",
         "title": "Como seus recursos foram utilizados",
+        "mobile_description": "Tenha uma visão completa das finanças da campanha, descubra de onde vieram os recursos, como foram utilizados e quais despesas tiveram maior impacto no orçamento.",
         "gallery": {
           "mobile": {
             "slides": [
               {
-                "title": "Composição das receitas",
+                "title": "Balanço macro e liquidez de caixa",
+                "description": "Tenha uma visão geral da saúde financeira da campanha, acompanhando arrecadação, despesas contratadas, pagamentos realizados e os principais doadores.",
                 "image": {
                   "path": "img/mobile/dre/1.png",
                   "width": 1080,
                   "height": 1350,
                   "quality": 0.94,
-                  "alt": "Gráfico da composição das receitas da campanha, com entradas financeiras e bens e serviços estimáveis.",
+                  "alt": "Painel de balanço e liquidez da campanha, com arrecadação, despesas, concentração de doadores e comparação entre valores contratados e pagos.",
                   "sources": [
                     {
                       "path": "img/responsive/dre-mobile-1-480.webp",
@@ -624,13 +615,14 @@
                 }
               },
               {
-                "title": "DRE simplificada da campanha",
+                "title": "Composição das receitas",
+                "description": "Descubra como a campanha foi financiada, diferenciando recursos financeiros de doações de bens e serviços e identificando a participação de cada fonte na arrecadação.",
                 "image": {
                   "path": "img/mobile/dre/2.png",
                   "width": 1080,
                   "height": 1350,
                   "quality": 0.94,
-                  "alt": "Comparação de receitas, despesas e comprometimento orçamentário da campanha.",
+                  "alt": "Gráfico da composição das receitas da campanha, com entradas financeiras e bens e serviços estimáveis.",
                   "sources": [
                     {
                       "path": "img/responsive/dre-mobile-2-480.webp",
@@ -648,13 +640,14 @@
                 }
               },
               {
-                "title": "Estrutura da receita",
+                "title": "DRE simplificada da campanha",
+                "description": "Compare receitas, despesas contratadas e valores pagos em uma visão consolidada, identificando o comprometimento do orçamento e a execução financeira da campanha.",
                 "image": {
                   "path": "img/mobile/dre/3.png",
                   "width": 1080,
                   "height": 1350,
                   "quality": 0.94,
-                  "alt": "Painel de origem e concentração das receitas da campanha e indicador do principal doador.",
+                  "alt": "Comparação de receitas, despesas contratadas e pagas e comprometimento orçamentário da campanha.",
                   "sources": [
                     {
                       "path": "img/responsive/dre-mobile-3-480.webp",
@@ -673,6 +666,7 @@
               },
               {
                 "title": "Despesas contratadas e pagas",
+                "description": "Explore onde os recursos da campanha foram utilizados, comparando valores contratados e pagos em cada categoria de despesa e identificando os maiores gastos.",
                 "image": {
                   "path": "img/mobile/dre/4.png",
                   "width": 1080,
@@ -765,11 +759,13 @@
         "icon": "🏛️",
         "label": "Impacto Político",
         "title": "Qual o peso da sua atuação política",
+        "mobile_description": "Descubra como as alianças políticas influenciam seus resultados eleitorais e como sua atuação parlamentar se relaciona com os votos recebidos em cada município.",
         "gallery": {
           "mobile": {
             "slides": [
               {
                 "title": "Força da política local",
+                "description": "Visualize a influência de prefeitos e vereadores nos resultados eleitorais de cada município, identificando alianças de alto retorno e localidades onde sua votação é independente de apoios políticos.",
                 "image": {
                   "path": "img/mobile/impacto/1.png",
                   "width": 1080,
@@ -794,6 +790,7 @@
               },
               {
                 "title": "Aliança e desempenho local",
+                "description": "Conheça a composição política de cada município, identifique prefeitos e vereadores aliados e avalie a força das alianças em relação ao desempenho eleitoral obtido.",
                 "image": {
                   "path": "img/mobile/impacto/2.png",
                   "width": 1080,
@@ -818,6 +815,7 @@
               },
               {
                 "title": "Emendas por município",
+                "description": "Cruze a distribuição das emendas parlamentares com os votos recebidos em cada município, identificando a relação entre recursos destinados e desempenho eleitoral.",
                 "image": {
                   "path": "img/mobile/impacto/3.png",
                   "width": 1080,
@@ -842,6 +840,7 @@
               },
               {
                 "title": "Detalhes das emendas destinadas",
+                "description": "Consulte os valores das emendas indicadas para cada município, suas finalidades, tipos de indicação e responsáveis, com uma visão detalhada da atuação parlamentar.",
                 "image": {
                   "path": "img/mobile/impacto/4.png",
                   "width": 1080,

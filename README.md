@@ -150,6 +150,8 @@ Os quatro cards ocupam a largura da grade para apresentar os dashboards.
 O nome de cada módulo (`solution.modules[].label`) é o título principal do
 card, acompanhado da pergunta em `title` e dos tópicos em `points`. No desktop,
 identificação e benefícios ficam lado a lado; no celular, em uma coluna.
+Nos quatro módulos, até 820 px, os tópicos dão lugar ao resumo de
+`solution.modules[].mobile_description`; no desktop, os tópicos permanecem.
 Os ícones SVG locais de `templates/_icons.html` compartilham o mesmo traço e
 substituem os emojis na interface. Os campos `icon` originais permanecem no JSON.
 O RaioX Territorial usa
@@ -200,17 +202,22 @@ de tela. O card mantém seu conteúdo textual e fundo.
 Até 820 px, os quatro módulos exibem uma galeria exclusiva para celular, com
 imagens verticais de 1080 × 1350 px (4:5). Cada captura ocupa toda a largura interna
 do card, sem prévias laterais, cortes ou distorção. Os textos mantêm seus recuos.
-O RaioX usa oito imagens de `../assets/raioxcel`; DNA, DRE e Impacto usam quatro
+O RaioX usa sete imagens atualizadas de `../assets/raioxcel`; DNA, DRE e Impacto usam quatro
 imagens de `../assets/Dnacel`, `../assets/drecel` e `../assets/impactocel`, respectivamente.
-A ordem segue os nomes numéricos dos arquivos, de `1.png` em diante.
+A ordem segue os nomes numéricos dos arquivos, de `1.png` em diante. No RaioX,
+a sexta captura reúne os indicadores de concentração nos principais municípios,
+e a sétima apresenta a curva de concentração dos votos.
 
 Os originais ficam em `static/img/mobile/<módulo>/`, e as versões WebP em
 480, 800 e 1080 px ficam em `static/img/responsive/`. A configuração de cada
-galeria está em `solution.modules[].gallery.mobile`, incluindo títulos e
-textos alternativos. A navegação usa rolagem horizontal nativa com encaixe de
+galeria está em `solution.modules[].gallery.mobile`, incluindo títulos,
+descrições opcionais em `slides[].description` e textos alternativos.
+A navegação usa rolagem horizontal nativa com encaixe de
 uma imagem por vez; setas discretas em SVG ficam sobre as laterais da imagem,
-com alvos de 44 × 48 px. Uma legenda e a posição aparecem abaixo das capturas;
-a posição também é anunciada para leitores de tela. As teclas de direção
+com alvos de 44 × 48 px, ancoradas apenas à área das imagens. O título, a posição
+e a explicação da captura aparecem abaixo, atualizados a cada navegação.
+Todas as imagens das quatro galerias mobile têm explicações próprias. A posição e a explicação
+também são anunciadas para leitores de tela. As teclas de direção
 e Home/End também navegam. O toque na imagem
 abre o mesmo lightbox, usando o PNG vertical original.
 

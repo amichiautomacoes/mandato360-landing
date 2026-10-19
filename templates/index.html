@@ -94,11 +94,14 @@
                     <p class="modulo-pergunta">{{ module.title }}</p>
                   </div>
                   <div class="modulo-detalhes">
+                    {% if module.mobile_description %}
+                    <p class="modulo-descricao-mobile">{{ module.mobile_description }}</p>
+                    {% endif %}
                     {% if module.description %}
                     <p{% if module.points %} class="modulo-resumo"{% endif %}>{{ module.description }}</p>
                     {% endif %}
                     {% if module.points %}
-                    <ul class="modulo-topicos">
+                    <ul class="modulo-topicos{% if module.mobile_description %} modulo-topicos-desktop{% endif %}">
                       {% for point in module.points %}
                       <li>{{ point }}</li>
                       {% endfor %}
