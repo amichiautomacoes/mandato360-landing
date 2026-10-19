@@ -109,10 +109,10 @@ document.querySelectorAll('a[href^="#"]').forEach((ancora) => {
     else reproduzir();
     atualizarControle();
   });
-  // A troca de breakpoint mantém a escolha de pausa e atualiza a capa.
+  // O picture escolhe a capa por media query, sem outro download pelo video.
+  // A troca de breakpoint mantém a escolha de pausa e revela essa capa.
   const atualizarFonte = () => {
     hero.classList.remove("video-pronto");
-    video.poster = celular.matches ? video.dataset.posterMobile : video.dataset.posterDesktop;
     if (video.getAttribute("src")) video.src = fonteAtual();
     reproduzir();
     atualizarControle();

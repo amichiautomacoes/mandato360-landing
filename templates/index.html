@@ -41,7 +41,7 @@
         {% if content.hero.video %}
         <div class="hero-video-fundo" aria-hidden="true">
           {{ responsive_image(content.hero.video.poster, '100vw', eager=true, desktop_image=content.hero.video.desktop_poster) }}
-          <video id="hero-video" class="hero-video" width="{{ content.hero.video.width }}" height="{{ content.hero.video.height }}" muted loop playsinline preload="none" poster="{{ url_for('static', filename=content.hero.video.poster.path) }}" data-src-mobile="{{ url_for('static', filename=content.hero.video.mobile_path) }}" data-src-desktop="{{ url_for('static', filename=content.hero.video.desktop_path) }}" data-poster-mobile="{{ url_for('static', filename=content.hero.video.poster.path) }}" data-poster-desktop="{{ url_for('static', filename=content.hero.video.desktop_poster.path) }}"></video>
+          <video id="hero-video" class="hero-video" width="{{ content.hero.video.width }}" height="{{ content.hero.video.height }}" muted loop playsinline preload="none" data-src-mobile="{{ url_for('static', filename=content.hero.video.mobile_path) }}" data-src-desktop="{{ url_for('static', filename=content.hero.video.desktop_path) }}"></video>
         </div>
         {% endif %}
         <div class="conteiner hero-grade">
@@ -149,8 +149,20 @@
             <h2 id="cta-title">{{ content.cta.title }}</h2>
             <p class="secao-descricao">{{ content.cta.description }}</p>
           </div>
+          <ul class="chamada-beneficios" aria-label="{{ content.cta.benefits_label }}" role="list">
+            {% for benefit in content.cta.benefits %}
+            <li class="chamada-beneficio">
+              {{ icon(benefit.icon, 26) }}
+              <div>
+                <h3>{{ benefit.title }}</h3>
+                <p>{{ benefit.description }}</p>
+              </div>
+            </li>
+            {% endfor %}
+          </ul>
           <div class="chamada-acao">
-            <a class="botao botao-contato" href="{{ content.contact_button.url }}" target="_blank" rel="noopener noreferrer" aria-label="{{ content.contact_button.label }} — {{ content.contact_button.channel }}">{{ content.contact_button.label }} {{ icon('external', 20) }}</a>
+            <a class="botao botao-contato" href="{{ content.contact_button.url }}" target="_blank" rel="noopener noreferrer" aria-label="{{ content.cta.button_label }} — {{ content.contact_button.channel }}">{{ icon('whatsapp', 22) }}<span>{{ content.cta.button_label }}</span>{{ icon('external', 18) }}</a>
+            <p class="chamada-apoio">{{ content.cta.supporting_text }}</p>
             <p class="contato-contexto">{{ content.contact_button.channel }}</p>
           </div>
         </div>
@@ -173,6 +185,9 @@
       </div>
       <p class="conteiner direitos-autorais">{{ content.footer.copyright }}</p>
     </footer>
+    <a class="contato-flutuante" href="{{ content.contact_button.url }}" target="_blank" rel="noopener noreferrer" aria-label="{{ content.contact_button.label }} — {{ content.contact_button.channel }}" title="{{ content.contact_button.channel }}">
+      {{ icon('whatsapp', 30) }}
+    </a>
     {% include '_lightbox.html' %}
   </body>
 </html>

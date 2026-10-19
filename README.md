@@ -1,5 +1,10 @@
 # Landing MANDATO 360
 
+O objetivo comercial da landing é levar a pessoa interessada no MANDATO 360
+a iniciar contato pelo WhatsApp. A apresentação dos quatro módulos, as capturas
+dos dashboards e as chamadas **Fale Conosco** devem despertar interesse,
+construir confiança e facilitar o início dessa conversa.
+
 Landing Flask com duas rotas, sem banco de dados ou autenticação:
 
 - `/`: landing page reconstruída com HTML semântico e conteúdo de `content.json`.
@@ -126,11 +131,11 @@ fora do Git.
 
 ## Assets e estilos
 
-O header e o rodapé usam a logo `static/img/logoland.png`, copiada de
-`../assets/Logoland.png`. O caminho e as dimensões originais ficam em
+O header e o rodapé usam a logo branca `static/img/logo-branca.png`, copiada de
+`../assets/Logo Branca.png` sem alterar os pixels ou a transparência. O caminho e as dimensões originais ficam em
 `brand.logo` no `content.json`. O CSS enquadra as margens transparentes do
-arquivo sem distorcer a marca, com uma base clara para preservar a leitura
-das letras azul-escuras. O tamanho acompanha o layout de desktop e celular.
+arquivo sem distorcer a marca, diretamente sobre o fundo escuro do header
+e do rodapé. O tamanho acompanha o layout de desktop e celular.
 
 Os templates geram os caminhos de CSS, JavaScript e imagens com
 `url_for('static', filename=...)`. O layout e a navegação são responsivos.
@@ -150,6 +155,8 @@ Os quatro cards ocupam a largura da grade para apresentar os dashboards.
 O nome de cada módulo (`solution.modules[].label`) é o título principal do
 card, acompanhado da pergunta em `title` e do resumo simples de
 `solution.modules[].mobile_description`, compartilhado entre desktop e celular.
+Os resumos são curtos e complementam a pergunta, sem repetir a mesma introdução
+nos quatro módulos. A apresentação da seção resume os quatro temas em uma frase.
 No desktop, título e pergunta ficam ao lado do resumo; até 820 px, em uma coluna.
 Os tópicos em `points` permanecem no JSON como conteúdo de referência.
 Os ícones SVG locais de `templates/_icons.html` compartilham o mesmo traço e
@@ -158,7 +165,7 @@ As galerias desktop usam as capturas horizontais de 1600 × 900 px (16:9),
 copiadas para `static/img/desktop/<módulo>/`. O RaioX Territorial usa as sete
 imagens de `../assets/Raioxdesktop`, na ordem de `1.png` a `7.png`.
 O carrossel combina Coverflow 3D com máscaras `clip-path`: a captura central
-fica inteira, sem blur, enquanto as laterais usam perspectiva, escala e
+fica inteira e ocupa 84% da largura do palco, sem blur, enquanto as laterais usam perspectiva, escala e
 opacidade menores. Deslocamento e revelação compartilham uma animação de
 700 ms, com inclinação lateral discreta de 14°; as prévias entram e saem por
 trás, inclusive na volta da última para a primeira. Apenas a captura central
@@ -167,8 +174,9 @@ e suas duas vizinhas ficam visíveis. As proporções originais são preservadas
 O clique nas prévias laterais, as teclas de direção, Home/End, o arraste com mouse
 e o swipe no celular permitem navegar, sem reprodução automática. As setas de
 anterior/próxima ficam sobre as laterais da captura central, com a mesma aparência
-do celular e alvos de 44 × 48 px. A barra abaixo mostra o título, a posição e
-a mesma descrição da captura correspondente no celular. Os textos ficam em
+do celular e alvos de 44 × 48 px. A barra antes da imagem mostra o título, a posição
+e a ação **Ampliar captura**, que acompanha a captura selecionada. A explicação
+fica abaixo da imagem, com largura de leitura limitada. Os textos ficam em
 `solution.modules[].gallery.slides[].title` e `description` e acompanham a navegação.
 A lupa permanece visível na imagem central. A posição e a descrição também
 são anunciadas para leitores de tela. O arraste não
@@ -179,15 +187,18 @@ mantendo os PNGs como fallback. Configurações, legendas e textos
 alternativos ficam em `solution.modules[0].gallery`. O componente está em
 `templates/_carousel.html` e `static/js/carousel.js`.
 
-Clicar na captura central abre um lightbox compartilhado pelos quatro cards,
+Clicar na captura central ou em **Ampliar captura** abre um lightbox compartilhado pelos quatro cards,
 implementado em `templates/_lightbox.html` e `static/js/lightbox.js`. Ele usa o PNG
 original, com a imagem inteira ajustada à tela, zoom de até 8× e deslocamento por
 arraste com mouse ou rolagem nativa no celular. Os botões e as teclas +, − e 0
 controlam o zoom; Esc, o botão de fechar ou o fundo externo fecham a ampliação.
 O diálogo mantém o foco no modal, bloqueia a rolagem da página e devolve o foco à
-captura ao fechar. A preferência por movimento reduzido também desliga a entrada
+imagem ou à ação da barra que abriu o modal ao fechar. A área da imagem participa
+da navegação por teclado, incluindo o acesso ao link **Abrir original**.
+A preferência por movimento reduzido também desliga a entrada
 animada do lightbox. Sem JavaScript ou suporte a diálogo, o link abre o PNG original.
-Os textos do lightbox ficam em `lightbox` no JSON, e o rótulo de ampliação em
+Os textos do lightbox ficam em `lightbox` no JSON; `help_mobile` orienta o uso dos
+botões de zoom e do deslize no celular. O rótulo de ampliação fica em
 `solution.modules[].gallery.expand`.
 
 O DNA do Eleitor usa as quatro imagens de `../assets/DnaEleitordesktop`, na
@@ -222,7 +233,8 @@ descrições opcionais em `slides[].description` e textos alternativos.
 A navegação usa rolagem horizontal nativa com encaixe de
 uma imagem por vez; setas discretas em SVG ficam sobre as laterais da imagem,
 com alvos de 44 × 48 px, ancoradas apenas à área das imagens. O título, a posição
-e a explicação da captura aparecem abaixo, atualizados a cada navegação.
+e a ação **Ampliar captura** aparecem antes da imagem; a explicação fica abaixo.
+Esses elementos acompanham a navegação, incluindo o destino da ação de ampliação.
 Todas as imagens das quatro galerias mobile têm explicações próprias. A posição e a explicação
 também são anunciadas para leitores de tela. As teclas de direção
 e Home/End também navegam. O toque na imagem
@@ -276,8 +288,12 @@ as imagens do celular e do hero, execute na pasta `Lpaas`:
 A legenda na base do mapa mostra **INTELIGÊNCIA ELEITORAL 360°**, definida em
 `hero.eyebrow`, junto do controle de reprodução. O dourado `#D6BD8A`, centralizado
 em `--cor-dourada`, aparece nos ícones, no índice dos módulos e nos botões de contato.
-A chamada final coloca a argumentação ao lado da ação no desktop e em uma coluna
-no celular.
+A chamada final usa a referência fornecida para convidar a uma apresentação
+personalizada pelo WhatsApp. O título e o texto introdutório ficam centralizados,
+seguidos pelos benefícios **Proteja sua base**, **Encontre oportunidades** e
+**Decida com dados**. Os três blocos ficam lado a lado no desktop e em uma coluna
+compacta no celular. O botão dourado mantém o destino de `contact_button.url`;
+os textos, benefícios, ícones e rótulo da ação ficam em `cta` no JSON.
 
 O hero usa vídeos próprios para celular e desktop. O desktop foi preparado a
 partir de `../assets/download.mp4`, horizontal 16:9, com cerca de oito segundos
@@ -304,7 +320,11 @@ a capa aparece inicialmente sem baixar o vídeo; a reprodução exige ação do 
 
 `hero.video` no JSON centraliza os arquivos, as dimensões e as capas. `poster`
 define a capa do celular; `desktop_poster` define a composição horizontal, usada
-acima de 820 px tanto no vídeo quanto no fallback `picture`.
+acima de 820 px. O `picture` responsivo é a única camada de capa, visível até o
+vídeo começar a reproduzir, em caso de falha, com movimento reduzido ou sem
+JavaScript. O elemento `video` não define outro `poster`: isso evita baixar a
+capa do celular junto com a do desktop. Ao trocar de breakpoint, o navegador
+seleciona a capa correta pelo `picture`, preservando seus arquivos e qualidade.
 As versões `static/video/hero-desktop-hq.mp4` e `hero-mobile-hq.mp4` usam H.264
 com libx264, qualidade constante CRF 16, preset slow, 24 fps e faststart. O desktop
 mantém os 1280 × 720 px do original, com cerca de 3,61 MB; o celular preserva
@@ -318,6 +338,33 @@ usam qualidade 96 e mantêm o visual durante o carregamento, em caso de falha ou
 sem JavaScript. Os nomes novos evitam reutilizar versões antigas em cache.
 Ao cruzar 820 px, o player troca o vídeo e a capa para o layout correto.
 Os vídeos originais permanecem em `assets/`.
+
+### Otimização sem perda de qualidade
+
+A qualidade dos vídeos e das imagens deve ser preservada. Não aumentar o CRF,
+reduzir resolução ou FPS, nem recomprimir os WebP das galerias para diminuir peso.
+Os PNGs originais do lightbox e o carregamento lazy das capturas são mantidos.
+
+`tools/optimize_video_delivery.py` faz uma otimização conservadora por cópia da
+faixa H.264, sem recodificação. Remove metadados do container e, somente quando
+identificados como tal, os dados SEI de identificação do encoder x264. Antes de
+aplicar qualquer arquivo menor, compara o `framemd5` de todos os quadros e seus
+tempos, além da descrição da faixa (resolução, cor, faixa, FPS e base de tempo).
+Uma divergência interrompe a substituição. As cópias anteriores, as provas e o
+relatório ficam em `.impeccable/verification/video-delivery/`, fora do Git e da
+imagem de produção. O ganho nos vídeos atuais é de apenas 727 bytes por arquivo;
+o ganho maior de carregamento vem de evitar a capa duplicada no desktop
+(146.478 bytes a menos na primeira visita).
+
+Para verificar a otimização na pasta `Lpaas`, com FFmpeg disponível pelo pacote
+opcional `imageio-ffmpeg` ou por `--ffmpeg CAMINHO_DO_EXECUTAVEL`:
+
+```powershell
+.\.venv\Scripts\python.exe landing\tools\optimize_video_delivery.py
+```
+
+Acrescente `--apply` para aplicar somente arquivos menores que passem nas
+verificações. Esse processo não altera as capas ou as imagens das galerias.
 
 O FFmpeg é necessário somente para preparar os assets; não é instalado no
 container de produção. O script aceita `--ffmpeg CAMINHO_DO_EXECUTAVEL` ou usa
@@ -359,7 +406,12 @@ superior de 1 px, ambas em `rgba(103,232,249,0.12)`. O primeiro link do menu,
 Em telas de até 560 px, os textos corridos usam 16 px, os textos auxiliares
 usam ao menos 14 px e os títulos têm escala própria para celular. Links e
 botões têm alvos de toque de pelo menos 44 × 44 px. Os botões do WhatsApp
-ficam no menu, no hero e na seção final, sem elemento flutuante sobre o conteúdo.
+ficam no menu, no hero e na seção final. Um botão circular de 56 × 56 px também
+fica fixo no canto inferior esquerdo e acompanha a rolagem, com 24 px de recuo
+no desktop e 16 px em telas de até 560 px, respeitando as áreas seguras do aparelho.
+Ele usa o mesmo destino de `contact_button.url`, um ícone SVG local e rótulo
+acessível. Durante a ampliação das capturas, o botão fica oculto e retorna ao
+fechar o lightbox. O rodapé reserva espaço para o último conteúdo ficar acima dele.
 
 Todos os arquivos de `../output/assets/` foram copiados com seus nomes originais:
 fontes `.woff`, `.woff2`, `.ttf` e `.otf` ficam em `static/fonts/`; os demais

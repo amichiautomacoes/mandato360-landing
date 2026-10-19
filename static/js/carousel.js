@@ -10,6 +10,7 @@ document.querySelectorAll("[data-carrossel]").forEach((carrossel) => {
   const legenda = carrossel.querySelector("[data-gallery-caption]");
   const descricao = carrossel.querySelector("[data-gallery-description]");
   const posicao = carrossel.querySelector("[data-gallery-position]");
+  const ampliar = carrossel.querySelector("[data-gallery-expand]");
   const movimentoReduzido = window.matchMedia("(prefers-reduced-motion: reduce)");
   const total = slides.length;
   // Com duas capturas, cópias decorativas mantêm a prévia nos dois lados.
@@ -55,6 +56,8 @@ document.querySelectorAll("[data-carrossel]").forEach((carrossel) => {
     descricao.hidden = !descricao.textContent;
     status.textContent = `${atual + 1} ${carrossel.dataset.of} ${total}: ${legenda.textContent}${descricao.textContent ? `. ${descricao.textContent}` : ""}`;
     posicao.textContent = `${atual + 1} / ${total}`;
+    ampliar.href = slides[atual].querySelector("[data-ampliar]").href;
+    ampliar.setAttribute("aria-label", `${ampliar.dataset.labelExpand}: ${legenda.textContent}`);
   };
   const posicionar = () => {
     slides.forEach((slide, indice) => {

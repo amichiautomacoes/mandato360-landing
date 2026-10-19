@@ -7,9 +7,9 @@
   "brand": {
     "name": "MANDATO 360",
     "logo": {
-      "path": "img/logoland.png",
-      "width": 1000,
-      "height": 500
+      "path": "img/logo-branca.png",
+      "width": 851,
+      "height": 315
     }
   },
   "section_background": {
@@ -38,6 +38,7 @@
     "loading": "Carregando imagem original…",
     "error": "Não foi possível carregar a imagem. Use o link para abrir o arquivo original.",
     "help": "Use + e − para ampliar. Arraste para explorar os detalhes. Esc fecha a imagem.",
+    "help_mobile": "Use os botões + e − para ampliar. Deslize a imagem para explorar os detalhes.",
     "open_original": "Abrir original"
   },
   "navigation": [
@@ -146,7 +147,7 @@
   "solution": {
     "eyebrow": "",
     "title": "Inteligência de ponta a ponta para o seu mandato.",
-    "description": "Uma visão completa da sua força eleitoral. Descubra onde estão seus votos, quem sustenta sua candidatura, como seus recursos foram utilizados e como sua atuação política influenciou o resultado das urnas.",
+    "description": "Território, eleitorado, finanças da campanha e atuação política em quatro módulos.",
     "navigation_label": "Explore os quatro módulos",
     "card_background": {
       "path": "img/bg-geral.png",
@@ -162,7 +163,7 @@
         "icon": "📍",
         "label": "RaioX Territorial",
         "title": "Onde você é forte",
-        "mobile_description": "Descubra onde estão seus votos, quais territórios ganharam ou perderam força e onde surgem novas oportunidades de crescimento para 2030.",
+        "mobile_description": "Compare territórios que ganharam ou perderam força e identifique oportunidades de crescimento para 2030.",
         "gallery": {
           "mobile": {
             "slides": [
@@ -344,7 +345,7 @@
             ]
           },
           "label": "Visões do dashboard RaioX Territorial",
-          "expand": "Ampliar imagem",
+          "expand": "Ampliar captura",
           "role": "carrossel",
           "slide_role": "imagem",
           "previous": "Imagem anterior",
@@ -541,7 +542,7 @@
         "icon": "🧬",
         "label": "DNA do Eleitor",
         "title": "Quem sustenta sua votação",
-        "mobile_description": "Descubra quem são seus eleitores, quais perfis sustentam sua votação e onde estão as melhores oportunidades para fortalecer e expandir sua base eleitoral até 2030.",
+        "mobile_description": "Conheça os perfis da sua base e as oportunidades para fortalecer e expandir sua votação até 2030.",
         "gallery": {
           "mobile": {
             "slides": [
@@ -648,7 +649,7 @@
             ]
           },
           "label": "Visões do dashboard DNA do Eleitor",
-          "expand": "Ampliar imagem",
+          "expand": "Ampliar captura",
           "role": "carrossel",
           "slide_role": "imagem",
           "previous": "Imagem anterior",
@@ -770,7 +771,7 @@
         "icon": "📊",
         "label": "DRE Campanha",
         "title": "Como seus recursos foram utilizados",
-        "mobile_description": "Tenha uma visão completa das finanças da campanha, descubra de onde vieram os recursos, como foram utilizados e quais despesas tiveram maior impacto no orçamento.",
+        "mobile_description": "Acompanhe a origem dos recursos, sua aplicação e as despesas de maior impacto na campanha.",
         "gallery": {
           "mobile": {
             "slides": [
@@ -877,7 +878,7 @@
             ]
           },
           "label": "Visões do dashboard DRE da Campanha",
-          "expand": "Ampliar imagem",
+          "expand": "Ampliar captura",
           "role": "carrossel",
           "slide_role": "imagem",
           "previous": "Imagem anterior",
@@ -949,7 +950,7 @@
         "icon": "🏛️",
         "label": "Impacto Político",
         "title": "Qual o peso da sua atuação política",
-        "mobile_description": "Descubra como as alianças políticas influenciam seus resultados eleitorais e como sua atuação parlamentar se relaciona com os votos recebidos em cada município.",
+        "mobile_description": "Relacione alianças e atuação parlamentar aos votos recebidos em cada município.",
         "gallery": {
           "mobile": {
             "slides": [
@@ -1056,7 +1057,7 @@
             ]
           },
           "label": "Visões do dashboard Impacto Político",
-          "expand": "Ampliar imagem",
+          "expand": "Ampliar captura",
           "role": "carrossel",
           "slide_role": "imagem",
           "previous": "Imagem anterior",
@@ -1182,9 +1183,28 @@
     ]
   },
   "cta": {
-    "eyebrow": "NOSSO DIFERENCIAL",
-    "title": "Não é apenas sobre onde estão seus votos. É sobre entender toda a sua força eleitoral.",
-    "description": "Outras plataformas mostram onde você recebeu votos. O MANDATO 360 ajuda a entender quem sustenta sua candidatura, como sua força política se distribui e onde estão as oportunidades para o próximo ciclo eleitoral"
+    "title": "Sua próxima decisão política merece mais do que intuição.",
+    "description": "Transforme dados eleitorais, financeiros e parlamentares em uma visão integrada para compreender sua base, identificar oportunidades e planejar o próximo ciclo eleitoral.",
+    "benefits_label": "Inteligência para decisões estratégicas",
+    "benefits": [
+      {
+        "icon": "shield-check",
+        "title": "Proteja sua base",
+        "description": "Identifique redutos estratégicos e pontos de vulnerabilidade."
+      },
+      {
+        "icon": "trending-up",
+        "title": "Encontre oportunidades",
+        "description": "Descubra territórios e perfis com potencial de expansão."
+      },
+      {
+        "icon": "target",
+        "title": "Decida com dados",
+        "description": "Integre votação, finanças, alianças e atuação parlamentar."
+      }
+    ],
+    "button_label": "Solicitar uma apresentação personalizada",
+    "supporting_text": "Conheça a plataforma aplicada à realidade da sua candidatura."
   },
   "footer": {
     "description": "Muito além dos mapas. Inteligência para cada decisão.",

@@ -62,8 +62,11 @@
     area.classList.remove("lightbox-arrastando");
   };
   const abrir = async (link) => {
-    const captura = link.querySelector("img");
-    const slide = link.closest("[data-slide]");
+    // A ação da barra aponta para a mesma captura, inclusive durante a transição.
+    const galeria = link.closest("[data-carrossel], [data-carrossel-mobile]");
+    const origemImagem = link.querySelector("img") ? link : [...(galeria?.querySelectorAll("[data-slide] [data-ampliar]") || [])].find((item) => item.href === link.href);
+    const captura = origemImagem?.querySelector("img");
+    const slide = captura?.closest("[data-slide]");
     if (!captura) return;
     const versao = ++abertura;
     origem = link;
@@ -121,7 +124,7 @@
   ajustar.addEventListener("click", () => ampliar(1));
   lightbox.addEventListener("keydown", (evento) => {
     if (evento.key === "Tab") {
-      const focaveis = [...lightbox.querySelectorAll("button:not(:disabled), a[href]")];
+      const focaveis = [...lightbox.querySelectorAll('button:not(:disabled), a[href], [tabindex="0"]')];
       const primeiro = focaveis[0];
       const ultimo = focaveis[focaveis.length - 1];
       if (evento.shiftKey && (document.activeElement === primeiro || !focaveis.includes(document.activeElement))) {

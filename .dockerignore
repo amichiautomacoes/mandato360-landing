@@ -9,5 +9,7 @@ __pycache__
 **/*.py[cod]
 *.log
 .pytest_cache
+.impeccable/verification
+.impeccable/live
 tools
 README.md
