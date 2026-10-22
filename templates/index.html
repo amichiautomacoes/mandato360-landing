@@ -93,22 +93,6 @@
                     <h3 id="module-title-{{ module.id }}" class="modulo-nome">{{ icon(module.id, 28) }}<span>{{ module.label }}</span></h3>
                     <p class="modulo-pergunta">{{ module.title }}</p>
                   </div>
-                  <div class="modulo-detalhes">
-                    {% if module.mobile_description %}
-                    <p class="modulo-descricao">{{ module.mobile_description }}</p>
-                    {% else %}
-                    {% if module.description %}
-                    <p{% if module.points %} class="modulo-resumo"{% endif %}>{{ module.description }}</p>
-                    {% endif %}
-                    {% if module.points %}
-                    <ul class="modulo-topicos">
-                      {% for point in module.points %}
-                      <li>{{ point }}</li>
-                      {% endfor %}
-                    </ul>
-                    {% endif %}
-                    {% endif %}
-                  </div>
                 </div>
                 {% if module.gallery %}
                 {{ dashboard_carousel(module.gallery, module.id) }}

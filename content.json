@@ -602,14 +602,14 @@
                 }
               },
               {
-                "title": "Eleitor ideal por município",
-                "description": "Descubra em quais municípios seus perfis eleitorais apresentam maior potencial de expansão, identificando onde fortalecer sua base e onde buscar novos eleitores.",
+                "title": "Expansão Digital & Oportunidades",
+                "description": "Descubra onde sua presença digital pode crescer, cruzando dados territoriais e demográficos para orientar sua estratégia de comunicação nas redes sociais.",
                 "image": {
                   "path": "img/mobile/dna/3.png",
                   "width": 1080,
                   "height": 1350,
                   "quality": 0.94,
-                  "alt": "Mapa de Minas Gerais com a distribuição do eleitor ideal e potencial por município.",
+                  "alt": "Mapa de Minas Gerais com oportunidades de expansão digital por município.",
                   "sources": [
                     {
                       "path": "img/responsive/dna-mobile-3-480.webp",
@@ -627,14 +627,14 @@
                 }
               },
               {
-                "title": "Perfil para expansão por bairro",
-                "description": "Aprofunde a análise dentro de cada município, cruzando seus perfis eleitorais com dados demográficos para identificar bairros e setores com maior potencial de crescimento em 2030.",
+                "title": "Oportunidades Digitais por Bairro",
+                "description": "Explore o perfil demográfico e a distribuição da sua votação nos bairros de cada município, identificando oportunidades para ampliar sua presença digital.",
                 "image": {
                   "path": "img/mobile/dna/4.png",
                   "width": 1080,
                   "height": 1350,
                   "quality": 0.94,
-                  "alt": "Mapa de bairros de Araguari com oportunidades de expansão para o perfil de eleitor ideal.",
+                  "alt": "Mapa dos bairros de Barbacena com o perfil demográfico e oportunidades de expansão digital.",
                   "sources": [
                     {
                       "path": "img/responsive/dna-mobile-4-480.webp",
@@ -713,14 +713,14 @@
               }
             },
             {
-              "title": "Eleitor ideal por município",
-              "description": "Descubra em quais municípios seus perfis eleitorais apresentam maior potencial de expansão, identificando onde fortalecer sua base e onde buscar novos eleitores.",
+              "title": "Expansão Digital & Oportunidades",
+              "description": "Descubra onde sua presença digital pode crescer, cruzando dados territoriais e demográficos para orientar sua estratégia de comunicação nas redes sociais.",
               "image": {
                 "path": "img/desktop/dna/3.png",
                 "width": 1600,
                 "height": 900,
                 "quality": 0.96,
-                "alt": "DNA do Eleitor: Eleitor ideal por município em uma captura horizontal do dashboard.",
+                "alt": "DNA do Eleitor: Expansão Digital & Oportunidades em uma captura horizontal do dashboard.",
                 "sources": [
                   {
                     "path": "img/responsive/dna-desktop-3-480.webp",
@@ -738,14 +738,14 @@
               }
             },
             {
-              "title": "Perfil para expansão por bairro",
-              "description": "Aprofunde a análise dentro de cada município, cruzando seus perfis eleitorais com dados demográficos para identificar bairros e setores com maior potencial de crescimento em 2030.",
+              "title": "Oportunidades Digitais por Bairro",
+              "description": "Explore o perfil demográfico e a distribuição da sua votação nos bairros de cada município, identificando oportunidades para ampliar sua presença digital.",
               "image": {
                 "path": "img/desktop/dna/4.png",
                 "width": 1600,
                 "height": 900,
                 "quality": 0.96,
-                "alt": "DNA do Eleitor: Perfil para expansão por bairro em uma captura horizontal do dashboard.",
+                "alt": "DNA do Eleitor: Oportunidades Digitais por Bairro em uma captura horizontal do dashboard.",
                 "sources": [
                   {
                     "path": "img/responsive/dna-desktop-4-480.webp",

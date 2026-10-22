@@ -284,17 +284,15 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--cor-ciano-claro
 .grade-modulos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--espaco-10); }
 .card-modulo { overflow: hidden; scroll-margin-top: calc(var(--altura-cabecalho) + var(--espaco-6)); }
 .modulo-conteudo { padding: var(--espaco-8); }
-.modulo-introducao { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); align-items: start; gap: var(--espaco-10); }
 .modulo-conteudo h3 { font-family: var(--fonte-titulo); font-size: clamp(1.375rem, 2.2vw, 1.875rem); line-height: 1.25; letter-spacing: -0.025em; }
 .modulo-conteudo p, .modulo-topicos li { color: #e1e6ef; }
-/* Nome e pergunta mantêm o módulo reconhecível antes dos detalhes. */
+/* Nome e pergunta identificam cada módulo. */
 .modulo-cabecalho { display: grid; justify-items: start; gap: var(--espaco-3); }
 .modulo-nome { display: flex; align-items: center; gap: var(--espaco-3); }
 .modulo-nome svg { flex: none; color: var(--cor-dourada); }
 .modulo-conteudo .modulo-pergunta { color: #bbcadb; font-size: 1.0625rem; line-height: 1.5; }
 .modulo-topicos li::marker { color: var(--cor-dourada); }
 .modulo-resumo { color: var(--cor-texto); font-weight: var(--peso-destaque); }
-.modulo-descricao { font-size: 1rem; line-height: 1.65; }
 .modulo-topicos { margin: 0; padding-left: var(--espaco-4); font-size: 0.9375rem; line-height: 1.65; }
 .modulo-resumo + .modulo-topicos { margin-top: var(--espaco-4); }
 .modulo-topicos li + li { margin-top: var(--espaco-3); }
@@ -510,7 +508,6 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--cor-ciano-claro
   .solucao-cabecalho { grid-template-columns: 1fr; gap: var(--espaco-5); }
   .solucao-cabecalho h2 { max-width: 26ch; }
   .indice-modulos { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 var(--espaco-5); margin-bottom: var(--espaco-8); }
-  .modulo-introducao { grid-template-columns: 1fr; gap: var(--espaco-5); }
   .grade-modulos-com-destaque { grid-template-columns: 1fr; }
   .card-modulo-destaque .modulo-topicos { grid-template-columns: 1fr; }
   .card-modulo-destaque .modulo-conteudo { --recuo-modulo: var(--espaco-6); }
