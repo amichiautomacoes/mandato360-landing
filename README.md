@@ -35,16 +35,29 @@ Referências: [serviços App](https://easypanel.io/docs/services/app) e
 
 ## Instalar
 
-No PowerShell, a partir da pasta `Lpaas`, ative a venv já criada e entre em `landing`:
+O projeto fica em `land_mandato360/landing`. No PowerShell, dentro de `landing`,
+crie e ative o ambiente virtual local:
 
 ```powershell
+python -m venv .venv
 .\.venv\Scripts\Activate.ps1
-cd landing
-pip install -r requirements.txt
+python -m pip install -r requirements.txt
 ```
 
 As dependências de produção são Flask e Gunicorn. No Windows, a instalação
 ignora o Gunicorn; o servidor de desenvolvimento continua disponível com Flask.
+
+Para trabalhar também com as ferramentas de imagens e vídeos, instale as
+dependências de desenvolvimento e o Chromium no próprio ambiente:
+
+```powershell
+python -m pip install -r requirements-dev.txt
+$env:PLAYWRIGHT_BROWSERS_PATH = Join-Path $env:VIRTUAL_ENV 'ms-playwright'
+python -m playwright install chromium
+```
+
+A `.venv` fica fora do Git e do build Docker. Se mover o projeto novamente,
+recrie esse ambiente no destino para evitar executáveis com caminhos antigos.
 
 ## Rodar
 
@@ -74,12 +87,15 @@ e `contact_button.url` no `content.json`; o link atual é `https://wa.me/5531975
 
 ```text
 landing/
+├── .venv/                  # Ambiente local, fora do Git
+├── assets/                # Imagens de referência e original do vídeo mobile
 ├── Dockerfile
 ├── .dockerignore
 ├── .gitignore
 ├── app.py
 ├── content.json
 ├── requirements.txt
+├── requirements-dev.txt
 ├── README.md
 ├── static/
 │   ├── css/style.css
@@ -92,21 +108,23 @@ landing/
 │   └── redirect.html
 └── tools/
     ├── optimize_images.py
-    └── prepare_hero_video.py
+    ├── prepare_hero_video.py
+    └── optimize_video_delivery.py
 ```
 
 ## Editar o conteúdo
 
-Todos os textos das duas páginas vêm de `landing/content.json`, incluindo
+Todos os textos das duas páginas vêm de `content.json`, incluindo
 títulos, parágrafos, botões, navegação, textos alternativos das imagens e
 rótulos de acessibilidade. O `app.py` usa `json.load` em cada requisição e
 passa o resultado ao template como `content`. Salve o JSON em UTF-8 e recarregue
 a página para ver as alterações.
 
-O JSON foi organizado a partir de `../output/content.json`. As descrições dos
-três módulos que não estavam visíveis na captura foram recuperadas dos dados
-incorporados em `../output/page.html`. Os botões de contato usam o WhatsApp
-configurado no JSON. Os arquivos de captura permanecem em `output/`.
+O JSON foi organizado a partir de uma extração anterior do site. As descrições
+dos três módulos que não estavam visíveis na captura foram recuperadas dos dados
+incorporados no HTML dessa extração. A landing mantém suas próprias cópias dos
+textos e assets e não depende dos antigos scripts ou da pasta `output/`.
+Os botões de contato usam o WhatsApp configurado no JSON.
 
 As seções seguem a ordem Hero, Solução, Público-alvo, CTA final e
 Rodapé. As classes CSS usam nomes em português, como `hero-titulo`,
@@ -122,8 +140,8 @@ heurísticas aplicáveis. A nota descreve a versão anterior ao refinamento,
 sem medir conversão comercial.
 
 O hero oferece **Fale Conosco** como ação principal, com destino WhatsApp
-explícito em `contact_button.channel`; **Como Funciona** é secundário. O dourado
-da marca identifica o contato no header, no hero e no fechamento. Um índice
+explícito em `contact_button.channel`; **Como Funciona** é secundário. O verde
+do WhatsApp identifica o contato no header, no hero e no fechamento. Um índice
 com quatro âncoras apresenta os módulos antes das capturas. O refinamento
 preserva os textos factuais, a identidade Montserrat/azul/dourado e os assets.
 Capturas e scripts locais de verificação ficam em `.impeccable/verification/`,
@@ -132,7 +150,7 @@ fora do Git.
 ## Assets e estilos
 
 O header e o rodapé usam a logo branca `static/img/logo-branca.png`, copiada de
-`../assets/Logo Branca.png` sem alterar os pixels ou a transparência. O caminho e as dimensões originais ficam em
+um arquivo original de marca sem alterar os pixels ou a transparência. O caminho e as dimensões originais ficam em
 `brand.logo` no `content.json`. O CSS enquadra as margens transparentes do
 arquivo sem distorcer a marca, diretamente sobre o fundo escuro do header
 e do rodapé. O tamanho acompanha o layout de desktop e celular.
@@ -163,7 +181,7 @@ Os ícones SVG locais de `templates/_icons.html` compartilham o mesmo traço e
 substituem os emojis na interface. Os campos `icon` originais permanecem no JSON.
 As galerias desktop usam as capturas horizontais de 1600 × 900 px (16:9),
 copiadas para `static/img/desktop/<módulo>/`. O RaioX Territorial usa as sete
-imagens de `../assets/Raioxdesktop`, na ordem de `1.png` a `7.png`.
+imagens preservadas em `static/img/desktop/raiox/`, na ordem de `1.png` a `7.png`.
 O carrossel combina Coverflow 3D com máscaras `clip-path`: a captura central
 fica inteira e ocupa 84% da largura do palco, sem blur, enquanto as laterais usam perspectiva, escala e
 opacidade menores. Deslocamento e revelação compartilham uma animação de
@@ -174,9 +192,9 @@ e suas duas vizinhas ficam visíveis. As proporções originais são preservadas
 O clique nas prévias laterais, as teclas de direção, Home/End, o arraste com mouse
 e o swipe no celular permitem navegar, sem reprodução automática. As setas de
 anterior/próxima ficam sobre as laterais da captura central, com a mesma aparência
-do celular e alvos de 44 × 48 px. A barra antes da imagem mostra o título, a posição
-e a ação **Ampliar captura**, que acompanha a captura selecionada. A explicação
-fica abaixo da imagem, com largura de leitura limitada. Os textos ficam em
+do celular e alvos de 44 × 48 px. No desktop, o título e a explicação da captura
+ficam juntos acima da imagem, com largura de leitura limitada. Não há contador
+visível ou botão adicional de ampliação. Os textos ficam em
 `solution.modules[].gallery.slides[].title` e `description` e acompanham a navegação.
 A lupa permanece visível na imagem central. A posição e a descrição também
 são anunciadas para leitores de tela. O arraste não
@@ -187,13 +205,13 @@ mantendo os PNGs como fallback. Configurações, legendas e textos
 alternativos ficam em `solution.modules[0].gallery`. O componente está em
 `templates/_carousel.html` e `static/js/carousel.js`.
 
-Clicar na captura central ou em **Ampliar captura** abre um lightbox compartilhado pelos quatro cards,
+Clicar na captura central abre um lightbox compartilhado pelos quatro cards,
 implementado em `templates/_lightbox.html` e `static/js/lightbox.js`. Ele usa o PNG
 original, com a imagem inteira ajustada à tela, zoom de até 8× e deslocamento por
 arraste com mouse ou rolagem nativa no celular. Os botões e as teclas +, − e 0
 controlam o zoom; Esc, o botão de fechar ou o fundo externo fecham a ampliação.
 O diálogo mantém o foco no modal, bloqueia a rolagem da página e devolve o foco à
-imagem ou à ação da barra que abriu o modal ao fechar. A área da imagem participa
+imagem que abriu o modal ao fechar. A área da imagem participa
 da navegação por teclado, incluindo o acesso ao link **Abrir original**.
 A preferência por movimento reduzido também desliga a entrada
 animada do lightbox. Sem JavaScript ou suporte a diálogo, o link abre o PNG original.
@@ -201,15 +219,15 @@ Os textos do lightbox ficam em `lightbox` no JSON; `help_mobile` orienta o uso d
 botões de zoom e do deslize no celular. O rótulo de ampliação fica em
 `solution.modules[].gallery.expand`.
 
-O DNA do Eleitor usa as quatro imagens de `../assets/DnaEleitordesktop`, na
+O DNA do Eleitor usa as quatro imagens de `static/img/desktop/dna/`, na
 ordem numérica, configuradas em `solution.modules[1].gallery`. A navegação de
 cada carrossel é independente.
 
-A DRE da Campanha usa `1.png` e `2.png` de `../assets/DREdesktop`, configuradas
+A DRE da Campanha usa `1.png` e `2.png` de `static/img/desktop/dre/`, configuradas
 em `solution.modules[2].gallery`, com as legendas e descrições das capturas
 1 e 2 do celular.
 
-O Impacto Político usa `1.png` e `3.png` de `../assets/Impactopoliticodesktop`,
+O Impacto Político usa `1.png` e `3.png` de `static/img/desktop/impacto/`,
 configuradas em `solution.modules[3].gallery`, com as legendas e descrições
 das capturas 1 e 3 do celular. Nos carrosséis de duas capturas (DRE e Impacto),
 prévias decorativas da imagem adjacente aparecem nas duas laterais,
@@ -220,8 +238,8 @@ de tela. O card mantém seu conteúdo textual e fundo.
 Até 820 px, os quatro módulos exibem uma galeria exclusiva para celular, com
 imagens verticais de 1080 × 1350 px (4:5). Cada captura ocupa toda a largura interna
 do card, sem prévias laterais, cortes ou distorção. Os textos mantêm seus recuos.
-O RaioX usa sete imagens atualizadas de `../assets/raioxcel`; DNA, DRE e Impacto usam quatro
-imagens de `../assets/Dnacel`, `../assets/drecel` e `../assets/impactocel`, respectivamente.
+O RaioX usa sete imagens em `static/img/mobile/raiox/`; DNA, DRE e Impacto usam quatro
+imagens em `static/img/mobile/dna/`, `static/img/mobile/dre/` e `static/img/mobile/impacto/`, respectivamente.
 A ordem segue os nomes numéricos dos arquivos, de `1.png` em diante. No RaioX,
 a sexta captura reúne os indicadores de concentração nos principais municípios,
 e a sétima apresenta a curva de concentração dos votos.
@@ -232,9 +250,9 @@ galeria está em `solution.modules[].gallery.mobile`, incluindo títulos,
 descrições opcionais em `slides[].description` e textos alternativos.
 A navegação usa rolagem horizontal nativa com encaixe de
 uma imagem por vez; setas discretas em SVG ficam sobre as laterais da imagem,
-com alvos de 44 × 48 px, ancoradas apenas à área das imagens. O título, a posição
-e a ação **Ampliar captura** aparecem antes da imagem; a explicação fica abaixo.
-Esses elementos acompanham a navegação, incluindo o destino da ação de ampliação.
+com alvos de 44 × 48 px, ancoradas apenas à área das imagens. No celular, o título
+e a explicação ficam juntos abaixo da imagem e acompanham a navegação. Assim como
+no desktop, não há contador visível nem botão adicional de ampliação.
 Todas as imagens das quatro galerias mobile têm explicações próprias. A posição e a explicação
 também são anunciadas para leitores de tela. As teclas de direção
 e Home/End também navegam. O toque na imagem
@@ -265,42 +283,44 @@ Para regenerar os WebP dos fundos, do carrossel ou da imagem alternativa do hero
 atualize os caminhos e dimensões em `section_background`, `audience.background`, `solution.card_background`,
 `solution.modules[].gallery.slides[].image`,
 `solution.modules[].gallery.mobile.slides[].image` ou `hero.image`
-no JSON e execute na pasta `Lpaas`, com a venv que já contém Playwright:
+no JSON e execute na pasta `landing`, com as dependências de desenvolvimento instaladas:
 
 ```powershell
-.\.venv\Scripts\python.exe landing\tools\optimize_images.py
+.\.venv\Scripts\python.exe tools\optimize_images.py
 ```
 
 Para regenerar apenas as versões WebP da galeria mobile, preservando todos os
-arquivos de imagem do desktop, execute na pasta `Lpaas`:
+arquivos de imagem do desktop, execute na pasta `landing`:
 
 ```powershell
-.\.venv\Scripts\python.exe landing\tools\optimize_images.py --mobile-only
+.\.venv\Scripts\python.exe tools\optimize_images.py --mobile-only
 ```
 
 Para regenerar apenas as versões WebP das galerias desktop, preservando
-as imagens do celular e do hero, execute na pasta `Lpaas`:
+as imagens do celular e do hero, execute na pasta `landing`:
 
 ```powershell
-.\.venv\Scripts\python.exe landing\tools\optimize_images.py --desktop-only
+.\.venv\Scripts\python.exe tools\optimize_images.py --desktop-only
 ```
 
 A legenda na base do mapa mostra **INTELIGÊNCIA ELEITORAL 360°**, definida em
 `hero.eyebrow`, junto do controle de reprodução. O dourado `#D6BD8A`, centralizado
-em `--cor-dourada`, aparece nos ícones, no índice dos módulos e nos botões de contato.
+em `--cor-dourada`, aparece nos ícones e no índice dos módulos. Os botões de
+contato usam o verde do WhatsApp `#25D366`, definido em `--cor-whatsapp`, com
+variações de hover e pressionamento e texto escuro para manter o contraste.
 A chamada final usa a referência fornecida para convidar a uma apresentação
 personalizada pelo WhatsApp. O título e o texto introdutório ficam centralizados,
 seguidos pelos benefícios **Proteja sua base**, **Encontre oportunidades** e
 **Decida com dados**. Os três blocos ficam lado a lado no desktop e em uma coluna
-compacta no celular. O botão dourado mantém o destino de `contact_button.url`;
+compacta no celular. O botão verde mantém o destino de `contact_button.url`;
 os textos, benefícios, ícones e rótulo da ação ficam em `cta` no JSON.
 
 O hero usa vídeos próprios para celular e desktop. O desktop foi preparado a
-partir de `../assets/download.mp4`, horizontal 16:9, com cerca de oito segundos
+partir de um original `download.mp4`, horizontal 16:9, com cerca de oito segundos
 no original. A abertura preta é removida e os últimos 0,6 segundo recebem uma
 fusão com o início, criando uma emenda suave no loop sem apagar a imagem. O
 arquivo preparado tem cerca de sete segundos. O celular usa
-`../assets/fundocel.mp4`, vertical 9:16, com a mesma preparação do loop.
+`assets/fundocel.mp4`, vertical 9:16, com a mesma preparação do loop.
 No desktop, o vídeo cobre todo o fundo da primeira seção com `object-fit: cover`.
 Até 820 px, o texto e o botão ficam em uma faixa de altura natural, com 16 px
 de intervalo até a faixa reservada ao mapa, de 288 a 416 px conforme a largura.
@@ -337,7 +357,10 @@ As capas `hero-video-poster-desktop-hq.webp` e `hero-video-poster-mobile-hq.webp
 usam qualidade 96 e mantêm o visual durante o carregamento, em caso de falha ou
 sem JavaScript. Os nomes novos evitam reutilizar versões antigas em cache.
 Ao cruzar 820 px, o player troca o vídeo e a capa para o layout correto.
-Os vídeos originais permanecem em `assets/`.
+O original do celular fica em `assets/fundocel.mp4`. O original do desktop,
+`download.mp4`, já não estava disponível antes da reorganização; para regenerar
+esse vídeo, forneça-o em `assets/download.mp4` ou pelo argumento `--source`.
+Os vídeos preparados em `static/video/` continuam disponíveis para a landing.
 
 ### Otimização sem perda de qualidade
 
@@ -356,11 +379,11 @@ imagem de produção. O ganho nos vídeos atuais é de apenas 727 bytes por arqu
 o ganho maior de carregamento vem de evitar a capa duplicada no desktop
 (146.478 bytes a menos na primeira visita).
 
-Para verificar a otimização na pasta `Lpaas`, com FFmpeg disponível pelo pacote
+Para verificar a otimização na pasta `landing`, com FFmpeg disponível pelo pacote
 opcional `imageio-ffmpeg` ou por `--ffmpeg CAMINHO_DO_EXECUTAVEL`:
 
 ```powershell
-.\.venv\Scripts\python.exe landing\tools\optimize_video_delivery.py
+.\.venv\Scripts\python.exe tools\optimize_video_delivery.py
 ```
 
 Acrescente `--apply` para aplicar somente arquivos menores que passem nas
@@ -369,23 +392,23 @@ verificações. Esse processo não altera as capas ou as imagens das galerias.
 O FFmpeg é necessário somente para preparar os assets; não é instalado no
 container de produção. O script aceita `--ffmpeg CAMINHO_DO_EXECUTAVEL` ou usa
 o pacote opcional `imageio-ffmpeg` na venv. Para instalar esse pacote na pasta
-`Lpaas`:
+`landing`:
 
 ```powershell
 .\.venv\Scripts\python.exe -m pip install imageio-ffmpeg==0.6.0
 ```
 
-Para regenerar somente o desktop e sua capa, execute na pasta `Lpaas`:
+Com o original desktop disponível, para regenerar o vídeo e sua capa, execute na pasta `landing`:
 
 ```powershell
-.\.venv\Scripts\python.exe landing\tools\prepare_hero_video.py --target desktop
+.\.venv\Scripts\python.exe tools\prepare_hero_video.py --target desktop
 ```
 
 O destino padrão é `desktop`. Para regenerar o vídeo do celular e a capa
 de 720 px, use:
 
 ```powershell
-.\.venv\Scripts\python.exe landing\tools\prepare_hero_video.py --target mobile --source assets\fundocel.mp4
+.\.venv\Scripts\python.exe tools\prepare_hero_video.py --target mobile --source assets\fundocel.mp4
 ```
 
 Os parâmetros `--trim-start`
@@ -406,19 +429,23 @@ superior de 1 px, ambas em `rgba(103,232,249,0.12)`. O primeiro link do menu,
 Em telas de até 560 px, os textos corridos usam 16 px, os textos auxiliares
 usam ao menos 14 px e os títulos têm escala própria para celular. Links e
 botões têm alvos de toque de pelo menos 44 × 44 px. Os botões do WhatsApp
-ficam no menu, no hero e na seção final. Um botão circular de 56 × 56 px também
-fica fixo no canto inferior esquerdo e acompanha a rolagem, com 24 px de recuo
+ficam no menu, no hero e na seção final. Um botão de 56 × 56 px também
+fica fixo no canto inferior direito e acompanha a rolagem, com 24 px de recuo
 no desktop e 16 px em telas de até 560 px, respeitando as áreas seguras do aparelho.
-Ele usa o mesmo destino de `contact_button.url`, um ícone SVG local e rótulo
-acessível. Durante a ampliação das capturas, o botão fica oculto e retorna ao
+Ele usa o mesmo destino de `contact_button.url`, a imagem configurada em
+`contact_button.floating_icon` e rótulo acessível. O PNG local
+`static/img/whatsapp-sem-fundo.png` deriva de `assets/whatsapp--v4.jpg`, com
+transparência apenas no fundo externo; o símbolo branco e a borda foram mantidos.
+O JPG original fica preservado em `assets/`. Os arquivos de referência dessa pasta
+são versionados no Git e ficam fora do build Docker. Durante a ampliação das capturas, o botão fica oculto e retorna ao
 fechar o lightbox. O rodapé reserva espaço para o último conteúdo ficar acima dele.
 
-Todos os arquivos de `../output/assets/` foram copiados com seus nomes originais:
+Os arquivos obtidos na extração anterior foram copiados com seus nomes originais:
 fontes `.woff`, `.woff2`, `.ttf` e `.otf` ficam em `static/fonts/`; os demais
 assets ficam em `static/img/`. As imagens adicionais dos módulos também ficam
 em `static/img/`.
 
-O `static/css/style.css` usa os valores de `../output/computed_styles.json`:
+O `static/css/style.css` preserva os valores de estilos obtidos na extração inicial:
 fundo `#090A0F`, texto `#F4F5F7`, texto secundário azul-claro `#BAC8D8`, ciano `#00808F`,
 azul `#3B82F6`, gradiente de seção a 160°, botões com raio de 4 px, sombra
 das ações e blur de 12 px no cabeçalho. Os cards usam o gradiente

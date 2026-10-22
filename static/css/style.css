@@ -26,8 +26,9 @@
   --cor-texto: #f4f5f7;
   --cor-texto-secundario: #bac8d8;
   --cor-dourada: #d6bd8a;
-  --cor-whatsapp: #15803d;
-  --cor-whatsapp-hover: #166534;
+  --cor-whatsapp: #25d366;
+  --cor-whatsapp-hover: #20c45d;
+  --cor-whatsapp-active: #1bb254;
   --cor-primaria: #00808f;
   --cor-acento: #3b82f6;
   --cor-azul-profundo: oklch(0.327367 0.078237 259.821);
@@ -188,10 +189,10 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--cor-ciano-claro
 .botao-verde:hover { background: #166534; border-color: #4ade80; }
 .botao-pequeno { min-height: 44px; padding: var(--espaco-2) var(--espaco-5); }
 .botao svg { flex: none; }
-/* O dourado da marca identifica a ação de contato em toda a landing. */
-.botao-contato { min-height: 52px; padding-inline: var(--espaco-6); background: var(--cor-dourada); color: #102034; box-shadow: 0 4px 12px rgb(0 0 0 / 12%); }
-.botao-contato:hover { background: #e7cfa2; border-color: transparent; }
-.botao-contato:active { background: #c9aa70; }
+/* O verde do WhatsApp identifica a ação de contato em toda a landing. */
+.botao-contato { min-height: 52px; padding-inline: var(--espaco-6); background: var(--cor-whatsapp); color: #102034; box-shadow: 0 4px 12px rgb(0 0 0 / 12%); }
+.botao-contato:hover { background: var(--cor-whatsapp-hover); border-color: transparent; }
+.botao-contato:active { background: var(--cor-whatsapp-active); }
 .botao-contato.botao-pequeno { min-height: 44px; }
 .botao-texto { align-self: flex-start; min-height: 52px; gap: var(--espaco-3); background: transparent; border-color: transparent; box-shadow: none; color: #e1e9f2; }
 .botao-texto:hover { background: rgb(216 230 244 / 7%); border-color: transparent; }
@@ -204,7 +205,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--cor-ciano-claro
 /* Contato sempre disponível durante a rolagem, respeitando a área segura. */
 .contato-flutuante {
   position: fixed;
-  left: calc(var(--espaco-6) + env(safe-area-inset-left, 0px));
+  right: calc(var(--espaco-6) + env(safe-area-inset-right, 0px));
   bottom: calc(var(--espaco-6) + env(safe-area-inset-bottom, 0px));
   z-index: 20;
   display: grid;
@@ -212,13 +213,12 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--cor-ciano-claro
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  background: var(--cor-whatsapp);
-  color: var(--cor-branca);
-  box-shadow: 0 4px 12px rgb(0 0 0 / 24%);
-  transition: background-color var(--transicao);
+  background: transparent;
+  transition: filter var(--transicao);
 }
-.contato-flutuante:hover { background: var(--cor-whatsapp-hover); }
-.contato-flutuante:active { background: var(--cor-whatsapp-hover); }
+.contato-flutuante img { display: block; width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 4px 6px rgb(0 0 0 / 24%)); }
+.contato-flutuante:hover { filter: brightness(1.08); }
+.contato-flutuante:active { filter: brightness(0.92); }
 :root.lightbox-aberto .contato-flutuante { visibility: hidden; pointer-events: none; }
 
 .secao-hero { padding-block: clamp(3rem, 5vw, var(--espaco-20)); background-image: var(--gradiente-hero); }
@@ -334,15 +334,10 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--cor-ciano-claro
 .carrossel-arrastando .carrossel-palco, .carrossel-arrastando .carrossel-palco * { cursor: grabbing !important; }
 .carrossel-animando .carrossel-slide { will-change: transform, opacity; }
 .carrossel-animando .carrossel-revelacao { will-change: clip-path; }
-/* O assunto e a ampliação aparecem antes da captura; a explicação fica abaixo. */
-.galeria-barra { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: var(--espaco-3) var(--espaco-4); margin-bottom: var(--espaco-4); padding-bottom: var(--espaco-4); border-bottom: 1px solid var(--cor-borda); }
-.galeria-identificacao { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: baseline; gap: var(--espaco-3); min-width: 0; }
+/* Título e descrição ficam juntos: acima no desktop e abaixo no celular. */
+.galeria-barra { margin-bottom: var(--espaco-4); }
 .galeria-legenda { min-width: 0; color: var(--cor-texto); font-size: 1rem; font-weight: var(--peso-destaque); line-height: 1.5; }
-.galeria-posicao { min-width: 3rem; color: var(--cor-dourada); font-size: 0.875rem; font-variant-numeric: tabular-nums; text-align: center; }
-.galeria-ampliar { display: inline-flex; align-items: center; justify-content: center; gap: var(--espaco-2); min-height: 44px; padding: var(--espaco-2) var(--espaco-3); border: 1px solid #52667d; border-radius: var(--raio-base); color: #e1e9f2; font-size: 0.875rem; font-weight: var(--peso-destaque); line-height: 1.5; transition: background-color var(--transicao), border-color var(--transicao); }
-.galeria-ampliar svg { flex: none; }
-.galeria-ampliar:hover { border-color: var(--cor-dourada); background: rgb(216 230 244 / 7%); }
-.galeria-descricao { max-width: 72ch; margin-top: var(--espaco-4); color: #bdcddd; font-size: 1rem; line-height: 1.65; }
+.galeria-descricao { max-width: 72ch; margin-top: var(--espaco-2); color: #bdcddd; font-size: 1rem; line-height: 1.65; }
 
 /* A galeria vertical tem navegação própria e preserva o Coverflow do desktop. */
 .carrossel-mobile { display: none; }
@@ -495,7 +490,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--cor-ciano-claro
   .hero-com-video .hero-grade { grid-row: 1; align-items: start; }
   .hero-com-video .hero-conteudo { width: 100%; max-width: 36rem; padding-bottom: 0; }
   .hero-com-video::before { background: linear-gradient(#050e1b 0%, rgb(5 14 27 / 92%) 34%, rgb(5 14 27 / 15%) 60%); }
-  .hero-legenda { bottom: var(--espaco-4); padding-left: calc(56px + var(--espaco-4)); }
+  .hero-legenda { bottom: var(--espaco-4); padding-right: calc(56px + var(--espaco-4)); }
   .hero-legenda p { margin-right: auto; font-size: 0.75rem; letter-spacing: 0.02em; }
   .hero-com-video .hero-titulo + p { margin-top: var(--espaco-4); }
   .hero-com-video .grupo-botoes { margin-top: var(--espaco-6); }
@@ -529,8 +524,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--cor-ciano-claro
   .carrossel-mobile-slide picture, .carrossel-mobile-slide img { width: 100%; aspect-ratio: 4 / 5; }
   .carrossel-mobile-slide img { height: auto; object-fit: contain; }
   .carrossel-mobile .carrossel-sinal-ampliar { opacity: 0.9; }
-  .carrossel-mobile .galeria-barra { margin-bottom: var(--espaco-4); padding: 0 var(--recuo-modulo) var(--espaco-4); }
-  .carrossel-mobile .galeria-descricao { margin-top: 0; padding: var(--espaco-4) var(--recuo-modulo) 0; }
+  .carrossel-mobile .galeria-barra { margin-top: var(--espaco-4); margin-bottom: 0; padding-inline: var(--recuo-modulo); }
   .lightbox-ajuda-desktop { display: none; }
   .lightbox-ajuda-mobile { display: inline; }
   .carrossel-mobile-gesto { position: absolute; top: 50%; right: 12px; color: #a5e4ef; opacity: 0.75; transform: translateY(-50%); pointer-events: none; }
@@ -549,9 +543,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--cor-ciano-claro
 }
 
 @media (max-width: 560px) {
-  .galeria-barra { grid-template-columns: minmax(0, 1fr); }
-  .galeria-ampliar { justify-self: start; }
-  .contato-flutuante { left: calc(var(--espaco-4) + env(safe-area-inset-left, 0px)); bottom: calc(var(--espaco-4) + env(safe-area-inset-bottom, 0px)); }
+  .contato-flutuante { right: calc(var(--espaco-4) + env(safe-area-inset-right, 0px)); bottom: calc(var(--espaco-4) + env(safe-area-inset-bottom, 0px)); }
   :root {
     --tamanho-hero: clamp(1.875rem, 8vw, 2.5rem);
     --tamanho-titulo: 1.625rem;

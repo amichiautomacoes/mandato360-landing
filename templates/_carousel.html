@@ -1,19 +1,14 @@
 {% from '_image.html' import responsive_image %}
 {% from '_icons.html' import icon %}
-{% macro gallery_toolbar(gallery, slides, mobile=false) -%}
+{% macro gallery_caption(slides, mobile=false) -%}
 <div class="galeria-barra" {% if mobile %}data-mobile-caption{% else %}data-carrossel-legenda{% endif %} hidden>
-  <div class="galeria-identificacao">
-    <p class="galeria-legenda" data-gallery-caption>{{ slides[0].title }}</p>
-    <span class="galeria-posicao" data-gallery-position aria-hidden="true">1 / {{ slides|length }}</span>
-  </div>
-  <a class="galeria-ampliar" href="{{ url_for('static', filename=slides[0].image.path) }}" target="_blank" rel="noopener noreferrer" data-ampliar data-gallery-expand data-label-expand="{{ gallery.expand }}" aria-haspopup="dialog" aria-label="{{ gallery.expand }}: {{ slides[0].title }}">
-    {{ icon('zoom-in', 18) }}<span>{{ gallery.expand }}</span>
-  </a>
+  <p class="galeria-legenda" data-gallery-caption>{{ slides[0].title }}</p>
+  <p class="galeria-descricao" data-gallery-description hidden>{{ slides[0].description|default('') }}</p>
 </div>
 {%- endmacro %}
 {% macro dashboard_carousel(gallery, id) -%}
 <div class="carrossel-dashboard{% if gallery.mobile %} carrossel-desktop{% endif %}" data-carrossel data-of="{{ gallery.of }}" role="region" aria-roledescription="{{ gallery.role }}" aria-label="{{ gallery.label }}" tabindex="0">
-  {{ gallery_toolbar(gallery, gallery.slides) }}
+  {{ gallery_caption(gallery.slides) }}
   <div class="carrossel-imagens">
     <div id="carrossel-{{ id }}" class="carrossel-palco">
       {% for slide in gallery.slides %}
@@ -39,12 +34,10 @@
       </button>
     </div>
   </div>
-  <p class="galeria-descricao" data-gallery-description hidden>{{ gallery.slides[0].description|default('') }}</p>
   <p class="somente-leitores" data-carrossel-status role="status" aria-live="polite" aria-atomic="true"></p>
 </div>
 {% if gallery.mobile %}
 <div class="carrossel-dashboard carrossel-mobile" data-carrossel-mobile data-of="{{ gallery.of }}" role="region" aria-roledescription="{{ gallery.role }}" aria-label="{{ gallery.label }}" tabindex="0">
-  {{ gallery_toolbar(gallery, gallery.mobile.slides, mobile=true) }}
   <div class="carrossel-mobile-imagens">
     <div id="carrossel-mobile-{{ id }}" class="carrossel-mobile-faixa" data-mobile-faixa>
       {% for slide in gallery.mobile.slides %}
@@ -69,7 +62,7 @@
       </button>
     </div>
   </div>
-  <p class="galeria-descricao" data-gallery-description hidden>{{ gallery.mobile.slides[0].description|default('') }}</p>
+  {{ gallery_caption(gallery.mobile.slides, mobile=true) }}
   <p class="somente-leitores" data-mobile-status role="status" aria-live="polite" aria-atomic="true"></p>
 </div>
 {% endif %}

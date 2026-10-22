@@ -14,7 +14,7 @@ from pathlib import Path
 
 
 LANDING_DIR = Path(__file__).resolve().parents[1]
-ASSETS_DIR = LANDING_DIR.parent / "assets"
+ASSETS_DIR = LANDING_DIR / "assets"
 SPECS = {
     "desktop": {"source": "download.mp4", "max_width": 1920},
     "mobile": {"source": "fundocel.mp4", "max_width": 1080},

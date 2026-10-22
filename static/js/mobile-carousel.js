@@ -9,8 +9,6 @@ document.querySelectorAll("[data-carrossel-mobile]").forEach((carrossel) => {
   const status = carrossel.querySelector("[data-mobile-status]");
   const legenda = carrossel.querySelector("[data-gallery-caption]");
   const descricao = carrossel.querySelector("[data-gallery-description]");
-  const posicao = carrossel.querySelector("[data-gallery-position]");
-  const ampliar = carrossel.querySelector("[data-gallery-expand]");
   const movimentoReduzido = window.matchMedia("(prefers-reduced-motion: reduce)");
   let atual = 0;
   let largura = faixa.clientWidth;
@@ -24,9 +22,6 @@ document.querySelectorAll("[data-carrossel-mobile]").forEach((carrossel) => {
     legenda.textContent = slides[atual].dataset.title;
     descricao.textContent = slides[atual].dataset.description || "";
     descricao.hidden = !descricao.textContent;
-    posicao.textContent = `${atual + 1} / ${slides.length}`;
-    ampliar.href = slides[atual].querySelector("[data-ampliar]").href;
-    ampliar.setAttribute("aria-label", `${ampliar.dataset.labelExpand}: ${legenda.textContent}`);
     slides.forEach((slide, indice) => {
       slide.setAttribute("aria-hidden", String(indice !== atual));
       slide.querySelector("[data-ampliar]").tabIndex = indice === atual ? 0 : -1;

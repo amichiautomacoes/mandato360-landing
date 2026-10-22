@@ -12,4 +12,6 @@ __pycache__
 .impeccable/verification
 .impeccable/live
 tools
+assets
+requirements-dev.txt
 README.md

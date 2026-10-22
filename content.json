@@ -58,7 +58,12 @@
   "contact_button": {
     "label": "Fale Conosco",
     "channel": "Converse pelo WhatsApp",
-    "url": "https://wa.me/5531975564544"
+    "url": "https://wa.me/5531975564544",
+    "floating_icon": {
+      "path": "img/whatsapp-sem-fundo.png",
+      "width": 1254,
+      "height": 1254
+    }
   },
   "hero": {
     "eyebrow": "INTELIGÊNCIA ELEITORAL 360°",

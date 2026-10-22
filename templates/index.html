@@ -186,7 +186,7 @@
       <p class="conteiner direitos-autorais">{{ content.footer.copyright }}</p>
     </footer>
     <a class="contato-flutuante" href="{{ content.contact_button.url }}" target="_blank" rel="noopener noreferrer" aria-label="{{ content.contact_button.label }} — {{ content.contact_button.channel }}" title="{{ content.contact_button.channel }}">
-      {{ icon('whatsapp', 30) }}
+      <img src="{{ url_for('static', filename=content.contact_button.floating_icon.path) }}" alt="" width="{{ content.contact_button.floating_icon.width }}" height="{{ content.contact_button.floating_icon.height }}" decoding="async">
     </a>
     {% include '_lightbox.html' %}
   </body>
