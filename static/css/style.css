@@ -190,7 +190,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--cor-ciano-claro
 .botao-pequeno { min-height: 44px; padding: var(--espaco-2) var(--espaco-5); }
 .botao svg { flex: none; }
 /* O verde do WhatsApp identifica a ação de contato em toda a landing. */
-.botao-contato { min-height: 52px; padding-inline: var(--espaco-6); background: var(--cor-whatsapp); color: #102034; box-shadow: 0 4px 12px rgb(0 0 0 / 12%); }
+.botao-contato { min-height: 52px; padding-inline: var(--espaco-6); background: var(--cor-whatsapp); color: var(--cor-branca); box-shadow: 0 4px 12px rgb(0 0 0 / 12%); }
 .botao-contato:hover { background: var(--cor-whatsapp-hover); border-color: transparent; }
 .botao-contato:active { background: var(--cor-whatsapp-active); }
 .botao-contato.botao-pequeno { min-height: 44px; }
