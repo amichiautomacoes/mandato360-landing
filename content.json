@@ -58,7 +58,7 @@
   "contact_button": {
     "label": "Fale Conosco",
     "channel": "Converse pelo WhatsApp",
-    "url": "https://wa.me/5531975564544",
+    "url": "https://wa.me/5531975564544?text=Ol%C3%A1!%20Tenho%20interesse%20em%20conhecer%20o%20MANDATO%20360%20e%20gostaria%20de%20agendar%20uma%20apresenta%C3%A7%C3%A3o%20comercial%20da%20plataforma.",
     "floating_icon": {
       "path": "img/whatsapp-sem-fundo.png",
       "width": 1254,
@@ -66,10 +66,12 @@
     }
   },
   "hero": {
-    "eyebrow": "INTELIGÊNCIA ELEITORAL 360°",
-    "title": "Mapeamento completo do seu desempenho eleitoral",
-    "description": "A auditoria 360° do seu desempenho em Minas Gerais: cruze votação por bairro, perfil do eleitorado, raio-x financeiro da campanha e a força real das alianças locais",
-    "secondary_button": "Como Funciona",
+    "eyebrow": "INTELIGÊNCIA ELEITORAL PARA MANDATOS EM MINAS GERAIS",
+    "title": "Descubra o que os dados eleitorais revelam sobre o seu mandato.",
+    "description": "Conheça o MANDATO 360, uma plataforma que reúne análises de votação por território, perfil do eleitorado, finanças de campanha e alianças políticas para apoiar suas decisões estratégicas.",
+    "primary_button": "Agendar uma apresentação",
+    "secondary_button": "Conhecer a plataforma",
+    "supporting_text": "Veja como o MANDATO 360 funciona e conheça suas possibilidades de análise em uma apresentação comercial.",
     "video": {
       "pause": "Pausar animação do mapa",
       "play": "Reproduzir animação do mapa",

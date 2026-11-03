@@ -46,15 +46,16 @@
         {% endif %}
         <div class="conteiner hero-grade">
           <div class="hero-conteudo">
+            <p class="hero-identificacao">{{ content.hero.eyebrow }}</p>
             <h1 id="hero-title" class="hero-titulo">{{ content.hero.title }}</h1>
             <p class="secao-descricao">{{ content.hero.description }}</p>
             <div class="grupo-botoes">
               <div class="hero-acao-principal">
-                <a class="botao botao-contato" href="{{ content.contact_button.url }}" target="_blank" rel="noopener noreferrer" aria-label="{{ content.contact_button.label }} — {{ content.contact_button.channel }}">{{ content.contact_button.label }} {{ icon('external', 20) }}</a>
-                <p class="contato-contexto">{{ content.contact_button.channel }}</p>
+                <a class="botao botao-contato" href="{{ content.contact_button.url }}" target="_blank" rel="noopener noreferrer" aria-label="{{ content.hero.primary_button }} — {{ content.contact_button.channel }}">{{ content.hero.primary_button }} {{ icon('external', 20) }}</a>
               </div>
               <a class="botao botao-texto" href="#section-solution">{{ content.hero.secondary_button }} {{ icon('arrow-down', 18) }}</a>
             </div>
+            <p class="contato-contexto">{{ content.hero.supporting_text }}</p>
           </div>
           {% if not content.hero.video %}
           <figure class="hero-imagem">
@@ -63,7 +64,6 @@
           {% endif %}
         </div>
         <div class="hero-legenda conteiner">
-          <p>{{ content.hero.eyebrow }}</p>
           {% if content.hero.video %}
           <button class="hero-video-controle" type="button" aria-controls="hero-video" aria-label="{{ content.hero.video.pause }}" data-video-controle data-label-pausar="{{ content.hero.video.pause }}" data-label-reproduzir="{{ content.hero.video.play }}" hidden>
             <span data-video-pausa>{{ icon('pause', 18) }}</span>

@@ -81,7 +81,10 @@ DASHBOARD_URL = "http://localhost:8501"
 A rota `/dashboard` mostra o botão **Ir para o dashboard** com esse endereço.
 O Streamlit deve ser iniciado separadamente. Os botões **Fale Conosco** da landing
 abrem o WhatsApp em uma nova aba. O texto e o destino ficam em `contact_button.label`
-e `contact_button.url` no `content.json`; o link atual é `https://wa.me/5531975564544`.
+e `contact_button.url` no `content.json`. Todos os botões abrem o número
+`5531975564544` com a mensagem preenchida: “Olá! Tenho interesse em conhecer o
+MANDATO 360 e gostaria de agendar uma apresentação comercial da plataforma.”
+O texto fica codificado no parâmetro `text` do link e só é enviado pelo visitante.
 
 ## Estrutura
 
@@ -139,8 +142,10 @@ avaliações independentes, está em `.impeccable/critique/` e recebeu 23/32 nas
 heurísticas aplicáveis. A nota descreve a versão anterior ao refinamento,
 sem medir conversão comercial.
 
-O hero oferece **Fale Conosco** como ação principal, com destino WhatsApp
-explícito em `contact_button.channel`; **Como Funciona** é secundário. O verde
+O hero oferece **Agendar uma apresentação** como ação principal, com destino WhatsApp
+explícito no rótulo acessível por `contact_button.channel`; **Conhecer a plataforma** é secundário
+e leva aos módulos. Os rótulos ficam em `hero.primary_button` e `hero.secondary_button`,
+e o texto de apoio à apresentação comercial fica em `hero.supporting_text`. O verde
 do WhatsApp identifica o contato no header, no hero e no fechamento. Um índice
 com quatro âncoras apresenta os módulos antes das capturas. O refinamento
 preserva os textos factuais, a identidade Montserrat/azul/dourado e os assets.
@@ -303,8 +308,9 @@ as imagens do celular e do hero, execute na pasta `landing`:
 .\.venv\Scripts\python.exe tools\optimize_images.py --desktop-only
 ```
 
-A legenda na base do mapa mostra **INTELIGÊNCIA ELEITORAL 360°**, definida em
-`hero.eyebrow`, junto do controle de reprodução. O dourado `#D6BD8A`, centralizado
+A identificação acima do título mostra **INTELIGÊNCIA ELEITORAL PARA MANDATOS EM MINAS GERAIS**,
+definida em `hero.eyebrow`. O controle de reprodução permanece na base do mapa.
+O dourado `#D6BD8A`, centralizado
 em `--cor-dourada`, aparece nos ícones e no índice dos módulos. Os botões de
 contato usam o verde do WhatsApp `#25D366`, definido em `--cor-whatsapp`, com
 variações de hover e pressionamento e texto escuro para manter o contraste.

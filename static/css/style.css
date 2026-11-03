@@ -225,6 +225,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--cor-ciano-claro
 /* A base do hero se funde à cor da próxima seção sem bloquear as interações. */
 .secao-hero::after { position: absolute; inset: auto 0 0; z-index: 1; height: clamp(4rem, 8vw, 7rem); background: linear-gradient(to bottom, rgb(27 44 67 / 0%), var(--cor-secao-clara)); pointer-events: none; content: ""; }
 .hero-grade { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: center; gap: var(--espaco-12); }
+.hero-identificacao { margin-bottom: var(--espaco-4); color: var(--cor-dourada); font-size: 0.875rem; font-weight: var(--peso-destaque); line-height: 1.5; }
 .hero-titulo { max-width: 17ch; }
 .hero-conteudo .secao-descricao { max-width: 48ch; }
 .hero-imagem { overflow: hidden; border: 1px solid var(--cor-borda); border-radius: var(--raio-midia); box-shadow: var(--sombra-suave); }
@@ -235,7 +236,6 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--cor-ciano-claro
 .hero-com-video .secao-descricao { color: #d9e3ee; line-height: 1.7; }
 .hero-com-video::before { position: absolute; inset: 0; z-index: 1; background: linear-gradient(90deg, rgb(5 14 27 / 92%) 0%, rgb(5 14 27 / 76%) 34%, rgb(5 14 27 / 8%) 68%); pointer-events: none; content: ""; }
 .hero-legenda { position: absolute; inset: auto 0 var(--espaco-6); z-index: 2; display: flex; align-items: center; justify-content: flex-end; gap: var(--espaco-4); pointer-events: none; }
-.hero-legenda p { color: var(--cor-dourada); font-size: 0.75rem; font-weight: var(--peso-destaque); letter-spacing: 0.1em; line-height: 1.5; }
 .hero-video-controle { display: grid; place-items: center; flex: none; width: 44px; height: 44px; padding: 0; border: 1px solid rgb(214 189 138 / 40%); border-radius: 50%; background: #102034; color: #e9d5af; pointer-events: auto; }
 .hero-video-controle span { display: flex; }
 .hero-video-controle:hover { background: #1b3049; border-color: var(--cor-dourada); }
@@ -489,7 +489,6 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--cor-ciano-claro
   .hero-com-video .hero-conteudo { width: 100%; max-width: 36rem; padding-bottom: 0; }
   .hero-com-video::before { background: linear-gradient(#050e1b 0%, rgb(5 14 27 / 92%) 34%, rgb(5 14 27 / 15%) 60%); }
   .hero-legenda { bottom: var(--espaco-4); padding-right: calc(56px + var(--espaco-4)); }
-  .hero-legenda p { margin-right: auto; font-size: 0.75rem; letter-spacing: 0.02em; }
   .hero-com-video .hero-titulo + p { margin-top: var(--espaco-4); }
   .hero-com-video .grupo-botoes { margin-top: var(--espaco-6); }
   .hero-com-video .hero-video-fundo picture, .hero-com-video .hero-video {
